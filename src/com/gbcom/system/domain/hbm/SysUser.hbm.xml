@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.gbcom.system.domain">
+    <class
+            name="SysUser"
+            table="SYS_USER"
+            >
+
+        <meta attribute="sync-DAO">false</meta>
+        <meta attribute="sync-jsp">true</meta>
+        <meta attribute="sync-boolean">get</meta>
+        <meta attribute="treeable">false</meta>
+        <meta attribute="projectable">false</meta>
+        <meta attribute="tableName">系统用户管理</meta>
+        <meta attribute="tableComment">系统用户管理</meta>
+        <meta attribute="sync-templatePatterns">list\w*</meta>
+        <meta attribute="sub-system">system</meta>
+
+        <id
+                name="id"
+                type="java.lang.Long"
+                column="ID"
+                >
+            <generator class="com.hc.core.orm.hibernate.LongIdGenerator"/>
+        </id>
+
+        <property
+                name="loginName"
+                column="LOGIN_NAME"
+                type="string"
+                not-null="true"
+                length="100"
+                >
+            <meta attribute="ColumnName">登陆名</meta>
+            <meta attribute="ColumnComment">登陆名</meta>
+        </property>
+
+        <property
+                name="password"
+                column="PASSWORD"
+                type="string"
+                not-null="false"
+                length="100"
+                >
+            <meta attribute="ColumnName">密码</meta>
+            <meta attribute="ColumnComment">密码</meta>
+        </property>
+
+        <property
+                name="displayName"
+                column="DISPLAY_NAME"
+                type="string"
+                not-null="false"
+                length="100"
+                >
+            <meta attribute="ColumnName">显示名称</meta>
+            <meta attribute="ColumnComment">显示名称</meta>
+        </property>
+
+        <property
+                name="status"
+                column="STATUS"
+                type="string"
+                not-null="false"
+                length="6"
+                >
+            <meta attribute="ColumnName">帐号状态</meta>
+            <meta attribute="ColumnComment">帐号状态</meta>
+        </property>
+
+        <property
+                name="createTime"
+                column="CREATE_TIME"
+                type="timestamp"
+                not-null="false"
+                length="7"
+                >
+            <meta attribute="ColumnName">创建时间</meta>
+            <meta attribute="ColumnComment">创建时间</meta>
+        </property>
+
+        <property
+                name="updateTime"
+                column="UPDATE_TIME"
+                type="timestamp"
+                not-null="false"
+                length="7"
+                >
+            <meta attribute="ColumnName">更新时间</meta>
+            <meta attribute="ColumnComment">更新时间</meta>
+        </property>
+
+        <property
+                name="updateUser"
+                column="UPDATE_USER"
+                type="string"
+                not-null="false"
+                length="100"
+                >
+            <meta attribute="ColumnName">更新人</meta>
+            <meta attribute="ColumnComment">更新人</meta>
+        </property>
+
+        <property
+                name="createUser"
+                column="CREATE_USER"
+                type="string"
+                not-null="false"
+                length="100"
+                >
+            <meta attribute="ColumnName">创建人</meta>
+            <meta attribute="ColumnComment">创建人</meta>
+        </property>
+
+        <property
+                name="reasonDesc"
+                column="REASON_DESC"
+                type="string"
+                not-null="false"
+                length="100"
+                >
+            <meta attribute="ColumnName">失效/锁定原因</meta>
+            <meta attribute="ColumnComment">失效/锁定原因</meta>
+        </property>
+
+        <property
+                name="openDate"
+                column="OPEN_DATE"
+                type="date"
+                not-null="false"
+                length="7"
+                >
+            <meta attribute="ColumnName">开通日期</meta>
+            <meta attribute="ColumnComment">开通日期</meta>
+        </property>
+
+        <property
+                name="closeDate"
+                column="CLOSE_DATE"
+                type="date"
+                not-null="false"
+                length="7"
+                >
+            <meta attribute="ColumnName">截止日期</meta>
+            <meta attribute="ColumnComment">截止日期</meta>
+        </property>
+
+		<many-to-one
+                name="area"
+                column="AREA_ID"
+                class="SysArea"
+                not-null="false"
+                >
+        </many-to-one>
+        
+        <many-to-one
+                name="person"
+                column="PERSON_ID"
+                class="SysPerson"
+                not-null="false"
+                >
+        </many-to-one>
+        <many-to-one
+                name="userType"
+                column="USER_TYPE_ID"
+                class="SysCodeDetail"
+                not-null="false"
+                >
+        </many-to-one>
+
+        <set name="sysUserRoles" inverse="true" order-by="role_id">
+            <key column="USER_ID"/>
+            <one-to-many class="SysUserRole"/>
+        </set>
+
+        <set name="sysUserPrivileges" inverse="true">
+            <key column="USER_ID"/>
+            <one-to-many class="SysUserPrivilege"/>
+        </set>
+
+    </class>
+    <query name="sysuser_all_data_query">
+        <![CDATA[FROM SysUser]]>
+    </query>
+</hibernate-mapping>

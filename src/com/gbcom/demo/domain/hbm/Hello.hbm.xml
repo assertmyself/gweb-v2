@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.gbcom.demo.domain">
+    <class name="Hello" table="DEMO_HELLO">
+
+        <meta attribute="sync-DAO">false</meta>
+        <meta attribute="sync-jsp">true</meta>
+        <meta attribute="sync-boolean">get</meta>
+        <meta attribute="treeable">false</meta>
+        <meta attribute="projectable">false</meta>
+        <meta attribute="tableName">HELLO</meta>
+        <meta attribute="tableComment">HELLO</meta>
+        <meta attribute="sync-templatePatterns">list\w*</meta>
+        <meta attribute="sub-system">DEMO</meta>
+
+        <id name="id" type="java.lang.Long" column="ID">
+            <generator class="com.hc.core.orm.hibernate.LongIdGenerator"/>
+        </id>
+        <property name="name"  type="string"  not-null="false" length="50"/> 
+        <property name="age"  type="int"  not-null="false" length="4"/> 
+        <property name="address"  type="string"  not-null="false" length="50"/> 
+        <property name="description"  type="string"  not-null="false" length="50"/> 
+        <property name="createTime" type="timestamp"  not-null="false" length="50"/> 
+    </class>
+</hibernate-mapping>

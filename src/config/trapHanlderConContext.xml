@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TrapHanlderConContext>
+	<list><!--
+		<TrapHandlerCondition key="1.3.6.1.4.1.28723.12.10.1.7" needFilter="false" keyType="oid"
+			needResponse="false" needProcess="true" processor="com.gbcom.ccsv3.trap.processor.ReportTrapProcess"
+			responseOid="1.2.3.4.5" responseValue="bbbb" vendor="gbcom">
+		</TrapHandlerCondition>
+		<TrapHandlerCondition key="1.3.6.1.4.1.28723.12.10.1.8" needFilter="false" keyType="oid"
+			needResponse="false" needProcess="true" processor="com.gbcom.ccsv3.trap.processor.FileTransTrapProcess"
+			responseOid="1.2.3.4.5" responseValue="bbbb" vendor="gbcom">
+		</TrapHandlerCondition>  
+		<TrapHandlerCondition key="1.3.6.1.4.1.28723.12.10.1.9" needFilter="false" keyType="oid"
+			needResponse="false" needProcess="true" processor="com.gbcom.ccsv3.trap.processor.ConfigUpdateTrapProcess"
+			responseOid="1.2.3.4.5" responseValue="bbbb" vendor="gbcom">
+		</TrapHandlerCondition>  
+		<TrapHandlerCondition key="1.3.6.1.4.1.28723.12.10.1.27" needFilter="false" keyType="oid"
+			needResponse="false" needProcess="true" processor="com.gbcom.ccsv3.trap.processor.L2tpTrapProcess"
+			responseOid="1.2.3.4.5" responseValue="bbbb" vendor="gbcom">
+		</TrapHandlerCondition>  
+		
+
+		
+		--><!-- 设备告警 -->
+		<!--<TrapHandlerCondition key="1.3.6.1.4.1.28723.12.10.1.1" needFilter="false" keyType="oid"
+			needResponse="false" needProcess="true" processor="com.gbcom.ccsv3.trap.processor.AlarmTrapProcess"
+			responseOid="1.2.3.4.5" responseValue="bbbb" vendor="gbcom">
+		</TrapHandlerCondition>  
+		<TrapHandlerCondition key="1.3.6.1.4.1.28723.12.10.1.2" needFilter="false" keyType="oid"
+			needResponse="false" needProcess="true" processor="com.gbcom.ccsv3.trap.processor.AlarmTrapProcess"
+			responseOid="1.2.3.4.5" responseValue="bbbb" vendor="gbcom">
+		</TrapHandlerCondition>  
+		<TrapHandlerCondition key="1.3.6.1.4.1.28723.12.10.1.3" needFilter="false" keyType="oid"
+			needResponse="false" needProcess="true" processor="com.gbcom.ccsv3.trap.processor.AlarmTrapProcess"
+			responseOid="1.2.3.4.5" responseValue="bbbb" vendor="gbcom">
+		</TrapHandlerCondition>  
+		<TrapHandlerCondition key="1.3.6.1.4.1.28723.12.10.1.4" needFilter="false" keyType="oid"
+			needResponse="false" needProcess="true" processor="com.gbcom.ccsv3.trap.processor.AlarmTrapProcess"
+			responseOid="1.2.3.4.5" responseValue="bbbb" vendor="gbcom">
+		</TrapHandlerCondition>  
+		<TrapHandlerCondition key="1.3.6.1.4.1.28723.12.10.1.5" needFilter="false" keyType="oid"
+			needResponse="false" needProcess="true" processor="com.gbcom.ccsv3.trap.processor.AlarmTrapProcess"
+			responseOid="1.2.3.4.5" responseValue="bbbb" vendor="gbcom">
+		</TrapHandlerCondition>  
+		<TrapHandlerCondition key="1.3.6.1.4.1.28723.12.10.1.6" needFilter="false" keyType="oid"
+			needResponse="false" needProcess="true" processor="com.gbcom.ccsv3.trap.processor.AlarmTrapProcess"
+			responseOid="1.2.3.4.5" responseValue="bbbb" vendor="gbcom">
+		</TrapHandlerCondition>  
+		<TrapHandlerCondition key="1.3.6.1.4.1.4881.1.3.1.1.110.12.10.2.1" needFilter="false" keyType="oid"
+			needResponse="false" needProcess="true" processor="com.gbcom.ccsv3.trap.processor.AlarmTrapProcess"
+			responseOid="1.2.3.4.5" responseValue="bbbb" vendor="gbcom">
+		</TrapHandlerCondition>  
+		<TrapHandlerCondition key="1.3.6.1.4.1.4881.1.3.1.1.110.12.10.2.2" needFilter="false" keyType="oid"
+			needResponse="false" needProcess="true" processor="com.gbcom.ccsv3.trap.processor.AlarmTrapProcess"
+			responseOid="1.2.3.4.5" responseValue="bbbb" vendor="gbcom">
+		</TrapHandlerCondition>  
+		<TrapHandlerCondition key="1.3.6.1.4.1.4881.1.3.1.1.110.12.10.2.3" needFilter="false" keyType="oid"
+			needResponse="false" needProcess="true" processor="com.gbcom.ccsv3.trap.processor.AlarmTrapProcess"
+			responseOid="1.2.3.4.5" responseValue="bbbb" vendor="gbcom">
+		</TrapHandlerCondition>  
+		<TrapHandlerCondition key="1.3.6.1.4.1.4881.1.3.1.1.110.12.10.2.4" needFilter="false" keyType="oid"
+			needResponse="false" needProcess="true" processor="com.gbcom.ccsv3.trap.processor.AlarmTrapProcess"
+			responseOid="1.2.3.4.5" responseValue="bbbb" vendor="gbcom">
+		</TrapHandlerCondition>  
+		<TrapHandlerCondition key="1.3.6.1.4.1.4881.1.3.1.1.110.12.10.2.5" needFilter="false" keyType="oid"
+			needResponse="false" needProcess="true" processor="com.gbcom.ccsv3.trap.processor.AlarmTrapProcess"
+			responseOid="1.2.3.4.5" responseValue="bbbb" vendor="gbcom">
+		</TrapHandlerCondition>  
+		<TrapHandlerCondition key="1.3.6.1.4.1.4881.1.3.1.1.110.12.10.2.6" needFilter="false" keyType="oid"
+			needResponse="false" needProcess="true" processor="com.gbcom.ccsv3.trap.processor.AlarmTrapProcess"
+			responseOid="1.2.3.4.5" responseValue="bbbb" vendor="gbcom">
+		</TrapHandlerCondition>  
+		<TrapHandlerCondition key="1.3.6.1.4.1.4881.1.3.1.1.110.12.10.2.7" needFilter="false" keyType="oid"
+			needResponse="false" needProcess="true" processor="com.gbcom.ccsv3.trap.processor.AlarmTrapProcess"
+			responseOid="1.2.3.4.5" responseValue="bbbb" vendor="gbcom">
+		</TrapHandlerCondition>  
+		<TrapHandlerCondition key="1.3.6.1.4.1.4881.1.3.1.1.110.12.10.2.8" needFilter="false" keyType="oid"
+			needResponse="false" needProcess="true" processor="com.gbcom.ccsv3.trap.processor.AlarmTrapProcess"
+			responseOid="1.2.3.4.5" responseValue="bbbb" vendor="gbcom">
+		</TrapHandlerCondition>  
+--></list>
+</TrapHanlderConContext>

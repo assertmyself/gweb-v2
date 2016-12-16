@@ -1,0 +1,400 @@
+<context>
+  <collectionList>
+  	<collection item="example" isVector="false">
+    	<list>
+    		<node name="apOnlineMac" oid=".1.10.13.110.2.10.1.3"></node>
+    		<node name="apOfflineMac" oid=".1.10.13.110.3.10.1.3"></node>
+   	 	</list>
+	 </collection> 
+	   <collection item="BasicInfo"  isVector="false">
+	    <list>
+	    	<node name="sysMacAddress" oid=".11.1.1.1.0"></node>
+	    	<node name="sysIpAddress" oid=".11.1.1.9.0"></node>
+	    	<node name="sysModel" oid=".11.1.1.13.0"></node>
+	    	<node name="devType" oid=".11.1.1.16.0"></node>
+	    	<node name="sysName" oid=".11.1.1.17.0"></node>
+	    	<node name="sysHotId" oid=".11.1.1.18.0"></node>
+	    	<node name="sysManageState" oid=".11.1.1.10.0"></node>
+	    	<node name="softwareVersion" oid=".11.1.2.1.0"></node>
+	    	<node name="hardwareVersion" oid=".11.1.3.5.0"></node>
+	    	<node name="memorySize" oid=".11.1.3.3.0"></node>
+	    	<node name="diskSize" oid=".11.1.3.4.0"></node>
+	    </list>
+	  </collection> 
+	  <collection item="RunningInfo" isVector="false">
+	    <list>
+	    	<node name="sysUpTime" oid=".11.1.1.2.0"></node>
+	    	<node name="sysIpAddress" oid=".11.1.1.9.0"></node>
+	    	<node name="apCPURTUsage" oid=".13.101.1.0"></node>
+	    	<node name="apCPUAvgUsage" oid=".13.101.3.0"></node>
+			<node name="apMemRTUsage" oid=".13.101.4.0"></node>
+			<node name="apMemAvgUsage" oid=".13.101.6.0"></node>
+	    </list>
+	  </collection> 
+	
+	    <collection item="ApUserList" isVector="true">
+	    <list>
+	    	<node name="staID" oid=".13.105.10.1.1"></node>
+	    	<node name="bssid" oid=".13.105.10.1.2"></node>
+	    	<node name="ssid" oid=".13.105.10.1.3"></node>
+	    	<node name="staVlanId" oid=".13.105.10.1.4"></node>
+	    	<node name="staVlanEnable" oid=".13.105.10.1.5"></node>
+	    	<node name="staMacAddress" oid=".13.105.10.1.6"></node>
+	    	<node name="staDevType" oid=".13.105.10.1.7"></node>
+	    	<node name="staConnectTime" oid=".13.105.10.1.8"></node>
+	    	<node name="staUplinkOctets" oid=".13.105.10.1.9"></node>
+	    	<node name="staDownlinkOctets" oid=".13.105.10.1.10"></node>
+	    	<node name="rssi" oid=".13.105.10.1.11"></node>
+	    	<node name="frequency" oid=".13.105.10.1.12"></node>
+	    	<node name="snr" oid=".13.105.10.1.13"></node>
+	    	<node name="txRate" oid=".13.105.10.1.14"></node>
+	    	<node name="errRate" oid=".13.105.10.1.15"></node>
+	    	<node name="assoRate" oid=".13.105.10.1.16"></node>
+	    	<node name="staIp" oid=".13.105.10.1.17"></node>
+	    </list>
+	  </collection> 
+	  
+	  <collection item="apVapBasicEntry" isVector="true">
+	    <list>
+	    	<node name="ssidBasicIndex" oid=".11.20.10.1.1"></node>
+	    	<node name="vapId" oid=".11.20.10.1.2"></node>
+	    	<node name="wifiId" oid=".11.20.10.1.3"></node>
+	    	<node name="ssidBasicName" oid=".11.20.10.1.4"></node>
+	    	<node name="ssidEnabled" oid=".11.20.10.1.5"></node>
+	    	<node name="ssidBroadcast" oid=".11.20.10.1.6"></node>
+	    	<node name="ssidVlanId" oid=".11.20.10.1.7"></node>
+	    	<node name="ssidVlanEnable" oid=".11.20.10.1.8"></node>
+	    	<node name="vapBssid" oid=".11.20.10.1.9"></node>
+	    	<node name="maxUserNum" oid=".11.20.10.1.10"></node>
+	    	<node name="vapFlowSwitch" oid=".11.20.10.1.11"></node>
+	    	<node name="vapUplinkMaxRate" oid=".11.20.10.1.12"></node>
+	    	<node name="vapDownlinkMaxRate" oid=".11.20.10.1.13"></node>
+	    	<node name="userUpload" oid=".11.20.10.1.14"></node>
+	    	<node name="userDownload" oid=".11.20.10.1.15"></node>
+	    	<node name="airtimeFairness" oid=".11.20.10.1.16"></node>
+	    	<node name="securityMode" oid=".11.20.11.1.6"></node>
+	    	<node name="endUserTime" oid=".11.20.10.1.17"></node>
+	    </list>
+	  </collection> 
+	  
+	   <collection item="gwOnlineUser"  isVector="true">
+	    <list>
+	    	<node name="onlineUserMac" oid=".13.120.1.1" required="false" defValue="1"></node>
+	    	<node name="userType" oid=".13.120.1.2" required="false" defValue="1"></node>
+	    	<node name="userTotalUp" oid=".13.120.1.6" required="false" defValue="1"></node>
+	    	<node name="userTotalDown" oid=".13.120.1.7" required="false" defValue="1"></node>
+	    	<node name="userIp" oid=".13.120.1.10" required="false" defValue="1"></node>
+	    </list>
+	  </collection> 
+	  
+	   <collection item="dhcpStat"  isVector="true">
+	    <list>
+	    	<node name="dhcpIndex" oid=".13.106.10.1.1" required="false" defValue="1"></node>
+	    	<node name="dhcpTotalIpNum" oid=".13.106.10.1.2" required="false" defValue="1"></node>
+	    	<node name="dhcpUsedIpNum" oid=".13.106.10.1.3" required="false" defValue="1"></node>
+	    	<node name="dhcpFreeIpNum" oid=".13.106.10.1.4" required="false" defValue="1"></node>
+	    	<node name="dhcpPoolUsage" oid=".13.106.10.1.5" required="false" defValue="1"></node>
+	    </list>
+	  </collection> 
+	  
+	   <collection item="Heart" isVector="false">
+	    <list>
+	    	<!-- <node name="associateStatus" oid=".1.15.11.5.1.1.0"></node> -->
+	    	<node name="transmitPower" oid=".11.10.3.4.0"></node>
+	    	<node name="channelUsing" oid=".11.10.2.3.0"></node>
+	    </list>
+	  </collection> 
+	  
+	   <collection item="interval" isVector="false">
+	    <list>
+	    	<!-- <node name="associateStatus" oid=".1.15.11.5.1.1.0"></node> -->
+	    	<node name="heartBeatPeriod" oid=".11.1.1.15.0"></node>
+	    	<node name="timeOutInterval" oid=".11.1.1.14.0"></node>
+	    </list>
+	  </collection> 
+	
+	  <collection item="Upgrade" isVector="false">
+	    <list>
+		    <node name="loadFlag" oid=".14.2.1.0"></node>
+		    <node name="fileName" oid=".14.2.2.0"></node>
+		    <node name="fileType" oid=".14.2.3.0"></node>
+		    <node name="transProtocol" oid=".14.2.4.0"></node>
+		    <node name="serverAddr" oid=".14.2.5.0"></node>
+		    <node name="serverPort" oid=".14.2.6.0"></node>
+		    <node name="serverUserName" oid=".14.2.7.0"></node>
+		   	<node name="serverPasswd" oid=".14.2.8.0"></node>
+	<!-- 	    <node name="transStatus" oid=".14.2.9.0"></node>
+		    <node name="failReason" oid=".14.2.10.0"></node> -->
+	    </list>
+	  </collection> 
+	  
+	<!--   <collection item="AutoSearch" isVector="false">
+	    <list>
+	    	<node name="snmpManagerIp" oid=".1.15.11.40.1.0"></node>
+	    	<node name="snmpManageState" oid=".1.15.11.40.2.0"></node>
+	    </list>
+	  </collection>  -->
+	    <collection item="Mac" isVector="false">
+	    <list>
+	    	<node name="sysMacAddress" oid=".11.1.1.1.0"></node>
+	    </list>
+	  </collection> 
+	  
+	   <collection item="SnmpState" isVector="false">
+	    <list>
+	    	<node name="sysManageState" oid=".11.1.1.10.0"></node>
+	    </list>
+	  </collection>
+	   <collection item="SsidInfo" isVector="true">
+	    <list>
+	    	<node name="ssidBasicName" oid=".11.20.10.1.4"></node>
+	    	<node name="vapBssid" oid=".11.20.10.1.9"></node>
+	    </list>
+	  </collection>
+	  
+	   <collection item="SwUpdate" isVector="false">
+	    <list>
+	    	<node name="apSoftwareUpdate" oid=".14.1.1.0"></node>
+	    </list>
+	  </collection>
+	   <collection item="ConfigChange" isVector="false">
+	    <list>
+	    	<node name="tplSequence" oid=".14.1.7.0"></node>
+	    </list>
+	  </collection>
+	   <collection item="Reboot" isVector="false">
+	    <list>
+	    	<node name="apSysRestart" oid=".14.1.2.0" required="false" defValue="1"></node>
+	    </list>
+	  </collection>
+	  <!-- 
+	 <collection item="apReboot"  isVector="false">
+	    <list>
+	    	<node name="apreboot" oid=".14.1.2.0" required="false" defValue="1"></node>
+	    </list>
+	  </collection> 
+	  -->
+	  <collection item="Reset" isVector="false">
+	    <list>
+	    	<node name="apSysReset" oid=".14.1.3.0"></node>
+	    </list>
+	  </collection> 
+	  <collection item="CfgFile" isVector="false">
+	    <list>
+	    	<node name="apCfgDataFileImpExp" oid=".14.1.4.0"></node>
+	    </list>
+	  </collection> 
+	  <collection item="DiagnoseFile" isVector="false">
+	    <list>
+	    	<node name="apDiagnoseFile" oid=".14.1.5.0"></node>
+	    </list>
+	  </collection> 
+	  
+	  <!-- l2tp info  -->
+	<collection item="L2tpInfo" isVector="false">
+		<list>
+			<node name="l2tpServerIp" oid=".11.93.2.0"></node>
+			<node name="l2tpUsrName" oid=".11.93.3.0"></node>
+			<node name="l2tpUsrPass" oid=".11.93.4.0"></node>
+		</list>
+	</collection>
+	
+	<collection item="L2tpLinked" isVector="false">
+		<list><!--off(0), on(1)-->
+			<node name="l2tpCommit" oid=".11.93.1.0"></node>
+		</list>
+	</collection>
+	<collection item="L2tpPeerClientIP" isVector="false">
+		<list>
+			<node name="l2tpPeerClientIP" oid=".11.93.8.0"></node>
+		</list>
+	</collection>
+
+	<!-- fit ot  fat -->
+	  <collection item="WorkMode" isVector="false">
+	    <list>
+	    	<node name="sysApWorkMode" oid=".11.1.1.27.0"></node>
+	    </list>
+	  </collection> 
+	   <collection item="IpMode" isVector="false">
+	    <list>
+	    	<node name="ipMode" oid=".11.1.4.10.1.2.1"></node>
+	    </list>
+	  </collection> 
+	  
+	  
+	  
+	  	  <!-- APP SSID -->
+	  <collection item="appSSID"  isVector="false">
+	    <list>
+	    	<node name="bssid" oid=".14.7.2.0" required="false" defValue="-1"></node>
+	    	<node name="ssid" oid=".14.7.3.0" required="false" defValue="-1"></node>
+	    	<node name="type" oid=".14.7.4.0" required="false" defValue="-1"></node>
+	    	<node name="operType" oid=".14.7.1.0" required="true" defValue="-1"></node>
+	    </list>
+	  </collection> 
+	  
+	<!-- ap -->
+	  <collection item="subaplist_total"  isVector="false">
+	    <list>
+	    	<node name="subaplistsize" oid=".13.101.9.0" required="false" defValue="1"></node>
+	    </list>
+	  </collection> 
+	  
+	   <collection item="apInfoStringTable"  isVector="true">
+	    <list>
+	    	<node name="apInfoList" oid=".13.126.1.2" required="false" defValue="1"></node>
+	    </list>
+	  </collection> 
+	   <collection item="subaplist"  isVector="true">
+	    <list>
+	    	<node name="mac" oid=".13.121.1.1" required="false" defValue="1"></node>
+	    	<node name="no" oid=".13.121.1.2" required="false" defValue="1"></node>
+	    	<node name="ip" oid=".13.121.1.3" required="false" defValue="1"></node>
+	    	<node name="cur_link" oid=".13.121.1.4" required="false" defValue="1"></node>
+	    	<node name="total_link" oid=".13.121.1.5" required="false" defValue="1"></node>
+	    	<node name="road" oid=".13.121.1.6" required="false" defValue="1"></node>
+	    	<node name="total_up" oid=".13.121.1.7" required="false" defValue="1"></node>
+	    	<node name="total_down" oid=".13.121.1.8" required="false" defValue="1"></node>
+	    	<node name="memo" oid=".13.121.1.9" required="false" defValue="1"></node>
+	    	<node name="status" oid=".13.121.1.10" required="false" defValue="1"></node>
+	    	<node name="cpu_status" oid=".13.121.1.11" required="false" defValue="1"></node>
+	    	<node name="runtimelong" oid=".13.121.1.12" required="false" defValue="1"></node>
+	    	<node name="bssid1" oid=".13.121.1.15" required="false" defValue="1"></node>
+	    	<node name="bssid2" oid=".13.121.1.16" required="false" defValue="1"></node>
+	    	<node name="ap_provider" oid=".13.121.1.17" required="false" defValue="1"></node>
+	    </list>
+	  </collection> 
+	  
+	  <collection item="subapsysoper"  isVector="false">
+	    <list>
+	    <!-- reboot(1) 
+	 	2: upgrade(2) 
+	 	3: update(3)  -->
+	    	<node name="action" oid=".14.3.1.0" required="false" defValue="1"></node>
+	    	<node name="macs" oid=".14.3.2.0" required="false" type="list" defValue="-1"></node>
+	    </list>
+	  </collection> 
+	  
+	     <collection item="subapversionlist"  isVector="true">
+	    <list>
+	    	<node name="mac" oid=".13.122.1.1" required="false" defValue="1"></node>
+	    	<node name="no" oid=".13.122.1.2" required="false" defValue="1"></node>
+	    	<node name="cur_version" oid=".13.122.1.3" required="false" defValue="1"></node>
+	    	<node name="new_version" oid=".13.122.1.4" required="false" defValue="1"></node>
+	    	<node name="status" oid=".13.122.1.5" required="false" defValue="1"></node>
+	    </list>
+	  </collection> 
+	  
+	     <collection item="subapsconf"  isVector="true">
+	    <list>
+	    	<node name="mac" oid=".13.121.1.1" required="false" defValue="1"></node>
+	    	<node name="no" oid=".13.121.1.2" required="false" defValue="1"></node>
+	    	<node name="ip" oid=".13.121.1.3" required="false" defValue="1"></node>
+	    	<node name="ssid1" oid=".13.121.1.13" required="false" defValue="ssid1"></node>
+	    	<node name="ssid2" oid=".13.121.1.14" required="false" defValue="ssid2"></node>
+	    	<node name="total_link" oid=".13.121.1.5" required="false" defValue="1"></node>
+	    	<node name="road" oid=".13.121.1.6" required="false" defValue="1"></node>
+	    	<node name="status" oid=".13.121.1.10" required="false" defValue="1"></node>
+	    	<node name="memo" oid=".13.121.1.9" required="false" defValue="1"></node>
+	    </list>
+	  </collection> 
+	  
+	  <collection item="subapsconf_set"  isVector="false">
+	    <list>
+	    <!-- reboot(1) 
+	 	2: upgrade(2) 
+	 	3: update(3)  -->
+	    	<node name="action" oid=".14.3.1.0" required="false" defValue="1"></node>
+	    	<node name="macs" oid=".14.3.2.0" required="false" type="list" defValue="-1"></node>
+	    	<node name="ssid1" oid=".14.3.3.0" required="false" defValue="-1"></node>
+	    	<node name="ssid2" oid=".14.3.4.0" required="false" defValue="-1"></node>
+	    	<node name="total_link" oid=".14.3.5.0" required="false" defValue="-1"></node>
+	    	<node name="road" oid=".14.3.6.0" required="false" defValue="-1"></node>
+	    	<node name="memo" oid=".14.3.7.0" required="false" defValue="-1"></node>
+	    </list>
+	  </collection> 
+	  
+	  <collection item="subapusers"  isVector="true">
+	    <list>
+	    	<node name="ap_mac" oid=".13.123.1.1" required="false" defValue="1"></node>
+	    	<node name="client_mac" oid=".13.123.1.2" required="false" defValue="1"></node>
+	    	<node name="no" oid=".13.123.1.3" required="false" defValue="1"></node>
+	    	<node name="client_name" oid=".13.123.1.4" required="false" defValue="1"></node>
+	    	<node name="client_ip" oid=".13.123.1.5" required="false" defValue="1"></node>
+	    	<node name="signal_percent" oid=".13.123.1.6" required="false" defValue="1"></node>
+	    	<node name="connect_time" oid=".13.123.1.7" required="false" defValue="1"></node>
+	    	<node name="total_up" oid=".13.123.1.8" required="false" defValue="1"></node>
+	    	<node name="total_down" oid=".13.123.1.9" required="false" defValue="1"></node>
+	    </list>
+	  </collection> 
+	  
+	  <collection item="subapusers_total"  isVector="true">
+	    <list>
+	    	<node name="subapuserssize" oid=".13.124.1.2" required="false" defValue="1"></node>
+	    </list>
+	  </collection> 
+	  
+
+	  
+	  
+	  <!-- bblink nothr moudle -->
+	   <collection item="routes_put"  isVector="false">
+	    <list>
+	    	<node name="SSID" oid=".11.71.1.0" required="true" type="list"  defValue="-1"></node>
+	    </list>
+	  </collection> 
+	
+	   <collection item="authUsers_total"  isVector="false">
+	    <list>
+	    	<node name="onlineusercount" oid=".13.101.12" required="false" defValue="1"></node>
+	    </list>
+	  </collection> 
+	   <collection item="authUsers_list"  isVector="true">
+	    <list>
+	    	<node name="mac" oid=".13.120.1.1" required="false" defValue="1"></node>
+	    	<node name="type" oid=".13.120.1.2" required="false" defValue="1"></node>
+	    	<node name="up" oid=".13.120.1.3" required="false" defValue="1"></node>
+	    	<node name="down" oid=".13.120.1.4" required="false" defValue="1"></node>
+	    	<node name="connect" oid=".13.120.1.5" required="false" defValue="1"></node>
+	    	<node name="total_up" oid=".13.120.1.6" required="false" defValue="1"></node>
+	    	<node name="total_down" oid=".13.120.1.7" required="false" defValue="1"></node>
+	    	<node name="connect_time" oid=".13.120.1.8" required="false" defValue="1"></node>
+	    	<node name="userId" oid=".13.120.1.9" required="false" defValue="1"></node>
+	    </list>
+	  </collection> 
+	  
+	   <collection item="authUsers_set"  isVector="false">
+	    <list>
+	    	<node name="action" oid=".11.70.1.0" required="true" defValue="1"></node>
+	    	<node name="mac" oid=".11.70.2.0" required="true" defValue="-1"></node>
+	    	<node name="type" oid=".11.70.3.0" required="false" defValue="1"></node>
+	    	<node name="userId" oid=".11.70.4.0" required="false" defValue="0"></node>
+	    </list>
+	  </collection> 
+	   <collection item="authConf"  isVector="false">
+	    <list>
+	    	<node name="switch" oid=".11.72.1.0" required="false" defValue="1"></node>
+	    	<node name="web_auth" oid=".11.72.2.0" required="false" defValue="1"></node>
+	    	<node name="offline" oid=".11.72.3.0" required="false" defValue="1"></node>
+	    	<node name="reverify" oid=".11.72.4.0" required="false" defValue="1"></node>
+	    	<node name="macs" oid=".11.72.5.0" required="false" type="list" defValue="1"></node>
+	    </list>
+	  </collection> 
+	  
+	  <collection item="bblinkBlackWhite"  isVector="false">
+	    <list>
+	    	<node name="listType" oid=".11.73.1.0" required="false" defValue="1"></node>
+	    	<node name="macs" oid=".11.73.2.0" required="false" type="list" defValue="-1"></node>
+	    </list>
+	  </collection> 
+	  
+	   <collection item="hijack"  isVector="true">
+	    <list>
+	    	<node name="listType" oid=".11.73.1.0" required="false" defValue="1"></node>
+	    	<node name="macs" oid=".11.73.2.0" required="false" type="list" defValue="-1"></node>
+	    </list>
+	  </collection> 
+
+  </collectionList>
+</context>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileTransReportTemplate>
+	<relative>true</relative>
+	<sysMacAddress>.11.1.1.1</sysMacAddress>
+	<softwareVersion>.11.1.2.1</softwareVersion>
+	<targetVersion>.11.1.2.2</targetVersion>
+	<!-- transStatus	1: transferring(1) 2: completedSucessfully(2) 3: failed(3)  -->
+	<transStatus>.14.2.9</transStatus>
+	<apFileOperType>.14.2.3</apFileOperType>
+</FileTransReportTemplate>
+
+
+

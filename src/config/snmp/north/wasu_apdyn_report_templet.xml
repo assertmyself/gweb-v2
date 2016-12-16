@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WasuApDynReportTemplate>
+	<relative>true</relative>
+	<sysMacAddress>.11.1.1.1</sysMacAddress>
+	<trapDestIp>.11.40.2</trapDestIp>
+	<apRecvBytes>.13.103.2</apRecvBytes>
+	<apSendBytes>.13.103.3</apSendBytes>
+	<stationStatNum>.13.101.12</stationStatNum>
+	<apCPURTUsage>.13.101.1</apCPURTUsage>
+	<apMemRTUsage>.13.101.4</apMemRTUsage>
+	<wifiAssocReqNum>.13.103.8</wifiAssocReqNum>
+	<wifiAssocSuccNum>.13.103.9</wifiAssocSuccNum>
+</WasuApDynReportTemplate>

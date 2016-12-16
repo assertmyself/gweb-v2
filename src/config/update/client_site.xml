@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!--			
+		文件过滤例子，exclude和include为路径，相对于classpath
+		path表示默认使用服务器端的配置，include表示使用本地的配置文件路径，exclude表示使用服务器端的配置
+		<FileFilter path ="/WEB-INF/classes/config" exclude="" include="/WEB-INF/classes/config/oem/oem.xml"></FileFilter>
+		<FileFilter path ="/WEB-INF/classes/config" exclude="" include="/WEB-INF/classes/config/sys/sys_config.xml"></FileFilter>
+	-->
+<UpdateClientContext>
+	<UpdateClient name="ccsv3" product="ccsv3" version="v3.0.8"
+		no="3.0.8" date="20151218" method="code">
+		<FileFilters>
+			<FileFilter path ="/WEB-INF/classes/config" exclude="" include="/WEB-INF/classes/config/oem/oem.xml"></FileFilter>
+			<FileFilter path ="/WEB-INF/classes/config" exclude="" include="/WEB-INF/classes/config/sys/sys_config.xml"></FileFilter>
+			<FileFilter path ="/WEB-INF/classes/config" exclude="" include="/WEB-INF/classes/config/north/north_config.xml"></FileFilter>
+			<FileFilter path ="/WEB-INF/classes/config" exclude="" include="/WEB-INF/classes/config/tr069/acd.properties"></FileFilter>
+			<FileFilter path ="/WEB-INF/classes/context" exclude="" include="/WEB-INF/classes/context/application.properties"></FileFilter>
+		</FileFilters>
+	</UpdateClient>
+</UpdateClientContext>

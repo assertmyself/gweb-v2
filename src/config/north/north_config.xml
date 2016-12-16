@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<north>
+	<!-- 
+		北向配置，可以配置多个，中间使用“,”分割,比如 wasu,bblink
+		名称固定为以下不能修改：
+		华数：wasu 、贝联：bblink 、中传：zchuan 、宜通：yitong 、鹏博士:peng
+	 -->
+	<name></name>
+</north>

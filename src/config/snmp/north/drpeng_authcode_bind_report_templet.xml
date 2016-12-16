@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DrpengAuthcodeBindReportTemplate>
+	<relative>true</relative>
+	<sysMacAddress>.11.1.1.1</sysMacAddress>
+	<authCode>.11.1.1.20</authCode>
+	<authState>.11.1.1.21</authState>
+</DrpengAuthcodeBindReportTemplate>
+
+
+

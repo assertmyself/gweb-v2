@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StatHistoryReportTemplate>
+	<relative>true</relative>
+	<authType>.13.125.1</authType>
+	<authAccount>.13.125.2</authAccount>
+	<certificateType>.13.125.3</certificateType>
+	<certificateCode>.13.125.4</certificateCode>
+	<appCompanyName>.13.125.5</appCompanyName>
+	<appSwName>.13.125.6</appSwName>
+	<appVer>.13.125.7</appVer>
+	<appId>.13.125.8</appId>
+	<onLineTime>.13.125.9</onLineTime>
+	<offLineTime>.13.125.10</offLineTime>
+	<innerIPAddr>.13.125.11</innerIPAddr>
+	<outerSrcIPv4>.13.125.12</outerSrcIPv4>
+	<outerSrcIPv6>.13.125.13</outerSrcIPv6>
+	<outerSrcIPv4PortStart>.13.125.14</outerSrcIPv4PortStart>
+	<outerSrcIPv4PortEnd>.13.125.15</outerSrcIPv4PortEnd>
+	<outerSrcIPv6PortStart>.13.125.16</outerSrcIPv6PortStart>
+	<outerSrcIPv6PortEnd>.13.125.17</outerSrcIPv6PortEnd>
+	<staMac>.13.125.18</staMac>
+	<APMac>.13.125.19</APMac>
+	<APLongitude>.13.125.20</APLongitude>
+	<APLatitude>.13.125.21</APLatitude>
+	<terminalFieldStrength>.13.125.22</terminalFieldStrength>
+	<xCoordinate>.13.125.23</xCoordinate>
+	<yCoordinate>.13.125.24</yCoordinate>
+	<staName>.13.125.25</staName>
+	<staIMSI>.13.125.26</staIMSI>
+	<staIMEI>.13.125.27</staIMEI>
+	<staOSName>.13.125.28</staOSName>
+	<staBrand>.13.125.29</staBrand>
+	<staModel>.13.125.30</staModel> 
+	
+</StatHistoryReportTemplate>

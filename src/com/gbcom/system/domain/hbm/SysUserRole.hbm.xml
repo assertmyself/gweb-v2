@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.gbcom.system.domain">
+    <class
+            name="SysUserRole"
+            table="SYS_USER_ROLE"
+            >
+
+        <meta attribute="sync-DAO">false</meta>
+        <meta attribute="sync-jsp">true</meta>
+        <meta attribute="sync-boolean">get</meta>
+        <meta attribute="treeable">false</meta>
+        <meta attribute="projectable">false</meta>
+        <meta attribute="tableName">系统角色与用户关联</meta>
+        <meta attribute="tableComment">系统角色与用户关联</meta>
+        <meta attribute="sync-templatePatterns">list\w*</meta>
+        <meta attribute="sub-system">system</meta>
+
+        <id
+                name="id"
+                type="java.lang.Long"
+                column="ID"
+                >
+            <generator class="com.hc.core.orm.hibernate.LongIdGenerator"/>
+        </id>
+
+        <many-to-one
+                name="role"
+                column="ROLE_ID"
+                class="SysRole"
+                not-null="true"
+                >
+        </many-to-one>
+        <many-to-one
+                name="user"
+                column="USER_ID"
+                class="SysUser"
+                not-null="true"
+                >
+        </many-to-one>
+
+    </class>
+    <query name="sysuserrole_all_data_query">
+        <![CDATA[FROM SysUserRole]]>
+    </query>
+</hibernate-mapping>

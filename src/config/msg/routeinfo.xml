@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routeContext>
+	<list>
+	<!--
+		<route msgid="10001" name="离线消息" msgtype="1"
+			processor="com.gbcom.ccsv3.manager.xml.msg.process.OffLineProcess"
+			modulename="AM" />
+		<route msgid="10002" name="离线清除消息" msgtype="1"
+			processor="com.gbcom.ccsv3.manager.xml.msg.process.OffLineProcess"
+			modulename="AM" />
+		<route msgid="10003" name="站点负荷警告消息" msgtype="1"
+			processor="com.gbcom.ccsv3.manager.xml.msg.process.HLoadWarnProcess"
+			modulename="AM" />
+		<route msgid="10004" name="站点负荷警告清除消息" msgtype="1"
+			processor="com.gbcom.ccsv3.manager.xml.msg.process.HLoadWarnProcess"
+			modulename="AM" />
+		<route msgid="10005" name="站点负荷严重消息" msgtype="1"
+			processor="com.gbcom.ccsv3.manager.xml.msg.process.HLoadSeriousProcess"
+			modulename="AM" />
+		<route msgid="10006" name="站点负荷严重消除消息" msgtype="1"
+			processor="com.gbcom.ccsv3.manager.xml.msg.process.HLoadSeriousProcess"
+			modulename="AM" />
+			
+		<route msgid="123" name="站点负荷严重消除消息" msgtype="1"
+			processor="com.gbcom.ccsv3.manager.xml.msg.process.TestMsgProcess"
+			modulename="AM" />
+			
+			
+		<route msgid="20001" name="配置模板下发消息" msgtype="2"
+			processor="com.gbcom.ccsv3.manager.xml.msg.process.CfgTemplateDownProcess"
+			modulename="DevOper" />
+	-->
+	</list>
+</routeContext>

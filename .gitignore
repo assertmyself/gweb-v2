@@ -1,0 +1,15 @@
+/target/
+/bin/
+*.bak
+logs/
+WebRoot/WEB-INF/classes
+WebRoot/WEB-INF/classes/*
+.clover/
+.settings/
+.idea/
+.externalToolBuilders/
+reports/
+build/
+.svn/
+*.svn
+*.class

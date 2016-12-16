@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<L2tpReportTemplate>
+	<relative>true</relative>
+	<manageMac>.11.1.1.1</manageMac>
+	<l2tpServerIp>.11.93.2</l2tpServerIp>
+	<l2tpUsrName>.11.93.3</l2tpUsrName>
+	<l2tpUsrPass>.11.93.4</l2tpUsrPass>
+	<l2tpClientIp>.11.93.5</l2tpClientIp>
+	<l2tpClientStatue>.11.93.6</l2tpClientStatue>
+	<l2tpClientMsg>.11.93.7</l2tpClientMsg>
+</L2tpReportTemplate>
+
+
+

@@ -1,0 +1,63 @@
+
+1.(IE)主界面右侧系统信息换行
+      原因：由于float属性导致
+      解决：把float的div提至前面
+      
+2.(IE)导航指示换行，home->设备管理->上报设备
+      原因：代码编写有误
+      解决：修改了basic.js中setLocation方法
+      
+3.(IE)左侧树位置向右偏移   
+      原因：main-content没有设置position位置，默认为static
+      解决：    postition：absolute
+      
+4.(IE)top与主体部分空隙大
+      原因：bootstrap3.0.css中navbar属性min-height导致
+      解决：去除
+      
+5.(IE)左侧树灰色部分不显示
+      原因：height没有大小
+      解决：已动态控制
+     
+6.(IE)整体页面出现滚动条
+      原因：设置min-height:100% 导致
+      解决：利用js控制。在首页index.jsp中添加
+      
+7.(IE)IE7右侧默认滚动条出现
+      原因：IE7默认出现
+      解决： 在ace.min.css中html添加样式overflow:auto
+      
+8.(IE)网格中出现滚动条
+      原因：由于网格高度被计算得到，IE7中高度与火狐等非IE内核浏览器的高度不一致
+      解决：在ui.jqgrid.css样式表中的.ui-jqgrid .ui-jqgrid-view添加了属性height:530px;*height:490px; 给了高度默认值
+	
+9.(IE)表格上方查询一栏查询条件文字部分以及按钮统一偏下显示
+      原因：该元素没有进行定位，则IE7中top不起作用
+      解决：  在default.css文件search_text中设置position:relative;top:0;*top:-8px;   
+
+10.配置模板界面优化，配置速率集由0,1,2,...修改为1Mbps,2Mbps,5.5Mbps,...
+      原因: 需求
+      解决：	将popover中input的text的值由0,1,2,...修改为1Mbps,2Mbps,5.5Mbps,...
+
+11.配模板界面优化，将前台页面中的Wifi改为Wi-Fi
+      原因：需求
+      解决：将页面中的Wifi显示部分修改为Wi-Fi,value的值不变即传到后台的仍然是Wifi；由于自动变长，所以设置default.css中".config_templet .config_templet_specific"由"23%"变为"24%"，
+        ".config_templet .config_templet_conten"由"77%"变为"76%" 
+        
+12.上传不显示文件名bug
+      原因：由于file类型的文本框原生样式比较难看，就被隐藏，使用button按钮覆盖上面，所以显示不了上传文件名。
+      解决: file类型的文本框隐藏，text类型的文本框位于file之上，当file改变的时候，赋值给text文本框，并改变当前的按钮。       
+
+13.首页加载完成后，logo右侧出现空白，其它菜单也会出现右侧空白现象
+     原因：首页链接导致其它页面右侧出现空白
+     解决: 扩展loadMainPage方法，添加参数isSelfSuit,表示加载完页面后是否执行页面自适应调整，如果不传值表示，页面加载完成后不执行页面自适应调整，反之，调整
+     
+14.左侧导航栏加入font样式后，图标点击不显示问题。
+     原因： nav-list>.active样式的冲突
+     解决：删除font里面nav-list>.active的一些样式信息。
+     删除内容如下：
+ .icon-white,.nav-pills>.active>a>[class^="icon-"],.nav-pills>.active>a>[class*=" icon-"],.nav-list>.active>a>[class^="icon-"],.nav-list>.active>a>[class*=" icon-"],.navbar-inverse .nav>.active>a>[class^="icon-"],.navbar-inverse .nav>.active>a>[class*=" icon-"],.dropdown-menu>li>a:hover>[class^="icon-"],.dropdown-menu>li>a:hover>[class*=" icon-"],.dropdown-menu>.active>a>[class^="icon-"],.dropdown-menu>.active>a>[class*=" icon-"],.dropdown-submenu:hover>a>[class^="icon-"],.dropdown-submenu:hover>a>[class*=" icon-"]{background-image:none;}
+
+15.带有设备树的页面，点击折叠和展开按钮，表格没有自适应
+     原因：点击折叠和展开按钮时，屏幕大小没有改变，所有没有自适应
+     解决：在jquery.easyui.min.js添加setLeftGridWidth和setRightGridWidth方法，同时为了解决卡顿的问题，在调整前调用$("#listGrid1").jqGrid("setGridWidth","")方法

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileReportTemplate>
+	<relative>true</relative>
+	<loadFlag>.14.2.1</loadFlag>
+	<fileName>.14.2.2</fileName>
+	<fileType>.14.2.3</fileType>
+	<transProtocol>.14.2.4</transProtocol>
+	<serverAddr>.14.2.5</serverAddr>
+	<serverPort>.14.2.6</serverPort>
+	<serverUserName>.14.2.7</serverUserName>
+	<serverPasswd>.14.2.8</serverPasswd>
+	<transStatus>.14.2.9</transStatus>
+	<failReason>.14.2.10</failReason>
+</FileReportTemplate>
+
+
+

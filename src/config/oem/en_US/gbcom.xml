@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vendor>
+	<name>gbcom</name>
+	<alias> GB </alias>
+	<code> 28723</code>
+	<version>v3.0.8</version>
+	<services>
+		<service>N/A</service>
+	</services>
+
+	<models>
+		<!-- ap -->
+		<model sysModel="WA2020" venModel="WA2020"></model>
+		<model sysModel="TA2020SP" venModel="TA2020SP"></model>
+		<model sysModel="TA2025" venModel="TA2025"></model>
+		<model sysModel="CA2025" venModel="CA2025"></model>
+		<model sysModel="OA2020" venModel="OA2020"></model>
+		<model sysModel="OA2020L" venModel="OA2020L"></model>
+		<model sysModel="OA2025" venModel="OA2025"></model>
+		<!--  网关-->
+		<model sysModel="CGW500" venModel="CGW500"></model>
+		<model sysModel="CGW500U" venModel="CGW500U"></model>
+		<model sysModel="CGW1200" venModel="CGW1200"></model>
+		<model sysModel="CGW1200H" venModel="CGW1200H"></model>
+		<model sysModel="CGW2000" venModel="CGW2000"></model>
+		<model sysModel="CGW3000" venModel="CGW3000"></model>
+		<model sysModel="CGW3000T" venModel="CGW3000T"></model>
+		
+		<!-- 网监 
+		<model sysModel="DW-CGW1200" venModel="DW-CGW1200"></model>
+		<model sysModel="DW-LA2000" venModel="DW-LA2000"></model>
+		<model sysModel="DW-LA1000" venModel="DW-LA1000"></model>
+		<model sysModel="DW-LFC25" venModel="DW-LFC25"></model>-->
+	</models>
+	
+</vendor>

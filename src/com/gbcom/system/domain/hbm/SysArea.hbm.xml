@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+        
+
+       
+<hibernate-mapping package="com.gbcom.system.domain">
+    <class
+            name="SysArea"
+            table="SYS_AREA"
+            >
+
+        <meta attribute="sync-DAO">false</meta>
+        <meta attribute="sync-jsp">true</meta>
+        <meta attribute="sync-boolean">get</meta>
+        <meta attribute="treeable">false</meta>
+        <meta attribute="projectable">false</meta>
+        <meta attribute="tableName">系统管理区域</meta>
+        <meta attribute="tableComment">系统管理区域</meta>
+        <meta attribute="sync-templatePatterns">list\w*</meta>
+        <meta attribute="sub-system">system</meta>
+
+        <id
+                name="id"
+                type="java.lang.Long"
+                column="ID"
+                >
+            <generator class="com.hc.core.orm.hibernate.LongIdGenerator"/>
+        </id>
+
+        <property
+                name="layer"
+                column="layer"
+                type="long"
+                not-null="true"
+                length="50"
+                >
+            <meta attribute="ColumnName">层</meta>
+            <meta attribute="ColumnComment">层</meta>
+        </property>
+
+        <property
+                name="areaName"
+                column="areaName"
+                type="string"
+                not-null="false"
+                length="50"
+                >
+            <meta attribute="ColumnName">名称</meta>
+            <meta attribute="ColumnComment">名称</meta>
+        </property>
+
+        <property
+                name="areaCode"
+                column="areaCode"
+                type="string"
+                not-null="false"
+                length="20"
+                >
+            <meta attribute="ColumnName">区号</meta>
+            <meta attribute="ColumnComment">区号</meta>
+        </property>
+        
+        <property
+                name="displayName"
+                column="display_name"
+                type="string"
+                not-null="false"
+                length="50"
+                >
+            <meta attribute="ColumnName">名称</meta>
+            <meta attribute="ColumnComment">名称</meta>
+        </property>
+
+        <property
+                name="isReserved"
+                column="IS_RESERVED"
+                type="java.lang.Boolean"
+                not-null="false"
+                length="1"
+                >
+            <meta attribute="ColumnName">系统定义</meta>
+            <meta attribute="ColumnComment">系统定义</meta>
+        </property>
+
+        <property
+                name="isLeaf"
+                column="IS_LEAF"
+                type="java.lang.Boolean"
+                not-null="false"
+                length="1"
+                >
+            <meta attribute="ColumnName">叶节点</meta>
+            <meta attribute="ColumnComment">叶节点</meta>
+        </property>
+
+        <property
+                name="treeId"
+                column="TREE_ID"
+                type="string"
+                not-null="false"
+                length="200"
+                >
+            <meta attribute="ColumnName">树形层次</meta>
+            <meta attribute="ColumnComment">树形层次</meta>
+        </property>
+
+        <property
+                name="description"
+                column="DESCRIPTION"
+                type="string"
+                not-null="false"
+                length="200"
+                >
+            <meta attribute="ColumnName">备注</meta>
+            <meta attribute="ColumnComment">备注</meta>
+        </property>
+
+
+        <!-- list 会有空指针，建议set --><!-- 
+		<set name="sysTpls"   inverse="true"  >
+            <key column="LEAF_ID"/>
+            <one-to-many class="com.gbcom.ccsv3.domain.SysAreaConfigTpl"/>
+        </set>
+	
+	
+        --><many-to-one
+                name="parent"
+                column="pid"
+                class="SysArea"
+                not-null="false"
+                >
+        </many-to-one>
+        <set name="nes" inverse="true"  cascade="all" >
+            <key column="area_id"/>
+            <one-to-many class="SysAreaNes"/>
+        </set>
+        
+        
+
+    </class>
+    <query name="sysarea_all_data_query">
+        <![CDATA[FROM SysArea]]>
+    </query>
+</hibernate-mapping>

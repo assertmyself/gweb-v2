@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.gbcom.system.domain">
+    <class
+            name="SysPersonDept"
+            table="SYS_PERSON_DEPT"
+            >
+
+        <meta attribute="sync-DAO">false</meta>
+        <meta attribute="sync-jsp">true</meta>
+        <meta attribute="sync-boolean">get</meta>
+        <meta attribute="treeable">false</meta>
+        <meta attribute="projectable">false</meta>
+        <meta attribute="tableName">系统单位与人员的关联表</meta>
+        <meta attribute="tableComment">系统单位与人员的关联表</meta>
+        <meta attribute="sync-templatePatterns">list\w*</meta>
+        <meta attribute="sub-system">system</meta>
+
+        <id
+                name="id"
+                type="java.lang.Long"
+                column="ID"
+                >
+            <generator class="com.hc.core.orm.hibernate.LongIdGenerator"/>
+        </id>
+
+        <property
+                name="position"
+                column="POSITION"
+                type="string"
+                not-null="false"
+                length="100"
+                >
+            <meta attribute="ColumnName">职务</meta>
+            <meta attribute="ColumnComment">职务</meta>
+        </property>
+
+        <property
+                name="orderNo"
+                column="ORDER_NO"
+                type="java.lang.Long"
+                not-null="false"
+                length="10"
+                >
+            <meta attribute="ColumnName">序号</meta>
+            <meta attribute="ColumnComment">序号</meta>
+        </property>
+
+        <property
+                name="isValid"
+                column="IS_VALID"
+                type="java.lang.Boolean"
+                not-null="false"
+                length="1"
+                >
+            <meta attribute="ColumnName">是否有效</meta>
+            <meta attribute="ColumnComment">是否有效</meta>
+        </property>
+
+        <property
+                name="isManager"
+                column="IS_MANAGER"
+                type="java.lang.Boolean"
+                not-null="false"
+                length="1"
+                >
+            <meta attribute="ColumnName">是否单位负责人</meta>
+            <meta attribute="ColumnComment">是否单位负责人</meta>
+        </property>
+
+        <many-to-one
+                name="dept"
+                column="DEPT_ID"
+                class="SysDept"
+                not-null="true"
+                >
+        </many-to-one>
+        <many-to-one
+                name="person"
+                column="PERSON_ID"
+                class="SysPerson"
+                not-null="true"
+                >
+        </many-to-one>
+
+    </class>
+    <query name="syspersondept_all_data_query">
+        <![CDATA[FROM SysPersonDept]]>
+    </query>
+</hibernate-mapping>

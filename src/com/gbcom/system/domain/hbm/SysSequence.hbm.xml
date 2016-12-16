@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.gbcom.system.domain">
+    <class
+            name="SysSequence"
+            table="SYS_SEQUENCE"
+            >
+
+        <meta attribute="sync-DAO">false</meta>
+        <meta attribute="sync-jsp">true</meta>
+        <meta attribute="sync-boolean">get</meta>
+        <meta attribute="treeable">false</meta>
+        <meta attribute="projectable">false</meta>
+        <meta attribute="tableName">系统序列</meta>
+        <meta attribute="tableComment">序列</meta>
+        <meta attribute="sync-templatePatterns">list\w*</meta>
+        <meta attribute="sub-system">system</meta>
+
+        <id
+                name="id"
+                type="string"
+                column="CODE"
+                >
+            <generator class="com.hc.core.orm.hibernate.LongIdGenerator"/>
+        </id>
+
+        <property
+                name="lastid"
+                column="LASTID"
+                type="java.lang.Long"
+                not-null="true"
+                length="10"
+                >
+            <meta attribute="ColumnName">下一标识</meta>
+            <meta attribute="ColumnComment">下一标识</meta>
+        </property>
+
+
+    </class>
+    <query name="syssequence_all_data_query">
+        <![CDATA[FROM SysSequence]]>
+    </query>
+</hibernate-mapping>

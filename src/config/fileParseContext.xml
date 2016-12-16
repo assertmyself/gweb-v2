@@ -1,0 +1,7 @@
+<FileParseContext>
+<fileParseList>
+<FileParse fileType="mib" fileParseClass="com.gbcom.omc.si.selfconfig.parse.MibParse"/>
+<FileParse fileType="xml" fileParseClass="com.gbcom.omc.si.selfconfig.parse.XmlParse"/>
+<FileParse fileType="xls" fileParseClass="com.gbcom.omc.si.selfconfig.parse.XlsParse"/>
+</fileParseList>
+</FileParseContext>

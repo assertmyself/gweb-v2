@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="ccsv3" default="jar">
+    <!-- 定义变量 -->
+    <property name="jar.name" value="ccsv3.war" />
+    <property name="src.dir" value="${basedir}/WebRoot" />
+     <property name="dist.dir" value="D:/apache-tomcat-6.0.18/webapps/" />
+    <target name="jar" >
+    	<jar destfile="${jar.name}"
+      		 basedir="${src.dir}"
+  		/>
+		  <move file="${jar.name}"
+			tofile="${dist.dir}/${jar.name}"/>
+      </target>
+</project>

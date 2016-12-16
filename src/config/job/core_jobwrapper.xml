@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--JobWrapper-->
+<JobWrapperContext>
+<list>
+	<!--  0 2/30 0-24 * * ? 全天 10开始，每隔30分触发  0-24可去掉； "0 0 8 * * ? *" 每天上午8点触发    ；      "0 0 8 1,15 * ?" 每月1，15号的八点触发   ；  "0 0 8 ? * 2" 每周一上午8点触发 -->
+	<JobWrapper jobGroup="Drools" jobName="rule" jobClass="com.gbcom.common.template.xml.jobm.job.DroolsRuleCheckerJob">
+		<triggerList>
+			<trigger triggerGroup="drools" triggerName="rule" begainTime=""
+				endTime="" repeatInterval="1" repeatCount="1" isSample="false" cronExpression="0 30 * * * ?" />
+		</triggerList>
+	</JobWrapper>
+	
+</list>
+</JobWrapperContext>

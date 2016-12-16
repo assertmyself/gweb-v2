@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.gbcom.system.domain">
+    <class
+            name="SysLog"
+            table="SYS_LOG"
+            >
+
+        <meta attribute="sync-DAO">false</meta>
+        <meta attribute="sync-jsp">true</meta>
+        <meta attribute="sync-boolean">get</meta>
+        <meta attribute="treeable">false</meta>
+        <meta attribute="projectable">false</meta>
+        <meta attribute="tableName">系统日志</meta>
+        <meta attribute="tableComment">用户日志</meta>
+        <meta attribute="sync-templatePatterns">list\w*</meta>
+        <meta attribute="sub-system">system</meta>
+
+        <id
+                name="id"
+                type="java.lang.Long"
+                column="ID"
+                >
+            <generator class="com.hc.core.orm.hibernate.LongIdGenerator"/>
+        </id>
+
+        <property
+                name="ipAddress"
+                column="IP_ADDRESS"
+                type="string"
+                not-null="false"
+                length="50"
+                >
+            <meta attribute="ColumnName">IP地址</meta>
+            <meta attribute="ColumnComment">IP地址</meta>
+        </property>
+
+        <property
+                name="enterTime"
+                column="ENTER_TIME"
+                type="timestamp"
+                not-null="false"
+                length="7"
+                >
+            <meta attribute="ColumnName">进入时间</meta>
+            <meta attribute="ColumnComment">进入时间</meta>
+        </property>
+
+        <property
+                name="outTime"
+                column="OUT_TIME"
+                type="timestamp"
+                not-null="false"
+                length="7"
+                >
+            <meta attribute="ColumnName">完成时间</meta>
+            <meta attribute="ColumnComment">完成时间</meta>
+        </property>
+
+        <property
+                name="pageUrl"
+                column="PAGE_URL"
+                type="string"
+                not-null="false"
+                length="200"
+                >
+            <meta attribute="ColumnName">访问页面</meta>
+            <meta attribute="ColumnComment">访问页面</meta>
+        </property>
+
+        <property
+                name="ieVersion"
+                column="IE_VERSION"
+                type="string"
+                not-null="false"
+                length="1000"
+                >
+            <meta attribute="ColumnName">浏览器版本</meta>
+            <meta attribute="ColumnComment">浏览器版本</meta>
+        </property>
+
+        <property
+                name="sessionid"
+                column="SESSIONID"
+                type="string"
+                not-null="false"
+                length="50"
+                >
+            <meta attribute="ColumnName">SESSIONID</meta>
+            <meta attribute="ColumnComment">SESSIONID</meta>
+        </property>
+        <property
+                name="result"
+                column="RESULT"
+                type="string"
+                not-null="false"
+                length="10"
+                >
+            <meta attribute="ColumnName">结果</meta>
+            <meta attribute="ColumnComment">结果</meta>
+        </property>
+        <property
+                name="moudle"
+                column="MOUDLE"
+                type="string"
+                not-null="false"
+                length="50"
+                >
+            <meta attribute="ColumnName">MOUDLE</meta>
+            <meta attribute="ColumnComment">MOUDLE</meta>
+        </property>
+        <property
+                name="eventType"
+                column="EVENT_TYPE"
+                type="string"
+                not-null="false"
+                length="20"
+                >
+            <meta attribute="ColumnName">EVENT_TYPE</meta>
+            <meta attribute="ColumnComment">EVENT_TYPE</meta>
+        </property>
+        <property
+                name="logType"
+                column="LOG_TYPE"
+                type="string"
+                not-null="false"
+                length="20"
+                >
+            <meta attribute="ColumnName">LOG_TYPE</meta>
+            <meta attribute="ColumnComment">LOG_TYPE</meta>
+        </property>
+
+        <!--<many-to-one
+                name="logType"
+                column="LOG_TYPE"
+                class="SysCodeDetail"
+                not-null="false"
+                >
+        </many-to-one>
+
+        -->
+        <!--  此时如果关联关系不存在，对应的属性值为Null.-->
+        <many-to-one
+                name="user"
+                column="USER_ID"
+                class="SysUser"
+                not-null="false"
+                not-found="ignore"
+                >
+        </many-to-one>
+
+    </class>
+    <query name="syslog_all_data_query">
+        <![CDATA[FROM SysLog]]>
+    </query>
+</hibernate-mapping>

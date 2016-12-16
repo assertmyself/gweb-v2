@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<SacConfig>
+  <Port>162</Port>
+  <Heart>30</Heart>
+  <Number>16</Number>
+  <ReportInterval>60</ReportInterval>
+  <!-- 活跃门限  天  0表示不启用-->
+  <ActThreshold>0</ActThreshold>
+  <!-- 清除门限 月  0表示不启用-->
+  <ClearThreshold>0</ClearThreshold>
+  <!-- Parameter(s):<ip> /[<Port>] -->
+  <SnmpIp></SnmpIp>
+  <Ftp ftpDir="S" ftpIp="127.0.0.1" ftpPort="21" ftpWIp="127.0.0.1" ftpWport="21" userName="gbcom" pwd="gbcom"/>
+  
+  <L2tp l2tpServerIp="127.0.0.1" l2tpUsrName="test" l2tpUsrPass="123456" />
+    <!-- 最少为1  离线门限  -->
+  <OffLineThreshold>2</OffLineThreshold>
+  <!-- 离线告警是否启用 -->
+  <InnerAlarm>false</InnerAlarm>
+  <!-- tr069启用 -->
+  <Tr069Switch>true</Tr069Switch>
+  <!--  组播发现  ccsv3 关闭 -->
+  <MultiDiscover>true</MultiDiscover>
+  <AutoConfig>true</AutoConfig>
+  <!-- 0:off  链路质量（心跳次数）  -->
+  <LQInterval>0</LQInterval>
+
+  <AutoUpgrade>false</AutoUpgrade>
+  <TargetVerList>
+    <TargetVer deType="CPE-2.4G"  verType="4" tarVer="cpe-ta40-1.0.1.4-p05.bin" desc="TA40:platform"/>
+    <TargetVer deType="CPE-5G" verType="2" tarVer="cpe-ta20-1.0.1.5-0351.bin" desc="TA20:platform"/>
+  </TargetVerList>
+  
+  <ApSysModelList>
+  	<!-- must first sysModel 为设备内部型号 对应 discover中的modelname ap.sysmodel ，，   hardwareType：为实际版本对应路径。后续该文件会放在OEM中-->
+    <ApSysModel sysModel="WA2020" modelId="9001002"   hardwareType="5" boardVersion="2" dev5g="false" desc="TA40"/>
+    <ApSysModel sysModel="TA2020SP" modelId="9001002"   hardwareType="5" boardVersion="2" dev5g="false" desc="TA40"/>
+    <ApSysModel sysModel="CA2025" modelId="9002001"  hardwareType="4" boardVersion="10" dev5g="true" desc="TA40"/>
+    <ApSysModel sysModel="OA2020" modelId="10001001"  hardwareType="4" boardVersion="10" dev5g="true" desc="TA40"/>
+    <ApSysModel sysModel="TA4025" modelId="9005001"  hardwareType="4" boardVersion="10" dev5g="true" desc="TA60"/>
+    <!-- 网关冲突 -->
+    <ApSysModel sysModel="TA2025" modelId="9002001"  hardwareType="4" boardVersion="10" dev5g="true" desc="TA40"/>
+    <ApSysModel sysModel="OA2020L" modelId="10001001"  hardwareType="4" boardVersion="10" dev5g="true" desc="TA40"/>
+    <ApSysModel sysModel="OA2025" modelId="10001002"  hardwareType="4" boardVersion="10" dev5g="true" desc="TA40"/>
+   
+    <!--  w网关-->
+    <ApSysModel sysModel="CGW500" modelId="7004001"   hardwareType="99" boardVersion="0" dev5g="true" desc="TA40"/>
+    <ApSysModel sysModel="CGW500U" modelId="7004002"   hardwareType="99" boardVersion="0" dev5g="true" desc="TA40"/>
+    <ApSysModel sysModel="CGW350-T" modelId="7001004"  hardwareType="99" boardVersion="0" dev5g="true" desc="TA40"/>
+    <ApSysModel sysModel="CGW1200" modelId="7003001" hardwareType="99" boardVersion="0" dev5g="true" desc="TA40"/>
+    <ApSysModel sysModel="CGW1200H" modelId="7003002"  hardwareType="99" boardVersion="0" dev5g="true" desc="TA40"/>
+    <ApSysModel sysModel="CGW2000" modelId="7001002"  hardwareType="99" boardVersion="0" dev5g="true" desc="TA40"/>
+    <ApSysModel sysModel="CGW3000" modelId="7001003"   hardwareType="99" boardVersion="0" dev5g="true" desc="TA40"/>
+    <ApSysModel sysModel="CGW3000T" modelId="7001004"   hardwareType="99" boardVersion="0" dev5g="true" desc="TA40"/>
+     
+    <!--  网监-->
+    <ApSysModel sysModel="DW-CGW1200" modelId="1200100"  hardwareType="99" boardVersion="0" dev5g="true" desc="TA40"/>
+    <ApSysModel sysModel="DW-LA2000" modelId="1200200"  hardwareType="99" boardVersion="0" dev5g="true" desc="TA40"/>
+    <ApSysModel sysModel="DW-LA1000" modelId="1200300"  hardwareType="99" boardVersion="0" dev5g="true" desc="TA40"/>
+    <ApSysModel sysModel="DW-LFC25" modelId="1200400"   hardwareType="99" boardVersion="0" dev5g="true" desc="TA40"/>
+    <ApSysModel sysModel="DW-TA2025" modelId="1200400"   hardwareType="99" boardVersion="0" dev5g="true" desc="TA40"/>
+    
+    <ApSysModel sysModel="DW-CGW500" modelId="1200100"  hardwareType="99" boardVersion="0" dev5g="true" desc="TA40"/>
+    <ApSysModel sysModel="DW-OA2025" modelId="1200100"  hardwareType="99" boardVersion="0" dev5g="true" desc="TA40"/>
+    <ApSysModel sysModel="DW-LA1000-A" modelId="1200100"  hardwareType="99" boardVersion="0" dev5g="true" desc="TA40"/>
+    
+    
+    
+    <!-- 齐帮定制型号，已停售 -->
+    <ApSysModel sysModel="CA1020C" modelId="9002003" hardwareType="99" boardVersion="0" dev5g="true" desc="TA40"/>
+    <ApSysModel sysModel="CA2020C" modelId="9002003"  hardwareType="99" boardVersion="0" dev5g="true" desc="TA40"/>
+    <ApSysModel sysModel="CA2025C" modelId="9002003"   hardwareType="99" boardVersion="0" dev5g="true" desc="TA40"/>
+    <ApSysModel sysModel="TA2020C" modelId="9001002"   hardwareType="99" boardVersion="0" dev5g="true" desc="TA40"/>
+    <ApSysModel sysModel="CGW1000" modelId="9002003"  hardwareType="99" boardVersion="0" dev5g="true" desc="TA40"/>
+    <ApSysModel sysModel="VT-502W" modelId="9002003"  hardwareType="99" boardVersion="0" dev5g="true" desc="TA40"/>
+    
+  </ApSysModelList>
+  
+</SacConfig>

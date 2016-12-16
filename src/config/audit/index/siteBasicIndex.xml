@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MESSAGE>
+	<DATASET name="WA_COMMON_010017" rmk="数据文件索引信息">
+		<DATA>
+			<DATASET name="WA_COMMON_010013" rmk="BCP文件格式信息">
+				<DATA>
+					<ITEM key="I010032" val="\t" rmk="列分隔符（缺少值时默认为制表符\t）" />
+					<ITEM key="I010033" val="\n" rmk="行分隔符（缺少值时默认为换行符\n）" />
+					<ITEM key="A010004" val="dsCode" rmk="数据集代码" />
+					<ITEM key="B050016" val="source" rmk="数据来源" />
+					<ITEM key="F010008" val="dateAim" rmk="数据采集地" />
+					<ITEM key="I010038" val="1" rmk="数据起始行，可选项，不填写默认为第１行" />
+					<ITEM key="I010039" val="UTF-8" rmk="可选项，默认为UTF-8，BCP文件编码格式（采用不带格式的编码方式，如：UTF-8无BOM）" />
+					<DATASET name="WA_COMMON_010014" rmk="BCP文件结构信息">
+						<DATA>
+							<ITEM key="H040003" val="./" rmk="文件路径" />
+							<ITEM key="H010020" val="fileName" rmk="文件名" />
+							<ITEM key="I010034" val="lineNumber" rmk="记录行数" />
+						</DATA>
+					</DATASET>
+					<DATASET name="WA_COMMON_010015" rmk="BCP文件数据信息" fieldcnt="30">
+						<DATA>>
+							<ITEM key="G020004" eng="netbarWacode" chn="上网服务场所编码" Rmrmkk="" />
+							<ITEM key="F010002" eng="placeName" chn="上网服务场所名称" Rmrmkk="" />
+							<ITEM key="G020017" eng="siteAddress" chn="场所详细地址(包括省市区县路/弄号)" Rmrmkk="" />
+							<ITEM key="N010001" eng="areaCode" chn="场所所在区域编码" Rmrmkk="" />
+							<ITEM key="F010016" eng="longitude" chn="场所经度" Rmrmkk="" />
+							<ITEM key="F010017" eng="latitude" chn="场所纬度" Rmrmkk="" />
+							<ITEM key="F040011" eng="netsiteType" chn="场所服务类型" Rmrmkk="" />
+							<ITEM key="E010007" eng="businessNature" chn="场所经营性质" Rmrmkk="" />
+							<ITEM key="E020001" eng="lawPriName" chn="场所经营法人" Rmrmkk="" />
+							<ITEM key="E020003" eng="lawPriCerType" chn="经营法人有效证件类型" Rmrmkk="" />
+							<ITEM key="E020004" eng="lawPriCerId" chn="经营法人有效证件号码" Rmrmkk="" />
+							<ITEM key="B070003" eng="relaAccount" chn="联系方式" Rmrmkk="" />
+							<ITEM key="N010002" eng="safetyman" chn="信息安全员" Rmrmkk="" />
+							<ITEM key="N010003" eng="safetymanTel" chn="安全员联系电话" Rmrmkk="" />
+							<ITEM key="N010004" eng="safetymanEmail" chn="安全员EMAIL地址" Rmrmkk="" />
+							<ITEM key="I070009" eng="startTime" chn="营业开始时间" Rmrmkk="" />
+							<ITEM key="I070010" eng="endTime" chn="营业结束时间" Rmrmkk="" />
+							<ITEM key="G020010" eng="accessType" chn="场所网络接入方式" Rmrmkk="" />
+							<ITEM key="B020001" eng="operatorNet" chn="场所网络接入服务商" Rmrmkk="" />
+							<ITEM key="I070016" eng="accIpAuthAccount" chn="网络接入账号或固定IP地址" Rmrmkk="" />
+							<ITEM key="G020013" eng="codeAllocaOrgan" chn="安全厂商组织机构代码" Rmrmkk="" />
+							<ITEM key="N060001" eng="practiNumber" chn="从业人数" Rmrmkk="" />
+							<ITEM key="N020001" eng="netMoniDepa" chn="所属网监部门" Rmrmkk="" />
+							<ITEM key="N020002" eng="netMonitorMan" chn="网监负责人" Rmrmkk="" />
+							<ITEM key="N020003" eng="netMonitorManTel" chn="网监负责人电话" Rmrmkk="" />
+							<ITEM key="N050001" eng="policeCode" chn="所属派出所编码" Rmrmkk="" />
+							<ITEM key="N110001" eng="createTime" chn="创建时间" Rmrmkk="" />
+							<ITEM key="N110002" eng="modifyTime" chn="修改时间" Rmrmkk="" />
+							<ITEM key="N110003" eng="status" chn="状态:1正常2维护3注销" Rmrmkk="" />
+							<ITEM key="N110004" eng="remark" chn="备注" Rmrmkk="" />
+						</DATA>
+					</DATASET>
+				</DATA>
+			</DATASET>
+		</DATA>
+	</DATASET>
+</MESSAGE>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MESSAGE>
+	<DATASET name="WA_COMMON_010017" rmk="数据文件索引信息">
+		<DATA>
+			<DATASET name="WA_COMMON_010013" rmk="BCP文件格式信息">
+				<DATA>
+					<ITEM key="I010032" val="\t" rmk="列分隔符（缺少值时默认为制表符\t）" />
+					<ITEM key="I010033" val="\n" rmk="行分隔符（缺少值时默认为换行符\n）" />
+					<ITEM key="A010004" val="dsCode" rmk="数据集代码" />
+					<ITEM key="B050016" val="source" rmk="数据来源" />
+					<ITEM key="F010008" val="dateAim" rmk="数据采集地" />
+					<ITEM key="I010038" val="1" rmk="数据起始行，可选项，不填写默认为第１行" />
+					<ITEM key="I010039" val="UTF-8" rmk="可选项，默认为UTF-8，BCP文件编码格式（采用不带格式的编码方式，如：UTF-8无BOM）" />
+					<DATASET name="WA_COMMON_010014" rmk="BCP文件结构信息">
+						<DATA>
+							<ITEM key="H040003" val="./" rmk="文件路径" />
+							<ITEM key="H010020" val="fileName" rmk="文件名" />
+							<ITEM key="I010034" val="lineNumber" rmk="记录行数" />
+						</DATA>
+					</DATASET>
+					<DATASET name="WA_COMMON_010015" rmk="BCP文件数据信息" fieldcnt="11">
+						<DATA>
+							<ITEM key="C040002" eng="MAC" chn="终端MAC" rmk="statMac" fmt="c" datatype="VARCHAR" />
+							<ITEM key="I070011" eng="COLLECTION_EQUIPMEENT_ID" chn="设备编号" rmk="devMac" fmt="c" datatype="VARCHAR" />
+							<ITEM key="G020004" eng="NETBAR_WACODE" chn="场所编号" rmk="siteName" fmt="c" datatype="VARCHAR" />
+							<ITEM key="H010014" eng="CAPTURE_TIME" chn="采集时间" rmk="time" fmt="c" datatype="VARCHAR" />
+							<ITEM key="I070003" eng="TERMINAL_FIELD_STRENGTH" chn="场强" rmk="signal" fmt="c" datatype="VARCHAR" />
+							<ITEM key="C010003" eng="MODEL" chn="手机型号" rmk="phoneModel" fmt="c" datatype="VARCHAR" />
+							<ITEM key="B040001" eng="IDENTFICATION_TYPE" chn="身份类型" rmk="type" fmt="c" datatype="VARCHAR" />
+							<ITEM key="I070005" eng="SSID_POSITION" chn="热点ssid" rmk="hotSsid" fmt="c" datatype="VARCHAR" />
+							<ITEM key="I070006" eng="ACCESS_AP_MAC" chn="热点mac" rmk="hotMac" fmt="c" datatype="VARCHAR" />
+							<ITEM key="I070007" eng="ACCESS_AP_CHANNEL" chn="热点频道" rmk="hotChannel" fmt="c" datatype="VARCHAR" />
+							<ITEM key="I070008" eng="ACCESS_AP_ENCRYPTION_TYPE" chn="加密类型" rmk="hotDesType" fmt="c" datatype="VARCHAR" />
+						</DATA>
+					</DATASET>
+				</DATA>
+			</DATASET>
+		</DATA>
+	</DATASET>
+</MESSAGE>

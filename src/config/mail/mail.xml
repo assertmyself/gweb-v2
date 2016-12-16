@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MailContext senderAddr="gbcomcms@163.com" senderPwd="Welcome123" senderName="gbcomcms"  host="smtp.163.com" port="25" protocol="smtp" auth="true" >
+	<receivers>
+		<MailReceiver receiverAddr="gbcomcmsreceiver@163.com" receiverType="to" />
+<!-- 		<MailReceiver receiverAddr="gbcomcms@163.com" receiverType="cc" />
+		<MailReceiver receiverAddr="gbcomcms@163.com" receiverType="bcc" /> -->
+	</receivers>
+</MailContext>

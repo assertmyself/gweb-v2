@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--信息模型schema，保存了类表，属性表，枚举表，snmp映射信息-->
+<im:schema xmlns:im="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<im:element name="attrElement">
+		<im:complexType mixed="true">
+			<im:attribute name="name" use="required">
+				<im:simpleType>
+					<im:restriction base="im:string"> 
+						<im:enumeration value="AttrName"/>
+						<im:enumeration value="AliasName"/>
+						<im:enumeration value="DataType"/>
+						<im:enumeration value="ControlType"/>
+						<im:enumeration value="DefaultValue"/>
+						<im:enumeration value="MinValue"/>
+						<im:enumeration value="MaxValue"/>
+						<im:enumeration value="Mask"/>		
+						<im:enumeration value="Length"/>
+						<im:enumeration value="RelationCid"/>
+					</im:restriction>
+				</im:simpleType>
+			</im:attribute>
+		</im:complexType>
+	</im:element>
+	<im:element name="attribute">
+		<im:complexType>
+			<im:sequence>
+				<im:element ref="attrElement" maxOccurs="unbounded"/>
+				<im:element ref="enum" minOccurs="0" maxOccurs="unbounded"/>
+			</im:sequence>
+			<im:attribute name="id" type="im:positiveInteger" use="required"/>
+		</im:complexType>
+	</im:element>
+	<im:element name="class">
+		<im:complexType>
+			<im:sequence>
+				<im:element ref="classElement" maxOccurs="unbounded"/>
+				<im:element ref="attribute" minOccurs="0" maxOccurs="unbounded"/>
+				<im:element ref="snmp" minOccurs="0"/>
+				<im:element ref="class" minOccurs="0" maxOccurs="unbounded"/>
+				<im:element ref="childNe" minOccurs="0" maxOccurs="unbounded"/>
+			</im:sequence>
+			<im:attribute name="id" type="im:positiveInteger" use="required"/>
+			<im:attribute name="name" type="im:string" use="required"/>
+		</im:complexType>
+	</im:element>
+	<im:element name="childNe">
+		<im:complexType>
+			<im:attribute name="type" type="im:string" use="required"/>
+		</im:complexType>
+	</im:element>
+	<im:element name="classElement">
+		<im:complexType mixed="true">
+			<im:attribute name="name" use="required">
+				<im:simpleType>
+					<im:restriction base="im:string">
+						<im:enumeration value="aliasName"/>
+						<im:enumeration value="tableName"/>
+						<im:enumeration value="scalar"/>
+					</im:restriction>
+				</im:simpleType>
+			</im:attribute>
+		</im:complexType>
+	</im:element>
+	<im:element name="entry">
+		<im:complexType mixed="true">
+			<im:attribute name="value" type="im:integer" use="required"/>
+		</im:complexType>
+	</im:element>
+	<im:element name="enum">
+		<im:complexType>
+			<im:sequence>
+				<im:element ref="entry" minOccurs="0" maxOccurs="unbounded"/>
+			</im:sequence>
+			<im:attribute name="groupId" type="im:integer" use="required"/>
+			<im:attribute name="groupName" type="im:string" use="required"/>
+			<im:attribute name="editable" type="im:boolean" use="optional" default="false"/>
+		</im:complexType>
+	</im:element>
+	<im:element name="get">
+		<im:complexType>
+			<im:sequence>
+				<im:element ref="param" minOccurs="1"  maxOccurs="unbounded"/>
+			</im:sequence>
+		</im:complexType>
+	</im:element>
+	<im:element name="im">
+		<im:complexType>
+			<im:sequence>
+				<im:element ref="class"/>
+			</im:sequence>
+			<im:attribute name="version" type="im:string" use="required"/>
+			<im:attribute name="type" type="im:string" use="required"/>
+			<im:attribute name="desc" type="im:string" use="required"/>
+		</im:complexType>
+	</im:element>
+	<im:element name="index"> 
+		<im:complexType>
+			<im:sequence>
+				<im:element ref="aid" minOccurs="1" maxOccurs="unbounded"/>
+			</im:sequence>
+		</im:complexType>
+	</im:element>
+	<im:element name="aid" type="im:string"/>
+	<im:element name="operation">
+		<im:complexType>
+			<im:sequence>
+				<im:element ref="param" minOccurs="1" maxOccurs="unbounded"/>
+			</im:sequence>
+			<im:attribute name="name" type="im:string" use="required"/>
+		</im:complexType>
+	</im:element>
+	<im:element name="param">
+		<im:complexType mixed="true"> 
+			<im:attribute name="name" type="im:string" use="required"/>
+		</im:complexType>
+	</im:element>
+	<im:element name="set">
+		<im:complexType>
+			<im:sequence>
+				<im:element ref="param" minOccurs="1" maxOccurs="unbounded"/>
+			</im:sequence>
+		</im:complexType>
+	</im:element>
+</im:schema>

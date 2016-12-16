@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ccsv3" default="move">
+<property name="project.name" value="${ant.project.name}"></property>
+<property name="base.dir" value="${basedir}"></property>
+<!-- 版本兼容性 -->
+<property name="target" value="1.6" />
+<property name="source" value="1.6" />
+
+		
+<!-- 自定义路径 -->
+<property name="src.dir" value="${base.dir}/src"></property>
+<property name="web.dir" value="${base.dir}/WebRoot"></property>
+<property name="des.dir" value="${base.dir/build"></property>
+<property name="lib.dir" value="${web.dir}/WEB-INF/lib"></property>
+	
+<property name="des.jar.dir" value="${des.dir}/jar"></property>
+<property name="des.web.dir" value="${des.dir}/WebRoot"></property>
+<property name="des.class.dir" value="${des.web.dir}/WEB-INF/classes"></property>
+<property name="des.lib.dir" value="${des.web.dir}/WEB-INF/lib"></property>
+
+
+
+
+
+<target name="even">
+	<echo message=" ---- eveninfo --- "></echo>
+	<echo message="Java.Version:${ant.java.version}"></echo>
+	<echo message="Ant.Version:${ant.version}"></echo>
+	<echo message="Base.Dir:${basedir}"></echo>
+	<echo message="websrc.Dir:${web.dir}"></echo>
+	<echo message="DESC.Dir:${des.web.dir}"></echo>
+	<echo message="DESC.Dir:${des.jar.dir}"></echo>
+	<echo message="class.Dir:${des.class.dir}"></echo>
+</target>
+
+	<!-- 真正有用的流程 -->
+	<target name="clean" depends="even">
+		<echo message="---- clean ----"></echo>
+		<delete dir="${des.dir}"/>
+	</target>
+	<target name="init" depends="clean">
+		<echo message="---- init ----"/>
+		<mkdir dir="${des.dir}"/>
+	</target>
+
+<!-- 设置lib jar包路径-->
+	<path id="lib.path">
+		<fileset dir="${lib.dir}">
+			<include name="**\*.jar" />
+		</fileset>
+	</path>
+
+<target name="copy" depends="init">
+	<echo message="--------copy the web to buile-----"/>
+		<copy todir="${des.web.dir}">
+		      <fileset dir="${web.dir}">
+		      	<exclude name="${lib.dir}/jsp-api.jar"/>
+		      	<exclude name="${lib.dir}/servlet-api.jar"/>
+		      </fileset>
+		 </copy>
+		<delete dir="${des.class.dir}/com"/>
+</target>
+
+<!-- compile 需要指定srcdir、destdir 和 classpath （第三方包需要）-->
+<target name="compile" depends="copy">
+    <echo message="  ----- compile----"></echo>
+
+    <javac srcdir="${src.dir}" destdir="${des.class.dir}"  source="${source}" target="${source}" encoding="utf-8" debug="true" >
+		<compilerarg value="-Xlint:unchecked" />
+		<compilerarg value="-Xlint:deprecation" />
+		<!-- 添加编译路径 -->
+		<classpath refid="lib.path" />
+	</javac>
+</target>
+
+
+
+<!-- 打包为可执行jar -->
+<target name="jar" depends="compile">
+   <echo message=" ----- jar -----"></echo>
+   <jar   destfile="${des.jar.dir}/${project.name}.war" basedir="${des.web.dir}">
+   </jar>
+</target>
+	<target name="move" depends="jar">
+		<copy file="${des.jar.dir}/${project.name}.war" tofile="${basedir}/${project.name}.war"></copy>
+	</target>
+
+</project>

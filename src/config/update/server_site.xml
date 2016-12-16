@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	压缩规则例子，**/*.zip 表示对所有的zip文件不进行压缩
+	<ZipRule name="one" include="" exclude="**/*.zip" />
+-->
+<UpdateServerContext>
+<updateSwitch >false</updateSwitch>
+<list>
+	<UpdateServer name="ccsv3" product="ccsv3" version="v3.0.8" no="3.0.8" date="20151218" method="code">
+		<ZipRules>
+			<!-- 打包规则 -->
+			<ZipRule name="one" include="" exclude="**/*.zip" />
+			<ZipRule name="two" include="" exclude="" />
+		</ZipRules>
+		<FilterRules>
+		<!-- 过滤请求，支持 ver ip等 -->
+			<FilterRule name="one" filterConst="ver" filterContent="abac" />
+		</FilterRules>
+	</UpdateServer>
+	<UpdateServer name="sac" product="sac" version="v3.0.8" no="3.0.8" date="20151218" method="code">
+		<ZipRules>
+			<!-- 打包规则 -->
+			<ZipRule name="one" include="" exclude="" />
+			<ZipRule name="two" include="" exclude="" />
+		</ZipRules>
+		<FilterRules>
+		<!-- 过滤请求，支持 ver ip等 -->
+			<FilterRule name="one" filterConst="ver" filterContent="abac" />
+		</FilterRules>
+	</UpdateServer>
+</list>
+</UpdateServerContext>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WasuUserOfflineTemplate>
+	<relative>true</relative>
+	<sysMacAddress>.11.1.1.1</sysMacAddress>
+	<userMac>.13.120.1.1</userMac>
+	<userIp>.13.120.1.10</userIp>
+	<acIp>.11.40.2</acIp>
+	<sn>.11.1.1.25</sn>
+	<from>.11.1.1.24</from>
+	<userLoginTime>.13.120.1.12</userLoginTime>
+	<userLogoutTime>.13.120.1.13</userLogoutTime>
+	<total_up>.13.120.1.6</total_up>
+	<total_down>.13.120.1.7</total_down>
+</WasuUserOfflineTemplate>

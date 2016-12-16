@@ -1,0 +1,40 @@
+ <context>
+ <verdorList>
+ 	<verdor name="gbcom">
+ 		  <groupList>
+		  	<group id="1" name="APRunStat">
+			    <list>
+			    	<node name="apCPUAvgUsage" oid=".13.101.3.0"></node>
+			    	<node name="apMemAvgUsage" oid=".13.101.6.0"></node>
+			    	<node name="apCPUPeakUsage" oid=".13.101.2.0"></node>
+			    	<node name="apMemAvgUsage" oid=".13.101.5.0"></node>
+			    	<!--<node name="devDiskUsage" oid=".13.101.20.0"></node>-->
+			    </list>
+		  	</group> 
+		  	<group id="2" name="APWifiFlowStat">
+			    <list>
+			    	<node name="apRecvBytes" oid=".13.103.2.0"></node>
+			    	<node name="apSendBytes" oid=".13.103.3.0"></node>
+			    	<node name="wifi24RecvBytes" oid=".13.103.4.0"></node>
+			    	<node name="wifi24SendBytes" oid=".13.103.5.0"></node>
+			    	<node name="wifi5RecvBytes" oid=".13.103.6.0"></node>
+			    	<node name="wifi5SendBytes" oid=".13.103.7.0"></node>
+			    </list>
+		  	</group> 
+		  	<group id="3" name="APClientStat">
+			    <list>
+			    	<node name="stationStatNum" oid=".13.105.1.0"></node>
+			    	<node name="onlineUserNum" oid=".13.101.12.0"></node>
+			    </list>
+		  	</group> 
+		  	<group id="4" name="APWanFlowStat">
+			    <list>
+			    	<node name="wanRxBytes" oid=".13.102.1.2.0"></node>
+			    	<node name="wanTxBytes" oid=".13.102.1.1.0"></node>
+			    </list>
+		  	</group> 
+		  </groupList>
+ 	</verdor>
+ </verdorList>
+
+</context>

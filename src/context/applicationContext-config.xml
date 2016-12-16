@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <bean id="configManager" class="com.gbcom.system.manager.ConfigManager"  >
+        <!--系统名称-->
+        <property name="siteName" value="${product}管理系统"/>
+
+        <!--百度云推送-->
+        <property name="baiduApiKey" value="TpNL0YRs8tbE5CFy7pcAO7zY"/>
+        <property name="baiduSecretKey" value="RnsS3pcMxcjyTVIBERk489AVBX5meaa1"/>
+
+        <!--文档附件存储位置-->
+        <property name="filePath" value="${filePath}/doc"/>
+
+        <!-- 数据库备份存储位置 -->
+        <property name="dbFilePath" value="${filePath}/dbfile"/>
+
+        <!-- app版本文件存储位置 -->
+        <property name="appFilePath" value="${filePath}/gsapp"/>
+
+    </bean>
+</beans>

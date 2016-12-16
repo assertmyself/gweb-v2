@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+        
+
+       
+<hibernate-mapping package="com.gbcom.system.domain">
+    <class
+            name="SysMessage"
+            table="SYS_Message"
+            >
+
+        <id
+                name="id"
+                type="java.lang.Long"
+                column="ID"
+                >
+            <generator class="com.hc.core.orm.hibernate.LongIdGenerator"/>
+        </id>
+        <property
+                name="type"
+                column="type"
+                type="int"
+                not-null="true"
+                >
+            <meta attribute="ColumnName">类型 1通知 2告警３邮件</meta>
+            <meta attribute="ColumnComment">类型 1通知 2告警３邮件</meta>
+        </property>
+        <property
+                name="status"
+                column="status"
+                type="int"
+                not-null="true"
+                >
+            <meta attribute="ColumnName">状态 1已读 2未读</meta>
+            <meta attribute="ColumnComment">状态 1已读 2未读</meta>
+        </property>
+
+        <property
+                name="title"
+                column="title"
+                type="string"
+                not-null="false"
+                length="50"
+                >
+            <meta attribute="ColumnName">标题</meta>
+            <meta attribute="ColumnComment">标题</meta>
+        </property>
+
+        <property
+                name="content"
+                column="content"
+                type="string"
+                not-null="false"
+                >
+            <meta attribute="ColumnName">内容</meta>
+            <meta attribute="ColumnComment">内容</meta>
+        </property>
+        
+        <property
+                name="creatorId"
+                column="creatorId"
+                type="long"
+                not-null="false"
+                >
+            <meta attribute="ColumnName">创建者</meta>
+            <meta attribute="ColumnComment">创建者</meta>
+        </property>
+
+        <property
+                name="recipientId"
+                column="recipientId"
+                type="long"
+                not-null="false"
+                >
+            <meta attribute="ColumnName">接收者</meta>
+            <meta attribute="ColumnComment">接收者</meta>
+        </property>
+
+        <property
+                name="createTime"
+                column="createTime"
+                type="java.util.Date"
+                not-null="false"
+                length="1"
+                >
+            <meta attribute="ColumnName">创建时间</meta>
+            <meta attribute="ColumnComment">创建时间</meta>
+        </property>
+        
+
+    </class>
+</hibernate-mapping>

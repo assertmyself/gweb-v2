@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ZcAuthUserReportTemplate>
+	<relative>true</relative>
+	<sysMacAddress>.11.1.1.1</sysMacAddress>
+	<onlineUserMac>.13.120.1.1</onlineUserMac>
+	<userIp>.13.120.1.10</userIp>
+	<userSsid>.13.120.1.11</userSsid>
+	<userLoginTime>.13.120.1.12</userLoginTime>
+	<userLogoutTime>.13.120.1.13</userLogoutTime>
+	<userOnlineTime>.13.120.1.14</userOnlineTime>
+	<userLogoutType>.13.120.1.15</userLogoutType>
+</ZcAuthUserReportTemplate>
+
+
+

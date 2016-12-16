@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean name="privilegeService" class="com.gbcom.system.manager.PrivilegeServiceImpl">
+    </bean>
+
+
+    <bean name="initPrivilegeBean" class="com.hc.core.security.privilege.InitPrivilegeBean">
+        <property name="privilegeService" ref="privilegeService"></property>
+    </bean>
+
+    <bean name="initTableConfigBean" class="com.hc.core.orm.log.InitTableConfigBean">
+        <property name="tableConfigService" ref="configTableManager"></property>
+    </bean>
+    <!-- spring  upload file support  (server)-->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+	</beans>

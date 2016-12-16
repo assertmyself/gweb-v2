@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.gbcom.system.domain">
+    <class
+            name="SysUserPrivilege"
+            table="SYS_USER_PRIVILEGE"
+            >
+
+        <meta attribute="sync-DAO">false</meta>
+        <meta attribute="sync-jsp">true</meta>
+        <meta attribute="sync-boolean">get</meta>
+        <meta attribute="treeable">false</meta>
+        <meta attribute="projectable">false</meta>
+        <meta attribute="tableName">系统用户与权限关联</meta>
+        <meta attribute="tableComment">系统用户与权限关联</meta>
+        <meta attribute="sync-templatePatterns">list\w*</meta>
+        <meta attribute="sub-system">system</meta>
+
+        <id
+                name="id"
+                type="java.lang.Long"
+                column="ID"
+                >
+            <generator class="com.hc.core.orm.hibernate.LongIdGenerator"/>
+        </id>
+
+        <property
+                name="isDeny"
+                column="IS_DENY"
+                type="java.lang.Boolean"
+                not-null="false"
+                length="1"
+                >
+            <meta attribute="ColumnName">是否禁止授权</meta>
+            <meta attribute="ColumnComment">是否禁止授权</meta>
+        </property>
+
+        <many-to-one
+                name="user"
+                column="USER_ID"
+                class="SysUser"
+                not-null="true"
+                >
+        </many-to-one>
+        <many-to-one
+                name="privilege"
+                column="PRIVILEGE_ID"
+                class="SysPrivilege"
+                not-null="true"
+                >
+        </many-to-one>
+
+    </class>
+    <query name="sysuserprivilege_all_data_query">
+        <![CDATA[FROM SysUserPrivilege]]>
+    </query>
+</hibernate-mapping>

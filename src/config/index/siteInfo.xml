@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MESSAGE>
+	<DATASET name="WA_COMMON_010017" rmk="数据文件索引信息">
+		<DATA>
+			<DATASET name="WA_COMMON_010013" rmk="BCP文件格式信息">
+				<DATA>
+					<ITEM key="I010032" val="\t" rmk="列分隔符（缺少值时默认为制表符\t）" />
+					<ITEM key="I010033" val="\n" rmk="行分隔符（缺少值时默认为换行符\n）" />
+					<ITEM key="A010004" val="dsCode" rmk="数据集代码" />
+					<ITEM key="B050016" val="source" rmk="数据来源" />
+					<ITEM key="F010008" val="dateAim" rmk="数据采集地" />
+					<ITEM key="I010038" val="1" rmk="数据起始行，可选项，不填写默认为第１行" />
+					<ITEM key="I010039" val="UTF-8" rmk="可选项，默认为UTF-8，BCP文件编码格式（采用不带格式的编码方式，如：UTF-8无BOM）" />
+					<DATASET name="WA_COMMON_010014" rmk="BCP文件结构信息">
+						<DATA>
+							<ITEM key="H040003" val="./" rmk="文件路径" />
+							<ITEM key="H010020" val="fileName" rmk="文件名" />
+							<ITEM key="I010034" val="lineNumber" rmk="记录行数" />
+						</DATA>
+					</DATASET>
+					<DATASET name="WA_COMMON_010015" rmk="BCP文件数据信息" fieldcnt="14">
+						<DATA>
+							<ITEM key="G020004" eng="NETBAR_WACODE" chn="上网服务场所编码" rmk="siteCode" fmt="c" datatype="VARCHAR" />
+							<ITEM key="F040002" eng="PLACE_NAME" chn="上网服务场所名称" rmk="siteName" fmt="c" datatype="VARCHAR" />
+							<ITEM key="G020017" eng="SITE_ADDRESS" chn="场所详细地址(包括省市区县路/弄号)" rmk="address" fmt="c" datatype="VARCHAR" />
+							<ITEM key="F010016" eng="LONGITUDE" chn="场所经度" rmk="siteLong" fmt="c" datatype="VARCHAR" />
+							<ITEM key="F010017" eng="LATITUDE" chn="场所纬度" rmk="siteDimen" fmt="c" datatype="VARCHAR" />
+							<ITEM key="F040011" eng="NETSITE_TYPE" chn="场所服务类型" rmk="siteType" fmt="c" datatype="VARCHAR" />
+							<ITEM key="E010007" eng="BUSINESS_NATURE" chn="场所经营性质" rmk="siteProp" fmt="c" datatype="VARCHAR" />
+							<ITEM key="E020001" eng="LAW_PRINCIPAL_NAME" chn="场所经营法人" rmk="siteLegaler" fmt="c" datatype="VARCHAR" />
+							<ITEM key="E020003" eng="LAW_PRINCIPAL_CERTIFICATE_TYPE" chn="经营法人有效证件类型" rmk="legalerCardType" fmt="c" datatype="VARCHAR" />
+							<ITEM key="E020004" eng="LAW_PRINCIPAL_CERTIFICATE_ID" chn="经营法人有效证件号码" rmk="legalerCardNO" fmt="c" datatype="VARCHAR" />
+							<ITEM key="I070009" eng="START_TIME" chn="营业开始时间" rmk="begin" fmt="c" datatype="VARCHAR" />
+							<ITEM key="I070010" eng="END_TIME" chn="营业结束时间" rmk="end" fmt="c" datatype="VARCHAR" />
+							<ITEM key="B070003" eng="RELATIONSHIP_ACCOUNT" chn="联系方式" rmk="phone" fmt="c" datatype="VARCHAR" />
+							<ITEM key="G020013" eng="SECURITY_SOFTWARE_ORGCODE" chn="厂商组织机构代码" rmk="vendorCode" fmt="c" datatype="VARCHAR" />
+						</DATA>
+					</DATASET>
+				</DATA>
+			</DATASET>
+		</DATA>
+	</DATASET>
+</MESSAGE>

@@ -1,0 +1,2208 @@
+FATAP-OPENMIB-RUIJIE DEFINITIONS ::= BEGIN
+
+    IMPORTS
+        OBJECT-GROUP            								 FROM SNMPv2-CONF
+        enterprises, IpAddress, Integer32, Unsigned32, OBJECT-TYPE,
+        MODULE-IDENTITY, TimeTicks, NOTIFICATION-TYPE           FROM SNMPv2-SMI
+        IANAifType                               				 FROM IANAifType-MIB
+        InetAddressType, InetAddress, InetAddressIPv6           FROM INET-ADDRESS-MIB
+        MacAddress, PhysAddress, DisplayString, TruthValue,RowStatus      FROM SNMPv2-TC;
+
+
+    --SMI TEXTUAL-CONVENTION
+        --String              ::= TEXTUAL-CONVENTION
+            --STATUS          current
+            --DESCRIPTION     ""
+            --SYNTAX          OCTET STRING
+
+        --UInt32              ::= TEXTUAL-CONVENTION
+            --STATUS          current
+            --DESCRIPTION     ""
+            --SYNTAX          Unsigned32
+
+        --Int32               ::= TEXTUAL-CONVENTION
+            --STATUS          current
+            --DESCRIPTION     ""
+            --SYNTAX          Integer32
+
+        --UInt64              ::= TEXTUAL-CONVENTION
+            --STATUS          current
+            --DESCRIPTION     ""
+            --SYNTAX          Counter64
+
+    ----------------------------------------------------------------------------
+    -- Node definitions
+    ----------------------------------------------------------------------------
+    ruijie 								OBJECT IDENTIFIER ::= {enterprises 4881}
+    ruijie-products                    	OBJECT IDENTIFIER ::= {ruijie 1}    
+    wireless-termination-points			OBJECT IDENTIFIER ::= {ruijie-products 3}
+    indoor-groups						OBJECT IDENTIFIER ::= {wireless-termination-points 1}
+    rg-ap220l-series   		    				OBJECT IDENTIFIER ::= {indoor-groups 1}
+    rg-ap220l   		    				OBJECT IDENTIFIER ::= {rg-ap220l-series 110}
+    ----------------------------------------------------------------------------
+    -- alarmObject
+    ----------------------------------------------------------------------------
+    alarmObject                             OBJECT IDENTIFIER ::= {rg-ap220l 1}
+
+        alarmSn                             OBJECT-TYPE SYNTAX DisplayString(SIZE (0..32))
+                                            MAX-ACCESS  accessible-for-notify   STATUS current 
+                                            DESCRIPTION "alarm sn"
+                                            ::= {alarmObject 1}
+        alarmNeName                         OBJECT-TYPE SYNTAX DisplayString(SIZE (0..32))
+                                            MAX-ACCESS  accessible-for-notify   STATUS current 
+                                            DESCRIPTION "alarm ne name"
+                                            ::= {alarmObject 2}
+        alarmLevel                          OBJECT-TYPE SYNTAX Unsigned32{critical(1),main(2),minor(3),normal(4),unknown(5)}
+                                            MAX-ACCESS  accessible-for-notify   STATUS current 
+                                            DESCRIPTION "alarm level"
+                                            DEFVAL {1}
+                                            ::= {alarmObject 3}
+        alarmType                           OBJECT-TYPE SYNTAX Unsigned32{communication(1),environment(2),device(3),handle-fail(4),qos(5),other(6)}
+                                            MAX-ACCESS  accessible-for-notify   STATUS current 
+                                            DESCRIPTION "alarm type"
+                                            DEFVAL {1}
+                                            ::= {alarmObject 4}
+        alarmReasonID                       OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  accessible-for-notify   STATUS current 
+                                            DESCRIPTION "alarm reason id"
+                                            DEFVAL {0}
+                                            ::= {alarmObject 5}
+        alarmReason                         OBJECT-TYPE SYNTAX DisplayString(SIZE (0..32))
+                                            MAX-ACCESS  accessible-for-notify   STATUS current 
+                                            DESCRIPTION "alarm reason"
+                                            ::= {alarmObject 6}
+        alarmRaiseTime                      OBJECT-TYPE SYNTAX TimeTicks
+                                            MAX-ACCESS  accessible-for-notify   STATUS current 
+                                            DESCRIPTION "alarm raise time"
+                                            ::= {alarmObject 7}
+        alarmStatus                         OBJECT-TYPE SYNTAX Unsigned32{active(1),clear(2)}
+                                            MAX-ACCESS  accessible-for-notify   STATUS current 
+                                            DESCRIPTION "alarm status"
+                                            DEFVAL {1}
+                                            ::= {alarmObject 8}
+        alarmTitle                          OBJECT-TYPE SYNTAX DisplayString(SIZE (0..64))
+                                            MAX-ACCESS  accessible-for-notify   STATUS current 
+                                            DESCRIPTION "alarm title"
+                                            ::= {alarmObject 9}
+        alarmInfo                           OBJECT-TYPE SYNTAX DisplayString(SIZE (0..64))
+                                            MAX-ACCESS  accessible-for-notify   STATUS current 
+                                            DESCRIPTION "alarm info"
+                                            ::= {alarmObject 10}
+        updateOid                           OBJECT-TYPE SYNTAX OBJECT IDENTIFIER
+                                            MAX-ACCESS  accessible-for-notify   STATUS current 
+                                            DESCRIPTION "update oid"
+                                            ::= {alarmObject 11}
+        oldValue                            OBJECT-TYPE SYNTAX DisplayString(SIZE (0..64))
+                                            MAX-ACCESS  accessible-for-notify   STATUS current 
+                                            DESCRIPTION "ole value"
+                                            ::= {alarmObject 12}
+        newValue                            OBJECT-TYPE SYNTAX DisplayString(SIZE (0..64))
+                                            MAX-ACCESS  accessible-for-notify   STATUS current 
+                                            DESCRIPTION "new value"
+                                            ::= {alarmObject 13}
+        oidType                             OBJECT-TYPE SYNTAX Unsigned32{scalar(1),table(2)}
+                                            MAX-ACCESS  accessible-for-notify   STATUS current 
+                                            DESCRIPTION "oid type"
+                                            ::= {alarmObject 14}       
+    ----------------------------------------------------------------------------
+    -- apConfig
+    ----------------------------------------------------------------------------
+    apConfig                                OBJECT IDENTIFIER ::= {rg-ap220l 11}
+    ----------------------------------------------------------------------------
+    -- apSysConfig
+    ----------------------------------------------------------------------------
+    apSysConfig                             OBJECT IDENTIFIER ::= {apConfig 1}
+    ----------------------------------------------------------------------------
+    -- apDevInfo
+    ----------------------------------------------------------------------------
+    apDevInfo                               OBJECT IDENTIFIER ::= {apSysConfig 1}
+                                    
+        sysMacAddress                       OBJECT-TYPE SYNTAX MacAddress
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ap mac address"
+                                            ::= {apDevInfo 1}
+        sysUpTime                           OBJECT-TYPE SYNTAX TimeTicks    UNITS "10 ms"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ap up time,since ap start"
+                                            ::= {apDevInfo 2}
+        sysRegetPeriod						OBJECT-TYPE SYNTAX Integer32   UNITS "second"
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "snmp agent reget period"
+                                            ::= {apDevInfo 3}
+        sysIfSpeed							OBJECT-TYPE SYNTAX Integer32   UNITS "Mbps"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ap interface speed"
+                                            ::= {apDevInfo 4}
+        sysTrapSwitch                       OBJECT-TYPE SYNTAX Integer32{off(0), on(1)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "ap trap switch"
+                                            ::= {apDevInfo 5}
+        sysRestart                       	OBJECT-TYPE SYNTAX Integer32{normal(0), restart(1)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "restart ap"
+                                            ::= {apDevInfo 6}
+        sysTimeZone							OBJECT-TYPE SYNTAX Integer32{utc(0), china(1), taiwan(2)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "system time zone"
+                                            ::= {apDevInfo 7}                                    
+        sysTime								OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "system time, format:%Y-%m-%d %H:%M:%S"
+                                            ::= {apDevInfo 8}
+        sysIpAddress                        OBJECT-TYPE SYNTAX IpAddress
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ap main ip address"
+                                            ::= {apDevInfo 9}
+        sysManageState                      OBJECT-TYPE SYNTAX Integer32{offline(0), online(1)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "ap manage state, the cms set it"
+                                            ::= {apDevInfo 10}
+        modelId                             OBJECT-TYPE SYNTAX Integer32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ap model id"
+                                            ::= {apDevInfo 11}
+        modelName                        	OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ap model name"
+                                            ::= {apDevInfo 12}
+        sysModel                            OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ap model"
+                                            ::= {apDevInfo 13}
+        timeOutInterval                     OBJECT-TYPE SYNTAX Integer32 UNITS "second"
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "sac time out interval"
+                                            ::= {apDevInfo 14}
+        heartBeatPeriod                     OBJECT-TYPE SYNTAX Integer32 UNITS "second"
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "heart beat period"
+                                            ::= {apDevInfo 15}                                                                                                                 
+                                                                                                                                      
+    ----------------------------------------------------------------------------
+    -- apSwInfo
+    ----------------------------------------------------------------------------
+    apSwInfo	                            OBJECT IDENTIFIER ::= {apSysConfig 2}
+
+        currentVersion                      OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ap current software version"
+                                            ::= {apSwInfo 1}
+        targetVersion                       OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ap software update target version"
+                                            ::= {apSwInfo 2}
+        softwareVersion                     OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ap software version"
+                                            ::= {apSwInfo 3}                
+                                                        
+    ----------------------------------------------------------------------------
+    -- apHwInfo
+    ----------------------------------------------------------------------------
+	-- 1.3.6.1.4.1.172.10.132.1.1.1.3
+	apHardwareInfo 							OBJECT IDENTIFIER ::= { apSysConfig 3 }
+
+        cpuType                             OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ap cpu type"
+                                            ::= {apHardwareInfo 1}
+        memoryType                          OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ap memory type"
+                                            ::= {apHardwareInfo 2}
+        memorySize                          OBJECT-TYPE SYNTAX Unsigned32    UNITS "MB"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ap memory size"
+                                            ::= {apHardwareInfo 3}
+        diskSize                            OBJECT-TYPE SYNTAX Unsigned32    UNITS "MB"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ap disk size"
+                                            ::= {apHardwareInfo 4}
+        hardwareVersion                     OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ap hardware version"
+                                            ::= {apHardwareInfo 5}
+        hardwareType                        OBJECT-TYPE SYNTAX Unsigned32{ap93(1),ta98(4),ta40(5),ta55(8) }
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ap hardware type"
+                                            ::= {apHardwareInfo 6}
+        boardVersion                        OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ap board version"
+                                            ::= {apHardwareInfo 7}
+                                                                                             
+    ----------------------------------------------------------------------------
+    -- apIpConfig
+    ----------------------------------------------------------------------------
+    apIpConfig                      		OBJECT IDENTIFIER ::= {apSysConfig 4}   
+    
+    	ipNum								OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ap ip num"
+                                            ::= {apIpConfig 1}
+    ----------------------------------------------------------------------------
+    -- apIpConfigTable
+    ----------------------------------------------------------------------------
+    apIpConfigTable                  OBJECT-TYPE
+        SYNTAX                  SEQUENCE OF ApIpConfigEntry
+        MAX-ACCESS              not-accessible
+        STATUS                  current
+        DESCRIPTION             ""
+        ::= {apIpConfig       10}
+
+        apIpConfigEntry              OBJECT-TYPE
+            SYNTAX                  ApIpConfigEntry
+            MAX-ACCESS              not-accessible
+            STATUS                  current
+            DESCRIPTION             ""
+            INDEX                   {ipIndex}
+            ::= {apIpConfigTable      1}
+
+        ApIpConfigEntry  ::= SEQUENCE
+        {
+            ipIndex        			Unsigned32,
+            ipMode					Unsigned32,
+            ipAddress               IpAddress,
+            ipNetMask				IpAddress,
+            ipGatewayAddress        IpAddress,
+            ipDnsMaster				IpAddress,
+            ipDnsSlave				IpAddress
+        }
+
+        ipIndex                          	OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "index"
+                                            ::= {apIpConfigEntry 1}
+        ipMode                              OBJECT-TYPE SYNTAX Unsigned32{static(0), dhcp(1)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "ip mode"
+                                            ::= {apIpConfigEntry 2}      
+        ipAddress                           OBJECT-TYPE SYNTAX IpAddress
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "ip address"
+                                            ::= {apIpConfigEntry 3}
+        ipNetMask	                        OBJECT-TYPE SYNTAX IpAddress
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "ip net mask"
+                                            ::= {apIpConfigEntry 4}
+        ipGatewayAddress	                OBJECT-TYPE SYNTAX IpAddress
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "ip gateway address"
+                                            ::= {apIpConfigEntry 5}                                    
+        ipDnsMaster                         OBJECT-TYPE SYNTAX IpAddress
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "ip dns master"
+                                            ::= {apIpConfigEntry 6}
+        ipDnsSlave                          OBJECT-TYPE SYNTAX IpAddress
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "ip dns slave"
+                                            ::= {apIpConfigEntry 7}
+                                            
+    ----------------------------------------------------------------------------
+    -- apLegalApConfig
+    ----------------------------------------------------------------------------
+    apLegalApConfig                      	OBJECT IDENTIFIER ::= {apSysConfig 5}   
+    
+    	legalApNum							OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "legal ap num"
+                                            ::= {apLegalApConfig 1}
+    ----------------------------------------------------------------------------
+    -- apLegalApConfigTable
+    ----------------------------------------------------------------------------
+    apLegalApConfigTable                  OBJECT-TYPE
+        SYNTAX                  SEQUENCE OF ApLegalApConfigEntry
+        MAX-ACCESS              not-accessible
+        STATUS                  current
+        DESCRIPTION             ""
+        ::= {apLegalApConfig       10}
+
+        apLegalApConfigEntry              OBJECT-TYPE
+            SYNTAX                  ApLegalApConfigEntry
+            MAX-ACCESS              not-accessible
+            STATUS                  current
+            DESCRIPTION             ""
+            INDEX                   {legalApIndex}
+            ::= {apLegalApConfigTable      1}
+
+        ApLegalApConfigEntry  ::= SEQUENCE
+        {
+            legalApIndex        			Unsigned32,
+            legalApSsid               		DisplayString,
+            legalApBssid					MacAddress
+        }
+
+        legalApIndex                        OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-create   STATUS current 
+                                            DESCRIPTION "index"
+                                            ::= {apLegalApConfigEntry 1}
+        legalApSsid                         OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "legal ap ssid"
+                                            ::= {apLegalApConfigEntry 2}
+        legalApBssid	                    OBJECT-TYPE SYNTAX MacAddress
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "legal ap bssid"
+                                            ::= {apLegalApConfigEntry 3}
+
+    ----------------------------------------------------------------------------
+    -- apFlowConfig
+    ----------------------------------------------------------------------------
+    apFlowConfig                      	    OBJECT IDENTIFIER ::= {apSysConfig 6}   
+    
+    	apFlowSwitch						OBJECT-TYPE SYNTAX Integer32{off(0), on(1)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "ap flow switch"
+                                            ::= {apFlowConfig 1}
+        apUpLinkMaxRate						OBJECT-TYPE SYNTAX Integer32 UNITS"Kbps"
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "ap uplink max rate"
+                                            ::= {apFlowConfig 2}                                    
+        apDwLinkMaxRate						OBJECT-TYPE SYNTAX Integer32 UNITS"Kbps"
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "ap downlink max rate"
+                                            ::= {apFlowConfig 3}
+        staUpLinkMaxRate					OBJECT-TYPE SYNTAX Integer32 UNITS"Kbps"
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "sta uplink max rate"
+                                            ::= {apFlowConfig 4}                                    
+        staDwLinkMaxRate					OBJECT-TYPE SYNTAX Integer32 UNITS"Kbps"
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "sta downlink max rate"
+                                            ::= {apFlowConfig 5}
+                                                                                                                                                                                                                     
+    ----------------------------------------------------------------------------
+    -- apAdvanceConfig
+    ----------------------------------------------------------------------------
+    apAdvanceConfig                         OBJECT IDENTIFIER ::= {apConfig 2}                                            
+    ----------------------------------------------------------------------------
+    -- ap5GPriorConfig
+    ----------------------------------------------------------------------------
+    ap5GPriorConfig                         OBJECT IDENTIFIER ::= {apAdvanceConfig 1}
+
+        ap5GPriorSwitch                     OBJECT-TYPE SYNTAX Integer32{off(0), on(1)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "ap 5G prior switch"
+                                            ::= {ap5GPriorConfig 1}
+        ap2dot4GDelayTime   				OBJECT-TYPE SYNTAX Integer32 UNITS "second"
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "ap 2.4G delay time"
+                                            ::= {ap5GPriorConfig 2}                                    
+        apStaTimeOut                        OBJECT-TYPE SYNTAX Integer32 UNITS "second"
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "ap station time out"
+                                            ::= {ap5GPriorConfig 3}
+    ----------------------------------------------------------------------------
+    -- ap11nPriorConfig
+    ----------------------------------------------------------------------------
+    ap11nPriorConfig                        OBJECT IDENTIFIER ::= {apAdvanceConfig 2}
+
+        ap11nPriorSwitch                    OBJECT-TYPE SYNTAX Integer32{off(0), on(1)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "ap 11n prior switch"
+                                            ::= {ap11nPriorConfig 1}
+        ap11bgDelayTime   					OBJECT-TYPE SYNTAX Integer32 UNITS "second"
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "ap 11bg delay time"
+                                            ::= {ap11nPriorConfig 2}                                    
+        ap11nPriorStaTimeOut                OBJECT-TYPE SYNTAX Integer32 UNITS "second"
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "ap station time out"
+                                            ::= {ap11nPriorConfig 3}                                                                                         
+                                                                                                                                                              
+    ----------------------------------------------------------------------------
+    -- apWifiDeviceConfig
+    ----------------------------------------------------------------------------
+    apWifiDeviceConfig                      OBJECT IDENTIFIER ::= {apConfig 10}   
+
+    ----------------------------------------------------------------------------
+    -- apWifiDeviceBasicConfig
+    ----------------------------------------------------------------------------
+    apWifiDeviceBasicConfig                 OBJECT IDENTIFIER ::= {apWifiDeviceConfig 1}
+
+        basicWifiId                         OBJECT-TYPE SYNTAX Integer32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G wifi id"
+                                            ::= {apWifiDeviceBasicConfig 1}
+        wifiDeviceMac                       OBJECT-TYPE SYNTAX MacAddress
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G wifi mac address"
+                                            ::= {apWifiDeviceBasicConfig 2}             
+        wifiDeviceType                      OBJECT-TYPE SYNTAX Integer32{ap-single(0),ap-ms(1),adhoc-single(2),adhoc-ms(3),ap-adhoc(4),sta-adhoc(5),sta-single(6),sta-ms(7)}
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G wifi type"
+                                            ::= {apWifiDeviceBasicConfig 3}
+            
+    ----------------------------------------------------------------------------
+    -- apWifiDeviceChannelConfig
+    ----------------------------------------------------------------------------
+    apWifiDeviceChannelConfig               OBJECT IDENTIFIER ::= {apWifiDeviceConfig 2}
+
+        channelWifiId                       OBJECT-TYPE SYNTAX Integer32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G wifi id"
+                                            ::= {apWifiDeviceChannelConfig 1}
+        channelBGNMode                      OBJECT-TYPE SYNTAX Integer32{dot11b(2),dot11g(3),dot11bg(6),dot11n(16),dot11g-gn(20),dot11bgn(22)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "2.4G wifi channel abg mode"
+                                            ::= {apWifiDeviceChannelConfig 2}
+        channelUsing                     	OBJECT-TYPE SYNTAX Integer32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G current wifi channel"
+                                            ::= {apWifiDeviceChannelConfig 3}
+        channelState                  		OBJECT-TYPE SYNTAX Integer32{static(0),auto(1)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "2.4G wifi channel type"
+                                            ::= {apWifiDeviceChannelConfig 4}
+        autoChanTime                		OBJECT-TYPE SYNTAX Integer32 UNITS "second"
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "2.4G wifi auto channel time"
+                                            ::= {apWifiDeviceChannelConfig 5}
+        staticChannel               		OBJECT-TYPE SYNTAX Integer32 
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "2.4G wifi static channel"
+                                            ::= {apWifiDeviceChannelConfig 6}
+        autoChanList                   		OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "2.4G wifi channel list"
+                                            ::= {apWifiDeviceChannelConfig 7}
+        rfNum                               OBJECT-TYPE SYNTAX Integer32{one(1),two(2),three(3),four(4)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "2.4G rf num"
+                                            ::= {apWifiDeviceChannelConfig 8}     
+        bwMode                              OBJECT-TYPE SYNTAX Integer32{bw20MHz-only(0), bw20MHz-40MHz-auto(1), bw40Hz-only(2)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "2.4G bw mode"
+                                            ::= {apWifiDeviceChannelConfig 9}     
+                                    
+    ----------------------------------------------------------------------------
+    -- apWifiDevicePowerConfig
+    ----------------------------------------------------------------------------
+    apWifiDevicePowerConfig                 OBJECT IDENTIFIER ::= {apWifiDeviceConfig 3}
+
+        powerWifiId                         OBJECT-TYPE SYNTAX Integer32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G wifi id"
+                                            ::= {apWifiDevicePowerConfig 1}
+        maxTxPower                          OBJECT-TYPE SYNTAX Integer32    UNITS "dBm"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G wifi max tx power"
+                                            ::= {apWifiDevicePowerConfig 2}
+        decayTxPower                        OBJECT-TYPE SYNTAX Integer32  UNITS "dB"
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "2.4G wifi decay tx power"
+                                            ::= {apWifiDevicePowerConfig 3}
+        transmitPower                       OBJECT-TYPE SYNTAX Integer32   UNITS "dB"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G wifi transmit power"
+                                            ::= {apWifiDevicePowerConfig 4}
+
+    ----------------------------------------------------------------------------
+    -- apWifiDeviceAdvanceConfig
+    ----------------------------------------------------------------------------
+    apWifiDeviceAdvanceConfig               OBJECT IDENTIFIER ::= {apWifiDeviceConfig 4}
+
+        advanceWifiId                       OBJECT-TYPE SYNTAX Integer32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G wifi id"
+                                            ::= {apWifiDeviceAdvanceConfig 1}
+        rssiMode                            OBJECT-TYPE SYNTAX Integer32{dynamic(1),static(0)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "2.4G rssi mode"
+                                            ::= {apWifiDeviceAdvanceConfig 2}
+        rssiLow			                    OBJECT-TYPE SYNTAX Integer32 UNITS "dBm" 
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "2.4G rssi low"
+                                            ::= {apWifiDeviceAdvanceConfig 3}
+
+    ----------------------------------------------------------------------------
+    -- apWifiDeviceRateConfig
+    ----------------------------------------------------------------------------
+    apWifiDeviceRateConfig               	OBJECT IDENTIFIER ::= {apWifiDeviceConfig 5}
+
+        rateWifiId                       	OBJECT-TYPE SYNTAX Integer32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G wifi id"
+                                            ::= {apWifiDeviceRateConfig 1}
+        transBasicRate                      OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "2.4G transmit basic rate,1,2,5.5,11,6,9,12,18,24,36,48,54,
+                                            it can be modified only when the rate mode is manual"
+                                            ::= {apWifiDeviceRateConfig 2}
+        trans11nRate			            OBJECT-TYPE SYNTAX DisplayString 
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "2.4G transmit 11n rate, mcs0~mcs15,
+                                            it can be modified only when the rate mode is manual"
+                                            ::= {apWifiDeviceRateConfig 3}
+        rateMode                            OBJECT-TYPE SYNTAX Integer32{auto(0),manual(1)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "2.4G rate mode"
+                                            ::= {apWifiDeviceRateConfig 4}
+        							
+    ----------------------------------------------------------------------------
+    -- apWifiDevice5Config
+    ----------------------------------------------------------------------------
+    apWifiDevice5Config                     OBJECT IDENTIFIER ::= {apConfig 15}   
+
+    ----------------------------------------------------------------------------
+    -- apWifiDeviceBasicConfig
+    ----------------------------------------------------------------------------
+    apWifiDeviceBasic5Config                OBJECT IDENTIFIER ::= {apWifiDevice5Config 1}
+
+        basicWifi5Id                        OBJECT-TYPE SYNTAX Integer32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G wifi id"
+                                            ::= {apWifiDeviceBasic5Config 1}
+        wifi5DeviceMac                      OBJECT-TYPE SYNTAX MacAddress
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G wifi mac address"
+                                            ::= {apWifiDeviceBasic5Config 2}             
+        wifi5DeviceType                     OBJECT-TYPE SYNTAX Integer32{ap-single(0),ap-ms(1),adhoc-single(2),adhoc-ms(3),ap-adhoc(4),sta-adhoc(5),sta-single(6),sta-ms(7)}
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G wifi type"
+                                            ::= {apWifiDeviceBasic5Config 3}
+            
+    ----------------------------------------------------------------------------
+    -- apWifiDeviceChannel5Config
+    ----------------------------------------------------------------------------
+    apWifiDeviceChannel5Config              OBJECT IDENTIFIER ::= {apWifiDevice5Config 2}
+
+        channelWifi5Id                      OBJECT-TYPE SYNTAX Integer32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G wifi id"
+                                            ::= {apWifiDeviceChannel5Config 1}
+        channelANMode                       OBJECT-TYPE SYNTAX Integer32{dot11a(1),dot11n(8),dot11a-an(9)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "5G wifi channel abg mode"
+                                            ::= {apWifiDeviceChannel5Config 2}
+        wifi5ChannelUsing                   OBJECT-TYPE SYNTAX Integer32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G current wifi channel"
+                                            ::= {apWifiDeviceChannel5Config 3}
+        wifi5ChannelState                  	OBJECT-TYPE SYNTAX Integer32{static(0),auto(1)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "5G wifi channel type"
+                                            ::= {apWifiDeviceChannel5Config 4}
+        wifi5AutoChanTime                	OBJECT-TYPE SYNTAX Integer32 UNITS "second"
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "5G wifi auto channel time"
+                                            ::= {apWifiDeviceChannel5Config 5}
+        wifi5StaticChannel               	OBJECT-TYPE SYNTAX Integer32 
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "5G wifi static channel"
+                                            ::= {apWifiDeviceChannel5Config 6}
+        wifi5AutoChanList                   OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "5G wifi auto channel list"
+                                            ::= {apWifiDeviceChannel5Config 7}
+        wifi5RfNum                          OBJECT-TYPE SYNTAX Integer32{one(1),two(2)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "5G rf num"
+                                            ::= {apWifiDeviceChannel5Config 8}     
+        wifi5BwMode                         OBJECT-TYPE SYNTAX Integer32{b20MHz-only(0), b20MHz-40MHz-auto(1), bw40Hz-only(2)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "5G bw mode"
+                                            ::= {apWifiDeviceChannel5Config 9}     
+                                    
+    ----------------------------------------------------------------------------
+    -- apWifiDevicePower5Config
+    ----------------------------------------------------------------------------
+    apWifiDevicePower5Config                OBJECT IDENTIFIER ::= {apWifiDevice5Config 3}
+
+        powerWifi5Id                        OBJECT-TYPE SYNTAX Integer32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G wifi id"
+                                            ::= {apWifiDevicePower5Config 1}
+        wifi5MaxTxPower                     OBJECT-TYPE SYNTAX Integer32    UNITS "dBm"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G wifi max tx power"
+                                            ::= {apWifiDevicePower5Config 2}
+        wifi5DecayTxPower                   OBJECT-TYPE SYNTAX Integer32  UNITS "dB"
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "5G wifi decay tx power"
+                                            ::= {apWifiDevicePower5Config 3}
+        wifi5TransmitPower                  OBJECT-TYPE SYNTAX Integer32   UNITS "dB"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G wifi transmit power"
+                                            ::= {apWifiDevicePower5Config 4}
+
+    ----------------------------------------------------------------------------
+    -- apWifiDeviceAdvance5Config
+    ----------------------------------------------------------------------------
+    apWifiDeviceAdvance5Config              OBJECT IDENTIFIER ::= {apWifiDevice5Config 4}
+
+        advanceWifi5Id                      OBJECT-TYPE SYNTAX Integer32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G wifi id"
+                                            ::= {apWifiDeviceAdvance5Config 1}
+        wifi5RssiMode                       OBJECT-TYPE SYNTAX Integer32{dynamic(1),static(0)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "5G rssi mode"
+                                            ::= {apWifiDeviceAdvance5Config 2}
+        wifi5RssiLow			            OBJECT-TYPE SYNTAX Integer32 UNITS "dBm" 
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "5G rssi low"
+                                            ::= {apWifiDeviceAdvance5Config 3}                                            
+
+    ----------------------------------------------------------------------------
+    -- apWifiDeviceRate5Config
+    ----------------------------------------------------------------------------
+    apWifiDeviceRate5Config               	OBJECT IDENTIFIER ::= {apWifiDevice5Config 5}
+
+        rateWifi5Id                       	OBJECT-TYPE SYNTAX Integer32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G wifi id"
+                                            ::= {apWifiDeviceRate5Config 1}
+        wifi5TransBasicRate                 OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "5G transmit basic rate,1,2,5.5,11,6,9,12,18,24,36,48,54,
+                                            it can be modified only when the rate mode is manual"
+                                            ::= {apWifiDeviceRate5Config 2}
+        wifi5Trans11nRate			        OBJECT-TYPE SYNTAX DisplayString 
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "5G transmit 11n rate, mcs0~mcs15,
+                                            it can be modified only when the rate mode is manual"
+                                            ::= {apWifiDeviceRate5Config 3}
+        wifi5RateMode                       OBJECT-TYPE SYNTAX Integer32{auto(0), manual(1)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "5G rate mode"
+                                            ::= {apWifiDeviceRate5Config 4}             
+
+    ----------------------------------------------------------------------------
+    -- apVapConfig
+    ----------------------------------------------------------------------------
+    apVapConfig                             OBJECT IDENTIFIER ::= {apConfig 20} 
+    
+    	vapConfigNum						OBJECT-TYPE SYNTAX Unsigned32
+    										MAX-ACCESS read-only  STATUS current
+    										DESCRIPTION "vap config num" 
+    										::= {apVapConfig 1}   										
+    ----------------------------------------------------------------------------
+    -- apVapBasic
+    ----------------------------------------------------------------------------
+    apVapBasicTable                              OBJECT-TYPE
+        SYNTAX                  SEQUENCE OF ApVapBasicEntry
+        MAX-ACCESS              not-accessible
+        STATUS                  current
+        DESCRIPTION             ""
+        ::= {apVapConfig       10}
+
+        apVapBasicEntry                             OBJECT-TYPE
+            SYNTAX                  ApVapBasicEntry
+            MAX-ACCESS              not-accessible
+            STATUS                  current
+            DESCRIPTION             ""
+            INDEX                   {ssidBasicIndex}
+            ::= {apVapBasicTable      1}
+
+        ApVapBasicEntry  ::= SEQUENCE
+        {
+            ssidBasicIndex              Unsigned32,
+            vapId                       Unsigned32,
+            wifiId                      Unsigned32,
+            ssidBasicName               DisplayString,
+            ssidEnabled                 Unsigned32,
+            ssidBroadcast               Unsigned32,
+            ssidVlanId                  Unsigned32,
+            ssidVlanEnable              Unsigned32,
+            vapBssid               		MacAddress,
+            maxUserNum                  Unsigned32,
+            vapFlowSwitch	            Unsigned32,
+            vapUplinkMaxRate            Unsigned32,
+            vapDownlinkMaxRate          Unsigned32,
+            userUpload                  Unsigned32,
+            userDownload                Unsigned32,
+            endUserTime                 Unsigned32,
+            vapBasicStatus				RowStatus
+        }
+
+        ssidBasicIndex                      OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ssid index"
+                                            ::= {apVapBasicEntry 1}
+        vapId                               OBJECT-TYPE SYNTAX Unsigned32(0..32)
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "vap id"
+                                            ::= {apVapBasicEntry 2}
+        wifiId                              OBJECT-TYPE SYNTAX Unsigned32(0..1)
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "wifi id"
+                                            ::= {apVapBasicEntry 3}
+        ssidBasicName                       OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "ssid"
+                                            ::= {apVapBasicEntry 4}
+        ssidEnabled                         OBJECT-TYPE SYNTAX Unsigned32 {enable(1),disable(0)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "ssid enabled"
+                                            ::= {apVapBasicEntry 5}
+        ssidBroadcast                       OBJECT-TYPE SYNTAX Unsigned32 {on(0),off(1)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "ssid broadcast enabled"
+                                            ::= {apVapBasicEntry 6}
+        ssidVlanId                          OBJECT-TYPE SYNTAX Unsigned32(0..4094)
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "ssid vlan"
+                                            ::= {apVapBasicEntry 7}
+        ssidVlanEnable                      OBJECT-TYPE SYNTAX Unsigned32{off(0), on(1)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "ssid vlan enabled"
+                                            ::= {apVapBasicEntry 8}
+        vapBssid		                    OBJECT-TYPE SYNTAX MacAddress
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "bssid"
+                                            ::= {apVapBasicEntry 9}
+        maxUserNum                          OBJECT-TYPE SYNTAX Unsigned32(0..128)
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "ssid max user num"
+                                            ::= {apVapBasicEntry 10}
+        vapFlowSwitch	                    OBJECT-TYPE SYNTAX Unsigned32 {off(0),on(1)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "ssid max simult traffic"
+                                            ::= {apVapBasicEntry 11}
+        vapUplinkMaxRate                    OBJECT-TYPE SYNTAX Unsigned32(0..30000) UNITS "Kbps"
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "vap uplink max rate"
+                                            ::= {apVapBasicEntry 12}
+        vapDownlinkMaxRate                  OBJECT-TYPE SYNTAX Unsigned32(0..30000) UNITS "Kbps"
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "vap downlink max rate"
+                                            ::= {apVapBasicEntry 13}
+        userUpload                          OBJECT-TYPE SYNTAX Unsigned32 UNITS "Kbps"
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "user upload"
+                                            ::= {apVapBasicEntry 14}
+        userDownload                        OBJECT-TYPE SYNTAX Unsigned32 UNITS "Kbps"
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "user download"
+                                            ::= {apVapBasicEntry 15}
+        endUserTime							OBJECT-TYPE SYNTAX Unsigned32 UNITS "second"
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "end user idle time"
+                                            ::= {apVapBasicEntry 16}                                    
+        vapBasicStatus                      OBJECT-TYPE SYNTAX RowStatus
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "rowstatus"
+                                            ::= {apVapBasicEntry 17}                                                                                        
+             
+    ----------------------------------------------------------------------------
+    -- apVapSecurity
+    ----------------------------------------------------------------------------
+    apVapSecurityTable                              OBJECT-TYPE
+        SYNTAX                  SEQUENCE OF ApVapSecurityEntry
+        MAX-ACCESS              not-accessible
+        STATUS                  current
+        DESCRIPTION             ""
+        ::= {apVapConfig       11}
+
+        apVapSecurityEntry                          OBJECT-TYPE
+            SYNTAX                  ApVapSecurityEntry
+            MAX-ACCESS              not-accessible
+            STATUS                  current
+            DESCRIPTION             ""
+            INDEX                   {securityIndex}
+            ::= {apVapSecurityTable      1}
+
+        ApVapSecurityEntry  ::= SEQUENCE
+        {
+            securityIndex               Unsigned32,
+            securityVapId        		Unsigned32,
+            securityWifiId              Unsigned32,
+            securitySsid                DisplayString,
+            authType                    Unsigned32,
+            securityMode                Unsigned32,
+            encryptType                 Unsigned32,
+            wpaKey                      DisplayString,
+            wpaKeyRenewal               Unsigned32,
+            wepKeyFormat                Unsigned32,
+            wepKey   		            DisplayString,
+            radiusPort			       	Unsigned32,
+            radiusAddress				IpAddress,
+            radiusKey				    DisplayString,
+            accountPort		            Unsigned32,
+            accountAddress              IpAddress,
+            accountKey                  DisplayString,
+            accountInterval             Unsigned32,
+            radiusAgingTime				Unsigned32,
+            vapSecuStatus				RowStatus
+        }  
+        
+         securityIndex               		OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ssid index"
+                                            ::= {apVapSecurityEntry 1}
+         securityVapId               		OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "vap id"
+                                            ::= {apVapSecurityEntry 2}
+         securityWifiId                     OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "wifi id"
+                                            ::= {apVapSecurityEntry 3}
+         securitySsid                		OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ssid name"
+                                            ::= {apVapSecurityEntry 4}
+         authType                    		OBJECT-TYPE SYNTAX Unsigned32{disabled(1), wep(2)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "auth type"
+                                            ::= {apVapSecurityEntry 5}
+         securityMode                		OBJECT-TYPE SYNTAX Unsigned32{open(1),shared(2),wpa-psk(3),wpa2-psk(4),wpapsk-wap2psk(5),wpa(6),wpa2(7),wpa-wap2(8)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "security mode"
+                                            ::= {apVapSecurityEntry 6}
+         encryptType                 		OBJECT-TYPE SYNTAX Unsigned32{none(0),tkip(1),aes(2),auto(3)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "encrypt type"
+                                            ::= {apVapSecurityEntry 7}
+         wpaKey                      		OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "wpa key"
+                                            ::= {apVapSecurityEntry 8}
+         wpaKeyRenewal               		OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "wpa key renewal"
+                                            ::= {apVapSecurityEntry 9}
+         wepKeyFormat                		OBJECT-TYPE SYNTAX Unsigned32{wep-64bit-16hex(0),wep-64bit-ascii(1),wep-128bit-16hex(2),wep-128bit-ascii(3)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "wep key format"
+                                            ::= {apVapSecurityEntry 10}
+         wepKey   		            		OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "wep key"
+                                            ::= {apVapSecurityEntry 11}
+         radiusPort			        		OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "radius port"
+                                            ::= {apVapSecurityEntry 12}
+         radiusAddress       				OBJECT-TYPE SYNTAX IpAddress
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "radius ip address"
+                                            ::= {apVapSecurityEntry 13}
+         radiusKey		    				OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "radius key"
+                                            ::= {apVapSecurityEntry 14}
+         accountPort              			OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "account port"
+                                            ::= {apVapSecurityEntry 15}
+         accountAddress                		OBJECT-TYPE SYNTAX IpAddress
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "account ip address"
+                                            ::= {apVapSecurityEntry 16}
+         accountKey                    		OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "account key"
+                                            ::= {apVapSecurityEntry 17}
+         accountInterval               		OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "account interval"
+                                            ::= {apVapSecurityEntry 18}
+         radiusAgingTime                    OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "radius aging time"
+                                            ::= {apVapSecurityEntry 19}
+         vapSecuStatus                      OBJECT-TYPE SYNTAX RowStatus
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "row status"
+                                            ::= {apVapSecurityEntry 20}                            
+
+    ----------------------------------------------------------------------------
+    -- apAlarmConfig
+    ----------------------------------------------------------------------------
+    apAlarmConfig                           OBJECT IDENTIFIER ::= {apConfig 30}
+    
+    	cpuLoadHigh                         OBJECT-TYPE SYNTAX Integer32(0..100)    UNITS "%"
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "cpu load high"
+                                            DEFVAL {90}
+                                            ::= {apAlarmConfig 1}
+    	cpuLoadLow                          OBJECT-TYPE SYNTAX Integer32(0..100)    UNITS "%"
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "cpu load low"
+                                            DEFVAL {80}
+                                            ::= {apAlarmConfig 2}
+    	memLoadHigh                         OBJECT-TYPE SYNTAX Integer32(0..100)    UNITS "%"
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "memory load high"
+                                            DEFVAL {95}
+                                            ::= {apAlarmConfig 3}
+    	memLoadLow                          OBJECT-TYPE SYNTAX Integer32(0..100)    UNITS "%"
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "memory load low"
+                                            DEFVAL {90}
+                                            ::= {apAlarmConfig 4}
+    ----------------------------------------------------------------------------
+    -- apTrapDesConfig
+    ----------------------------------------------------------------------------
+    apTrapDesConfig                         OBJECT IDENTIFIER ::= {apConfig 40} 
+    
+    	trapStatus							OBJECT-TYPE SYNTAX Integer32{off(0), on(1)}
+    										MAX-ACCESS read-write  STATUS current
+    										DESCRIPTION "trap switch" 
+    										::= {apTrapDesConfig 1}   										
+        trapDestIp							OBJECT-TYPE SYNTAX IpAddress
+    										MAX-ACCESS read-write  STATUS current
+    										DESCRIPTION "trap destination ip address" 
+    										::= {apTrapDesConfig 2}
+    	trapDestPort						OBJECT-TYPE SYNTAX Integer32
+    										MAX-ACCESS read-write  STATUS current
+    										DESCRIPTION "trap destination port" 
+    										::= {apTrapDesConfig 3}
+    	trapCommunity						OBJECT-TYPE SYNTAX DisplayString
+    										MAX-ACCESS read-write  STATUS current
+    										DESCRIPTION "trap community" 
+    										::= {apTrapDesConfig 4}
+    																																					
+    ----------------------------------------------------------------------------
+    -- apVlanConfig
+    ----------------------------------------------------------------------------
+    apVlanConfig	                        OBJECT IDENTIFIER ::= {apConfig 50} 
+    
+    	vlanNum								OBJECT-TYPE SYNTAX Unsigned32
+    										MAX-ACCESS read-only  STATUS current
+    										DESCRIPTION "vlan num" 
+    										::= {apVlanConfig 1}   										
+    ----------------------------------------------------------------------------
+    -- apVlanTable
+    ----------------------------------------------------------------------------
+    apVlanTable                          	OBJECT-TYPE
+        SYNTAX                  SEQUENCE OF ApVlanEntry
+        MAX-ACCESS              not-accessible
+        STATUS                  current
+        DESCRIPTION             ""
+        ::= {apVlanConfig       10}
+
+        apVlanEntry                      	OBJECT-TYPE
+            SYNTAX                  ApVlanEntry
+            MAX-ACCESS              not-accessible
+            STATUS                  current
+            DESCRIPTION             ""
+            INDEX                   {vlanIndex}
+            ::= {apVlanTable      1}
+
+        ApVlanEntry  ::= SEQUENCE
+        {
+            vlanIndex                   Unsigned32,
+            vlanId	                   	Unsigned32,
+            vlanName                 	DisplayString,
+            vlanNvramId                 Unsigned32,
+            vlanPrio                    Unsigned32,
+            vlanRowStatus            	RowStatus
+        }
+
+        vlanIndex                           OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "index"
+                                            ::= {apVlanEntry 1}
+        vlanId                              OBJECT-TYPE SYNTAX Unsigned32(0..31)
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "vlan id"
+                                            ::= {apVlanEntry 2}
+        vlanName                            OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "vlan name"
+                                            ::= {apVlanEntry 3}
+        vlanNvramId                         OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "vlan nvram id"
+                                            ::= {apVlanEntry 4}
+        vlanPrio                            OBJECT-TYPE SYNTAX Unsigned32{auto(8),priority0(0),priority1(1),priority2(2),priority3(3),priority4(4),priority5(5),priority6(6),priority7(7)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "vlan port"
+                                            ::= {apVlanEntry 5}
+        vlanRowStatus                       OBJECT-TYPE SYNTAX RowStatus
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "row status"
+                                            ::= {apVlanEntry 6}                                                                                              
+    ----------------------------------------------------------------------------
+    -- apSsidSetup
+    ----------------------------------------------------------------------------
+    apSsidSetup	                            OBJECT IDENTIFIER ::= {apConfig 60} 
+    
+    	ssidNum								OBJECT-TYPE SYNTAX Unsigned32
+    										MAX-ACCESS read-only  STATUS current
+    										DESCRIPTION "ssid num" 
+    										::= {apSsidSetup 1}   										
+    ----------------------------------------------------------------------------
+    -- apSsidTable
+    ----------------------------------------------------------------------------
+    apSsidTable                          	OBJECT-TYPE
+        SYNTAX                  SEQUENCE OF ApSsidEntry
+        MAX-ACCESS              not-accessible
+        STATUS                  current
+        DESCRIPTION             ""
+        ::= {apSsidSetup       10}
+
+        apSsidEntry                      	OBJECT-TYPE
+            SYNTAX                  ApSsidEntry
+            MAX-ACCESS              not-accessible
+            STATUS                  current
+            DESCRIPTION             ""
+            INDEX                   {ssidIndex}
+            ::= {apSsidTable      1}
+
+        ApSsidEntry  ::= SEQUENCE
+        {
+            ssidIndex                   Unsigned32,
+            ssidWifiId	                Unsigned32,
+            ssidVapId					Unsigned32,
+            ssidName                 	DisplayString,
+            ssidRowStatus            	RowStatus
+        }
+
+        ssidIndex                           OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "index"
+                                            ::= {apSsidEntry 1}
+        ssidWifiId                          OBJECT-TYPE SYNTAX Unsigned32(0..1)
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "wifi id"
+                                            ::= {apSsidEntry 2}
+        ssidVapId                           OBJECT-TYPE SYNTAX Unsigned32(0..31)
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "vap id"
+                                            ::= {apSsidEntry 3}
+        ssidName                            OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ssid name"
+                                            ::= {apSsidEntry 4}
+        ssidRowStatus                       OBJECT-TYPE SYNTAX RowStatus
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "row status"
+                                            ::= {apSsidEntry 5}  
+   																						    																																	                                                                                                                                    
+    ----------------------------------------------------------------------------
+    -- apAlarm
+    ----------------------------------------------------------------------------
+    apAlarm                                 OBJECT IDENTIFIER ::= {rg-ap220l 12}
+    ----------------------------------------------------------------------------
+    -- apAlarmTrap
+    ----------------------------------------------------------------------------
+    apAlarmTrap                             OBJECT IDENTIFIER ::= {apAlarm 10}
+    ----------------------------------------------------------------------------
+    -- apSysAlarmTrap
+    ----------------------------------------------------------------------------
+    apSysAlarmTrap                          OBJECT IDENTIFIER ::= {apAlarmTrap 1}
+
+        apWarmStartTrap                     NOTIFICATION-TYPE
+                                            OBJECTS { alarmSn, alarmNeName, alarmLevel, alarmType, alarmReasonID, alarmReason, alarmRaiseTime, alarmStatus, alarmTitle, alarmInfo }
+                                            STATUS current
+                                            DESCRIPTION "ap warm system restart"
+                                            ::= {apSysAlarmTrap 1}
+
+        apColdStartTrap                     NOTIFICATION-TYPE
+                                            OBJECTS { alarmSn, alarmNeName, alarmLevel, alarmType, alarmReasonID, alarmReason, alarmRaiseTime, alarmStatus, alarmTitle, alarmInfo }
+                                            STATUS current
+                                            DESCRIPTION "ap cold start"
+                                            ::= {apSysAlarmTrap 2}
+
+        apCpuUsageTooHighTrap               NOTIFICATION-TYPE
+                                            OBJECTS { alarmSn, alarmNeName, alarmLevel, alarmType, alarmReasonID, alarmReason, alarmRaiseTime, alarmStatus, alarmTitle, alarmInfo }
+                                            STATUS current
+                                            DESCRIPTION "ap cpu usage too high"
+                                            ::= {apSysAlarmTrap 3}
+
+        apCpuUsageTooHighClearTrap          NOTIFICATION-TYPE
+                                            OBJECTS { alarmSn, alarmNeName, alarmLevel, alarmType, alarmReasonID, alarmReason, alarmRaiseTime, alarmStatus, alarmTitle, alarmInfo }
+                                            STATUS current
+                                            DESCRIPTION "ap cpu usage too high clear"
+                                            ::= {apSysAlarmTrap 4}
+
+        apMemUsageTooHighTrap               NOTIFICATION-TYPE
+                                            OBJECTS { alarmSn, alarmNeName, alarmLevel, alarmType, alarmReasonID, alarmReason, alarmRaiseTime, alarmStatus, alarmTitle, alarmInfo }
+                                            STATUS current
+                                            DESCRIPTION "ap memory usage too high"
+                                            ::= {apSysAlarmTrap 5}
+
+        apMemUsageTooHighClearTrap          NOTIFICATION-TYPE
+                                            OBJECTS { alarmSn, alarmNeName, alarmLevel, alarmType, alarmReasonID, alarmReason, alarmRaiseTime, alarmStatus, alarmTitle, alarmInfo }
+                                            STATUS current
+                                            DESCRIPTION "ap memory usage too high clear"
+                                            ::= {apSysAlarmTrap 6}
+
+        apDiscoverTrap                      NOTIFICATION-TYPE
+                                            OBJECTS { sysMacAddress, sysIpAddress, sysManageState, modelId, currentVersion, softwareVersion, hardwareVersion, modelName, hardwareType, boardVersion, sysModel}
+                                            STATUS current
+                                            DESCRIPTION "ap discover cms trap"
+                                            ::= {apSysAlarmTrap 7}
+                                               
+        apFileTransStateTrap                NOTIFICATION-TYPE
+                                            OBJECTS { sysMacAddress, softwareVersion, targetVersion, transStatus, fileType }
+                                            STATUS current
+                                            DESCRIPTION "ap file transmit state trap"
+                                            ::= {apSysAlarmTrap 8}
+                                            
+        apConfigUpdateTrap					NOTIFICATION-TYPE
+                                            OBJECTS { updateOid, oldValue, newValue, oidType }
+                                            STATUS current
+                                            DESCRIPTION "ap config update trap"
+                                            ::= {apSysAlarmTrap 9}
+                                            
+        apFaultTrap                         NOTIFICATION-TYPE
+                                            OBJECTS { alarmSn, alarmNeName, alarmLevel, alarmType, alarmReasonID, alarmReason, alarmRaiseTime, alarmStatus, alarmTitle, alarmInfo }
+                                            STATUS current
+                                            DESCRIPTION "ap fault trap"
+                                            ::= {apSysAlarmTrap 10}
+        
+        apHeartTrap                      	NOTIFICATION-TYPE
+                                            OBJECTS { sysMacAddress, channelUsing, transmitPower, wifi5ChannelUsing, wifi5TransmitPower }
+                                            STATUS current
+                                            DESCRIPTION "ap discover cms trap"
+                                            ::= {apSysAlarmTrap 11}                                                                                   
+
+    ----------------------------------------------------------------------------
+    -- apWidsAlarmTrap
+    ----------------------------------------------------------------------------
+    apWidsAlarmTrap                         OBJECT IDENTIFIER ::= {apAlarmTrap 2}
+
+        coInterfreTrap   					NOTIFICATION-TYPE
+                                            OBJECTS { alarmSn, alarmNeName, alarmLevel, alarmType, alarmReasonID, alarmReason, alarmRaiseTime, alarmStatus, alarmTitle, alarmInfo }
+                                            STATUS current
+                                            DESCRIPTION "ap common channel interference detected"
+                                            ::= {apWidsAlarmTrap 1}
+
+        coInterfreClearTrap          		NOTIFICATION-TYPE
+                                            OBJECTS { alarmSn, alarmNeName, alarmLevel, alarmType, alarmReasonID, alarmReason, alarmRaiseTime, alarmStatus, alarmTitle, alarmInfo }
+                                            STATUS current
+                                            DESCRIPTION "ap common channel interference detected clear"
+                                            ::= {apWidsAlarmTrap 2}
+
+
+        neInterfreTrap  					NOTIFICATION-TYPE
+                                            OBJECTS { alarmSn, alarmNeName, alarmLevel, alarmType, alarmReasonID, alarmReason, alarmRaiseTime, alarmStatus, alarmTitle, alarmInfo }
+                                            STATUS current
+                                            DESCRIPTION "ap neighbor channel interference detected"
+                                            ::= {apWidsAlarmTrap 3}
+
+        neInterfreClearTrap    				NOTIFICATION-TYPE
+                                            OBJECTS { alarmSn, alarmNeName, alarmLevel, alarmType, alarmReasonID, alarmReason, alarmRaiseTime, alarmStatus, alarmTitle, alarmInfo }
+                                            STATUS current
+                                            DESCRIPTION "ap neighbor channel interference detected clear"
+                                            ::= {apWidsAlarmTrap 4}
+
+        wlanDevInterfreTrap             	NOTIFICATION-TYPE
+                                            OBJECTS { alarmSn, alarmNeName, alarmLevel, alarmType, alarmReasonID, alarmReason, alarmRaiseTime, alarmStatus, alarmTitle, alarmInfo }
+                                            STATUS current
+                                            DESCRIPTION "wlan device interference detected"
+                                            ::= {apWidsAlarmTrap 5}
+
+        wlanDevInterfreClearTrap          	NOTIFICATION-TYPE
+                                            OBJECTS { alarmSn, alarmNeName, alarmLevel, alarmType, alarmReasonID, alarmReason, alarmRaiseTime, alarmStatus, alarmTitle, alarmInfo }
+                                            STATUS current
+                                            DESCRIPTION "wlan device interference detected clear"
+                                            ::= {apWidsAlarmTrap 6}
+
+        nonWlanInterfreTrap                NOTIFICATION-TYPE
+                                            OBJECTS { alarmSn, alarmNeName, alarmLevel, alarmType, alarmReasonID, alarmReason, alarmRaiseTime, alarmStatus, alarmTitle, alarmInfo }
+                                            STATUS current
+                                            DESCRIPTION "non wlan interference detected"
+                                            ::= {apWidsAlarmTrap 7}
+
+        nonWlanInterfreClearTrap           NOTIFICATION-TYPE
+                                            OBJECTS { alarmSn, alarmNeName, alarmLevel, alarmType, alarmReasonID, alarmReason, alarmRaiseTime, alarmStatus, alarmTitle, alarmInfo }
+                                            STATUS current
+                                            DESCRIPTION "non wlan interference detected clear"
+                                            ::= {apWidsAlarmTrap 8}
+    ----------------------------------------------------------------------------
+    -- apStat
+    ----------------------------------------------------------------------------
+    apStat                                  OBJECT IDENTIFIER ::= {rg-ap220l 13}
+    ----------------------------------------------------------------------------
+    -- apSysStat
+    ----------------------------------------------------------------------------
+    apSysStat                               OBJECT IDENTIFIER ::= {apStat 101} 
+    
+    	
+        apCPURTUsage                        OBJECT-TYPE SYNTAX Unsigned32    UNITS "%"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ap cpu realtime usage"
+                                            ::= {apSysStat 1}
+        apCPUPeakUsage                      OBJECT-TYPE SYNTAX Unsigned32    UNITS "%"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ap cpu peak usage"
+                                            ::= {apSysStat 2}
+        apCPUAvgUsage                       OBJECT-TYPE SYNTAX Unsigned32    UNITS "%"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ap cpu average usage"
+                                            ::= {apSysStat 3}
+        apMemRTUsage                        OBJECT-TYPE SYNTAX Unsigned32    UNITS "%"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ap memory realtime usage"
+                                            ::= {apSysStat 4}
+        apMemPeakUsage                      OBJECT-TYPE SYNTAX Unsigned32    UNITS "%"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ap memory peak usage"
+                                            ::= {apSysStat 5}
+        apMemAvgUsage                       OBJECT-TYPE SYNTAX Unsigned32    UNITS "%"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ap memory average usage"
+                                            ::= {apSysStat 6}
+	                                     
+    ----------------------------------------------------------------------------
+    -- apWifiStat
+    ----------------------------------------------------------------------------
+    apWifiStat                              OBJECT IDENTIFIER ::= {apStat 103}
+    
+    	wifiStatNum							OBJECT-TYPE SYNTAX Unsigned32
+    										MAX-ACCESS read-only	STATUS current
+    										DESCRIPTION "ap wifi num" 
+    										::= {apWifiStat 1}
+    	apRecvBytes                         OBJECT-TYPE SYNTAX Counter64
+    										MAX-ACCESS read-only	STATUS current
+    										DESCRIPTION "ap receive bytes" 
+    										::= {apWifiStat 2}
+    	apSendBytes                         OBJECT-TYPE SYNTAX Counter64
+    										MAX-ACCESS read-only	STATUS current
+    										DESCRIPTION "ap send bytes" 
+    										::= {apWifiStat 3}
+    	wifi24RecvBytes                     OBJECT-TYPE SYNTAX Counter64
+    										MAX-ACCESS read-only	STATUS current
+    										DESCRIPTION "ap 2.4G receive bytes" 
+    										::= {apWifiStat 4}
+    	wifi24SendBytes                     OBJECT-TYPE SYNTAX Counter64
+    										MAX-ACCESS read-only	STATUS current
+    										DESCRIPTION "ap 2.4G send bytes" 
+    										::= {apWifiStat 5}
+    	wifi5RecvBytes                      OBJECT-TYPE SYNTAX Counter64
+    										MAX-ACCESS read-only	STATUS current
+    										DESCRIPTION "ap 5G receive bytes" 
+    										::= {apWifiStat 6}
+    	wifi5SendBytes						OBJECT-TYPE SYNTAX Counter64
+    										MAX-ACCESS read-only	STATUS current
+    										DESCRIPTION "ap 5G send bytes" 
+    										::= {apWifiStat 7}			
+    ----------------------------------------------------------------------------
+    -- apWifiStatTable
+    ----------------------------------------------------------------------------
+    apWifiStatTable                              OBJECT-TYPE
+        SYNTAX                  SEQUENCE OF ApWifiStatEntry
+        MAX-ACCESS              not-accessible
+        STATUS                  current
+        DESCRIPTION             ""
+        ::= {apWifiStat       10}
+
+        apWifiStatEntry                             OBJECT-TYPE
+            SYNTAX                  ApWifiStatEntry
+            MAX-ACCESS              not-accessible
+            STATUS                  current
+            DESCRIPTION             ""
+            INDEX                   {wifiStatIndex}
+            ::= {apWifiStatTable      1}
+
+        ApWifiStatEntry  ::= SEQUENCE
+        {
+            wifiStatIndex               Unsigned32,
+            wifiStatId			        Unsigned32,
+            wifiRecvBytes	            Counter64,
+            wifiSendBytes               Counter64,
+            wifiAssoStaNum			    Unsigned32,
+            wifiRecvFrameNum			Unsigned32,
+            wifiSendFrameNum			Unsigned32,
+            wifiRecvErrFrame			Unsigned32,
+            wifiSendErrFrame			Unsigned32,
+            wifiErrFrameRate			Unsigned32
+        }
+
+        wifiStatIndex                       OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "wifi index"
+                                            ::= {apWifiStatEntry 1}
+        wifiStatId                          OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "wifi id"
+                                            ::= {apWifiStatEntry 2}
+        wifiRecvBytes                  		OBJECT-TYPE SYNTAX Counter64
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "wifi receive data bytes"
+                                            ::= {apWifiStatEntry 3}
+        wifiSendBytes                  		OBJECT-TYPE SYNTAX Counter64
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "wifi send data bytes"
+                                            ::= {apWifiStatEntry 4}
+        wifiAssoStaNum                   	OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "wifi asso sta num"
+                                            ::= {apWifiStatEntry 5}             
+        wifiRecvFrameNum					OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "wifi recv frame num"
+                                            ::= {apWifiStatEntry 6}
+        wifiSendFrameNum					OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "wifi send frame num"
+                                            ::= {apWifiStatEntry 7}
+        wifiRecvErrFrame					OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "wifi recv err num"
+                                            ::= {apWifiStatEntry 8}
+        wifiSendErrFrame					OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "wifi send err num"
+                                            ::= {apWifiStatEntry 9}
+        wifiErrFrameRate					OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "wifi err frame rate"
+                                            ::= {apWifiStatEntry 10}                                           
+    ----------------------------------------------------------------------------
+    -- apSsidStat
+    ----------------------------------------------------------------------------
+    apSsidStat                              OBJECT IDENTIFIER ::= {apStat 104}
+    
+    	ssidStatNum                         OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ssid stat num"
+                                            ::= {apSsidStat 1}
+    ----------------------------------------------------------------------------
+    -- apSsidStatTable
+    ----------------------------------------------------------------------------
+    apSsidStatTable                              OBJECT-TYPE
+        SYNTAX                  SEQUENCE OF ApSsidStatEntry
+        MAX-ACCESS              not-accessible
+        STATUS                  current
+        DESCRIPTION             ""
+        ::= {apSsidStat       10}
+
+        apSsidStatEntry                             OBJECT-TYPE
+            SYNTAX                  ApSsidStatEntry
+            MAX-ACCESS              not-accessible
+            STATUS                  current
+            DESCRIPTION             ""
+            INDEX                   {ssidStatIndex}
+            ::= {apSsidStatTable      1}
+
+        ApSsidStatEntry  ::= SEQUENCE
+        {
+            ssidStatIndex               Unsigned32,
+            vapStatId                   Unsigned32,
+            vapWifiId                   Unsigned32,
+            vapSsid                     DisplayString,
+            vapRecvBytes				Counter64,
+            vapSendBytes				Counter64,
+            vapAssoStaNum				Unsigned32,
+            vapRecvFrameNum				Unsigned32,
+            vapSendFrameNum				Unsigned32,
+            vapRecvErrFrame				Unsigned32,
+            vapSendErrFrame				Unsigned32,
+            vapErrFrameRate				Unsigned32            
+        }
+
+        ssidStatIndex                       OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ssid index"
+                                            ::= {apSsidStatEntry 1}
+        vapStatId                           OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "vap id"
+                                            ::= {apSsidStatEntry 2}
+        vapWifiId                           OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "vap wifi id"
+                                            ::= {apSsidStatEntry 3}
+        vapSsid                   			OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ssid name"
+                                            ::= {apSsidStatEntry 4}
+        vapRecvBytes                    	OBJECT-TYPE SYNTAX Counter64
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "vap receive data bytes"
+                                            ::= {apSsidStatEntry 5}
+        vapSendBytes                    	OBJECT-TYPE SYNTAX Counter64
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "vap send data bytes"
+                                            ::= {apSsidStatEntry 6}
+        vapAssoStaNum                		OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "vap asso sta num"
+                                            ::= {apSsidStatEntry 7}                                            
+        vapRecvFrameNum						OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "wifi recv frame num"
+                                            ::= {apSsidStatEntry 8}
+        vapSendFrameNum						OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "wifi send frame num"
+                                            ::= {apSsidStatEntry 9}
+        vapRecvErrFrame						OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "wifi recv err num"
+                                            ::= {apSsidStatEntry 10}
+        vapSendErrFrame						OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "wifi send err num"
+                                            ::= {apSsidStatEntry 11}
+        vapErrFrameRate						OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "wifi err frame rate"
+                                            ::= {apSsidStatEntry 12}
+    ----------------------------------------------------------------------------
+    -- apStationStat
+    ----------------------------------------------------------------------------
+    apStationStat                           OBJECT IDENTIFIER ::= {apStat 105}
+    
+    	stationStatNum                      OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "station stat num"
+                                            ::= {apStationStat 1}
+    ----------------------------------------------------------------------------
+    -- apStationStatTable
+    ----------------------------------------------------------------------------
+    apStationStatTable                      OBJECT-TYPE
+        SYNTAX                  SEQUENCE OF ApStationStatEntry
+        MAX-ACCESS              not-accessible
+        STATUS                  current
+        DESCRIPTION             ""
+        ::= {apStationStat       10}
+
+        apStationStatEntry                  OBJECT-TYPE
+            SYNTAX                  ApStationStatEntry
+            MAX-ACCESS              not-accessible
+            STATUS                  current
+            DESCRIPTION             ""
+            INDEX                   {staID}
+            ::= {apStationStatTable      1}
+
+        ApStationStatEntry  ::= SEQUENCE
+        {
+            staID		                Unsigned32,
+            bssid	                   	MacAddress,
+            ssid                   		DisplayString,
+            staVlanId                   Unsigned32,
+            staVlanEnable				Unsigned32,
+            staMacAddress				MacAddress,
+            staDevType					DisplayString,
+            staConnectTime				Unsigned32,
+            staUplinkOctets				Counter64,
+            staDownlinkOctets			Counter64,
+            rssi						Integer32,
+            frequency					DisplayString,
+            snr							Unsigned32,
+            txRate						DisplayString,
+            errRate						Unsigned32,
+            assoRate                    Unsigned32,
+            staIp						IpAddress
+        }
+
+        staID		                		OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "station id"
+                                            ::= {apStationStatEntry 1}
+        bssid		                		OBJECT-TYPE SYNTAX MacAddress
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "bssid"
+                                            ::= {apStationStatEntry 2}
+        ssid                   				OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "ssid"
+                                            ::= {apStationStatEntry 3}
+        staVlanId                   		OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "vlan id"
+                                            ::= {apStationStatEntry 4}
+        staVlanEnable						OBJECT-TYPE SYNTAX Unsigned32{off(0),on(1)}
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "vlan enable"
+                                            ::= {apStationStatEntry 5}
+        staMacAddress						OBJECT-TYPE SYNTAX MacAddress
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "station mac address"
+                                            ::= {apStationStatEntry 6}
+        staDevType							OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "station device type"
+                                            ::= {apStationStatEntry 7}
+        staConnectTime						OBJECT-TYPE SYNTAX Unsigned32 UNITS "10ms"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "station connect time"
+                                            ::= {apStationStatEntry 8}
+        staUplinkOctets						OBJECT-TYPE SYNTAX Counter64
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "station uplink octets"
+                                            ::= {apStationStatEntry 9}
+        staDownlinkOctets					OBJECT-TYPE SYNTAX Counter64
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "station downlink octets"
+                                            ::= {apStationStatEntry 10}
+        rssi								OBJECT-TYPE SYNTAX Integer32 UNITS "dBm"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "rssi"
+                                            ::= {apStationStatEntry 11}
+        frequency							OBJECT-TYPE SYNTAX DisplayString 
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "frequency"
+                                            ::= {apStationStatEntry 12}
+        snr									OBJECT-TYPE SYNTAX Unsigned32 UNITS "dB"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "snr"
+                                            ::= {apStationStatEntry 13}
+        txRate								OBJECT-TYPE SYNTAX DisplayString UNITS "Mbps"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "txrate"
+                                            ::= {apStationStatEntry 14}
+        errRate								OBJECT-TYPE SYNTAX Unsigned32 UNITS "1/10000"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "packet error rate"
+                                            ::= {apStationStatEntry 15}
+        assoRate						    OBJECT-TYPE SYNTAX Unsigned32 UNITS "Mbps"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "station associate rate"
+                                            ::= {apStationStatEntry 16}
+        staIp                               OBJECT-TYPE SYNTAX IpAddress 
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "station ip address"
+                                            ::= {apStationStatEntry 17}                                         
+    ----------------------------------------------------------------------------
+    -- ap24CoChaInterfInfo
+    ----------------------------------------------------------------------------
+    ap24CoChaInterfInfo                     OBJECT IDENTIFIER ::= {apStat 106}
+    
+    	coCha24InterfNum                    OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G co-channel interference num"
+                                            ::= {ap24CoChaInterfInfo 1}
+    ----------------------------------------------------------------------------
+    -- ap24CoChaInterfInfoTable
+    ----------------------------------------------------------------------------
+    ap24CoChaInterfInfoTable                OBJECT-TYPE
+        SYNTAX                  SEQUENCE OF Ap24CoChaInterfInfoEntry
+        MAX-ACCESS              not-accessible
+        STATUS                  current
+        DESCRIPTION             ""
+        ::= {ap24CoChaInterfInfo       10}
+
+        ap24CoChaInterfInfoEntry            OBJECT-TYPE
+            SYNTAX                  Ap24CoChaInterfInfoEntry
+            MAX-ACCESS              not-accessible
+            STATUS                  current
+            DESCRIPTION             ""
+            INDEX                   {coCha24InterfIndex}
+            ::= {ap24CoChaInterfInfoTable      1}
+
+        Ap24CoChaInterfInfoEntry  ::= SEQUENCE
+        {
+            coCha24InterfIndex            Unsigned32,
+            coCha24Bssid				  MacAddress,
+            coCha24Ssid					  DisplayString,
+            coCha24InterfRssi			  Integer32,
+            coCha24InterfChannel		  Unsigned32
+        }
+
+        coCha24InterfIndex               	OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G co-channel interference index"
+                                            ::= {ap24CoChaInterfInfoEntry 1}
+        coCha24Bssid               			OBJECT-TYPE SYNTAX MacAddress
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G co-channel interference bssid"
+                                            ::= {ap24CoChaInterfInfoEntry 2}                                    
+        coCha24Ssid               			OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G co-channel interference ssid"
+                                            ::= {ap24CoChaInterfInfoEntry 3}                                    
+        coCha24InterfRssi					OBJECT-TYPE SYNTAX Integer32 UNITS "dBm"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G co-channel interference rssi"
+                                            ::= {ap24CoChaInterfInfoEntry 4}
+        coCha24InterfChannel				OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G co-channel interference channel"
+                                            ::= {ap24CoChaInterfInfoEntry 5}
+    ----------------------------------------------------------------------------
+    -- ap5CoChaInterfInfo
+    ----------------------------------------------------------------------------
+    ap5CoChaInterfInfo                     OBJECT IDENTIFIER ::= {apStat 107}
+    
+    	coCha5InterfNum                     OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G co-channel interference num"
+                                            ::= {ap5CoChaInterfInfo 1}
+    ----------------------------------------------------------------------------
+    -- ap5CoChaInterfInfoTable
+    ----------------------------------------------------------------------------
+    ap5CoChaInterfInfoTable                OBJECT-TYPE
+        SYNTAX                  SEQUENCE OF Ap5CoChaInterfInfoEntry
+        MAX-ACCESS              not-accessible
+        STATUS                  current
+        DESCRIPTION             ""
+        ::= {ap5CoChaInterfInfo       10}
+
+        ap5CoChaInterfInfoEntry            OBJECT-TYPE
+            SYNTAX                  Ap5CoChaInterfInfoEntry
+            MAX-ACCESS              not-accessible
+            STATUS                  current
+            DESCRIPTION             ""
+            INDEX                   {coCha5InterfIndex}
+            ::= {ap5CoChaInterfInfoTable      1}
+
+        Ap5CoChaInterfInfoEntry  ::= SEQUENCE
+        {
+            coCha5InterfIndex			Unsigned32,
+            coCha5InterfBssid           MacAddress,
+            coCha5InterfSsid			DisplayString,
+            coCha5InterfRssi			Integer32,
+            coCha5InterfChannel			Unsigned32
+        }
+
+        coCha5InterfIndex               	OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G co-channel interference index"
+                                            ::= {ap5CoChaInterfInfoEntry 1}
+        coCha5InterfBssid                   OBJECT-TYPE SYNTAX MacAddress
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G co-channel interference bssid"
+                                            ::= {ap5CoChaInterfInfoEntry 2}
+        coCha5InterfSsid					OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G co-channel interference ssid"
+                                            ::= {ap5CoChaInterfInfoEntry 2}                                    
+        coCha5InterfRssi					OBJECT-TYPE SYNTAX Integer32 UNITS "dBm"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G co-channel interference rssi"
+                                            ::= {ap5CoChaInterfInfoEntry 2}
+        coCha5InterfChannel				    OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G co-channel interference channel"
+                                            ::= {ap5CoChaInterfInfoEntry 3}
+    ----------------------------------------------------------------------------
+    -- ap24AdjChaInterfInfo
+    ----------------------------------------------------------------------------
+    ap24AdjChaInterfInfo                    OBJECT IDENTIFIER ::= {apStat 108}
+    
+    	adjCha24InterfNum                   OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G adjacent channel interference num"
+                                            ::= {ap24AdjChaInterfInfo 1}
+    ----------------------------------------------------------------------------
+    -- ap24AdjChaInterfInfoTable
+    ----------------------------------------------------------------------------
+    ap24AdjChaInterfInfoTable               OBJECT-TYPE
+        SYNTAX                  SEQUENCE OF Ap24AdjChaInterfInfoEntry
+        MAX-ACCESS              not-accessible
+        STATUS                  current
+        DESCRIPTION             ""
+        ::= {ap24AdjChaInterfInfo       10}
+
+        ap24AdjChaInterfInfoEntry           OBJECT-TYPE
+            SYNTAX                  Ap24AdjChaInterfInfoEntry
+            MAX-ACCESS              not-accessible
+            STATUS                  current
+            DESCRIPTION             ""
+            INDEX                   {adjCha24InterfIndex}
+            ::= {ap24AdjChaInterfInfoTable      1}
+
+        Ap24AdjChaInterfInfoEntry  ::= SEQUENCE
+        {
+            adjCha24InterfIndex           Unsigned32,
+            adjCha24InterfBssid			  MacAddress,
+            adjCha24InterfSsid		      DisplayString,
+            adjCha24InterfRssi			  Integer32,
+            adjCha24InterfChannel		  Unsigned32
+        }
+
+        adjCha24InterfIndex              	OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G adjacent channel interference index"
+                                            ::= {ap24AdjChaInterfInfoEntry 1}
+        adjCha24InterfBssid                 OBJECT-TYPE SYNTAX MacAddress
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G adjacent channel interference bssid"
+                                            ::= {ap24AdjChaInterfInfoEntry 2}
+        adjCha24InterfSsid                  OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G adjacent channel interference ssid"
+                                            ::= {ap24AdjChaInterfInfoEntry 3}                  
+        adjCha24InterfRssi					OBJECT-TYPE SYNTAX Integer32 UNITS "dBm"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G adjacent channel interference rssi"
+                                            ::= {ap24AdjChaInterfInfoEntry 4}
+        adjCha24InterfChannel				OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G adjacent channel interference channel"
+                                            ::= {ap24AdjChaInterfInfoEntry 5}
+    ----------------------------------------------------------------------------
+    -- ap5AdjChaInterfInfo
+    ----------------------------------------------------------------------------
+    ap5AdjChaInterfInfo                     OBJECT IDENTIFIER ::= {apStat 109}
+    
+    	adjCha5InterfNum                   OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G adjacent channel interference num"
+                                            ::= {ap5AdjChaInterfInfo 1}
+    ----------------------------------------------------------------------------
+    -- ap5AdjChaInterfInfoTable
+    ----------------------------------------------------------------------------
+    ap5AdjChaInterfInfoTable               OBJECT-TYPE
+        SYNTAX                  SEQUENCE OF Ap5AdjChaInterfInfoEntry
+        MAX-ACCESS              not-accessible
+        STATUS                  current
+        DESCRIPTION             ""
+        ::= {ap5AdjChaInterfInfo       10}
+
+        ap5AdjChaInterfInfoEntry           OBJECT-TYPE
+            SYNTAX                  Ap5AdjChaInterfInfoEntry
+            MAX-ACCESS              not-accessible
+            STATUS                  current
+            DESCRIPTION             ""
+            INDEX                   {adjCha5InterfIndex}
+            ::= {ap5AdjChaInterfInfoTable      1}
+
+        Ap5AdjChaInterfInfoEntry  ::= SEQUENCE
+        {
+            adjCha5InterfIndex			Unsigned32,
+            adjCha5InterfBssid          MacAddress,
+            adjCha5InterfSsid           DisplayString,
+            adjCha5InterfRssi			Integer32,
+            adjCha5InterfChannel		Unsigned32
+        }
+
+        adjCha5InterfIndex              	OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G adjacent channel interference index"
+                                            ::= {ap5AdjChaInterfInfoEntry 1}
+        adjCha5InterfBssid                  OBJECT-TYPE SYNTAX MacAddress
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G adjacent channel interference bssid"
+                                            ::= {ap5AdjChaInterfInfoEntry 2}
+        adjCha5InterfSsid                   OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G adjacent channel interference ssid"
+                                            ::= {ap5AdjChaInterfInfoEntry 3}                 
+        adjCha5InterfRssi					OBJECT-TYPE SYNTAX Integer32 UNITS "dBm"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G adjacent channel interference rssi"
+                                            ::= {ap5AdjChaInterfInfoEntry 4}
+        adjCha5InterfChannel				OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G adjacent channel interference channel"
+                                            ::= {ap5AdjChaInterfInfoEntry 5}
+    ----------------------------------------------------------------------------
+    -- ap24WlanDevInterfInfo
+    ----------------------------------------------------------------------------
+    ap24WlanDevInterfInfo                   OBJECT IDENTIFIER ::= {apStat 110}
+    
+    	wlan24DevInterfNum                  OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G WLAN Devices Interference num"
+                                            ::= {ap24WlanDevInterfInfo 1}
+    ----------------------------------------------------------------------------
+    -- ap24WlanDevInterfInfoTable
+    ----------------------------------------------------------------------------
+    ap24WlanDevInterfInfoTable                  OBJECT-TYPE
+        SYNTAX                  SEQUENCE OF Ap24WlanDevInterfInfoEntry
+        MAX-ACCESS              not-accessible
+        STATUS                  current
+        DESCRIPTION             ""
+        ::= {ap24WlanDevInterfInfo       10}
+
+        ap24WlanDevInterfInfoEntry              OBJECT-TYPE
+            SYNTAX                  Ap24WlanDevInterfInfoEntry
+            MAX-ACCESS              not-accessible
+            STATUS                  current
+            DESCRIPTION             ""
+            INDEX                   {wlan24DevInterfIndex}
+            ::= {ap24WlanDevInterfInfoTable      1}
+
+        Ap24WlanDevInterfInfoEntry  ::= SEQUENCE
+        {
+            wlan24DevInterfIndex		Unsigned32,
+            wlan24DevInterfBssid		MacAddress,
+            wlan24DevInterfSsid			DisplayString,
+            wlan24DevInterfRssi			Integer32,
+            wlan24DevInterfChannel		Unsigned32
+        }
+
+        wlan24DevInterfIndex             	OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G WLAN Devices Interference index"
+                                            ::= {ap24WlanDevInterfInfoEntry 1}
+        wlan24DevInterfBssid             	OBJECT-TYPE SYNTAX MacAddress
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G WLAN Devices Interference bssid"
+                                            ::= {ap24WlanDevInterfInfoEntry 2}
+        wlan24DevInterfSsid      			OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G WLAN Devices Interference ssid"
+                                            ::= {ap24WlanDevInterfInfoEntry 3}
+        wlan24DevInterfRssi					OBJECT-TYPE SYNTAX Integer32 UNITS "dBm"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G WLAN Devices Interference rssi"
+                                            ::= {ap24WlanDevInterfInfoEntry 4}
+        wlan24DevInterfChannel				OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G WLAN Devices Interference channel"
+                                            ::= {ap24WlanDevInterfInfoEntry 5} 
+    ----------------------------------------------------------------------------
+    -- ap5WlanDevInterfInfo
+    ----------------------------------------------------------------------------
+    ap5WlanDevInterfInfo                    OBJECT IDENTIFIER ::= {apStat 111}
+    
+    	wlan5DevInterfNum                   OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G WLAN Devices Interference num"
+                                            ::= {ap5WlanDevInterfInfo 1}
+    ----------------------------------------------------------------------------
+    -- ap5WlanDevInterfInfoTable
+    ----------------------------------------------------------------------------
+    ap5WlanDevInterfInfoTable                  OBJECT-TYPE
+        SYNTAX                  SEQUENCE OF Ap5WlanDevInterfInfoEntry
+        MAX-ACCESS              not-accessible
+        STATUS                  current
+        DESCRIPTION             ""
+        ::= {ap5WlanDevInterfInfo       10}
+
+        ap5WlanDevInterfInfoEntry              OBJECT-TYPE
+            SYNTAX                  Ap5WlanDevInterfInfoEntry
+            MAX-ACCESS              not-accessible
+            STATUS                  current
+            DESCRIPTION             ""
+            INDEX                   {wlan5DevInterfIndex}
+            ::= {ap5WlanDevInterfInfoTable      1}
+
+        Ap5WlanDevInterfInfoEntry  ::= SEQUENCE
+        {
+            wlan5DevInterfIndex		Unsigned32,
+            wlan5DevInterfBssid		MacAddress,
+            wlan5DevInterfSsid			DisplayString,
+            wlan5DevInterfRssi			Integer32,
+            wlan5DevInterfChannel		Unsigned32
+        }
+
+        wlan5DevInterfIndex             	OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G WLAN Devices Interference index"
+                                            ::= {ap5WlanDevInterfInfoEntry 1}
+        wlan5DevInterfBssid             	OBJECT-TYPE SYNTAX MacAddress
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G WLAN Devices Interference bssid"
+                                            ::= {ap5WlanDevInterfInfoEntry 2}
+        wlan5DevInterfSsid      			OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G WLAN Devices Interference ssid"
+                                            ::= {ap5WlanDevInterfInfoEntry 3}
+        wlan5DevInterfRssi					OBJECT-TYPE SYNTAX Integer32 UNITS "dBm"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G WLAN Devices Interference rssi"
+                                            ::= {ap5WlanDevInterfInfoEntry 4}
+        wlan5DevInterfChannel				OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G WLAN Devices Interference channel"
+                                            ::= {ap5WlanDevInterfInfoEntry 5}                                            
+    ----------------------------------------------------------------------------
+    -- apNonWlanDevInterfInfo
+    ----------------------------------------------------------------------------
+    apNonWlanDevInterfInfo                  OBJECT IDENTIFIER ::= {apStat 112}
+    
+    	nonWlanDevInterfNum		            OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "Non WLAN Devices Interference num"
+                                            ::= {apNonWlanDevInterfInfo 1}
+    ----------------------------------------------------------------------------
+    -- apNonWlanDevInterfInfoTable
+    ----------------------------------------------------------------------------
+    apNonWlanDevInterfInfoTable             OBJECT-TYPE
+        SYNTAX                  SEQUENCE OF ApNonWlanDevInterfInfoEntry
+        MAX-ACCESS              not-accessible
+        STATUS                  current
+        DESCRIPTION             ""
+        ::= {apNonWlanDevInterfInfo       10}
+
+        apNonWlanDevInterfInfoEntry         OBJECT-TYPE
+            SYNTAX                  ApNonWlanDevInterfInfoEntry
+            MAX-ACCESS              not-accessible
+            STATUS                  current
+            DESCRIPTION             ""
+            INDEX                   {nonWlanDevInterfIndex}
+            ::= {apNonWlanDevInterfInfoTable      1}
+
+        ApNonWlanDevInterfInfoEntry  ::= SEQUENCE
+        {
+            nonWlanDevInterfIndex       Unsigned32,
+            nonWlanDevInterfWifiId     	Unsigned32,
+            nonWlanDevInterfNoise		Integer32,
+            nonWlanDevInterfChannel		Unsigned32,
+            nonWlanDevInterfTime		DisplayString
+        }
+
+        nonWlanDevInterfIndex          		OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "Non WLAN Devices Interference index"
+                                            ::= {apNonWlanDevInterfInfoEntry 1}
+        nonWlanDevInterfWifiId         		OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "Non WLAN Devices Interference wifi id"
+                                            ::= {apNonWlanDevInterfInfoEntry 2}
+        nonWlanDevInterfNoise				OBJECT-TYPE SYNTAX Integer32 UNITS "dBm"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "Non WLAN Devices Interference noise"
+                                            ::= {apNonWlanDevInterfInfoEntry 3}
+        nonWlanDevInterfChannel             OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "Non WLAN Devices Interference channel"
+                                            ::= {apNonWlanDevInterfInfoEntry 4}
+        nonWlanDevInterfTime                OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "Non WLAN Devices Interference time"
+                                            ::= {apNonWlanDevInterfInfoEntry 5}                                           
+    ----------------------------------------------------------------------------
+    -- apBrModeStaInfo
+    ----------------------------------------------------------------------------
+    apBrModeStaInfo                         OBJECT IDENTIFIER ::= {apStat 113}
+    
+    	brModeStaNum	                    OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "bridge mode sta num"
+                                            ::= {apBrModeStaInfo 1}
+    ----------------------------------------------------------------------------
+    -- apBrModeStaInfoTable
+    ----------------------------------------------------------------------------
+    apBrModeStaInfoTable                    OBJECT-TYPE
+        SYNTAX                  SEQUENCE OF ApBrModeStaInfoEntry
+        MAX-ACCESS              not-accessible
+        STATUS                  current
+        DESCRIPTION             ""
+        ::= {apBrModeStaInfo       10}
+
+        apBrModeStaInfoEntry              OBJECT-TYPE
+            SYNTAX                  ApBrModeStaInfoEntry
+            MAX-ACCESS              not-accessible
+            STATUS                  current
+            DESCRIPTION             ""
+            INDEX                   {brModeStaId}
+            ::= {apBrModeStaInfoTable      1}
+
+        ApBrModeStaInfoEntry  ::= SEQUENCE
+        {
+            brModeStaId		            Unsigned32,
+            brModeStaMode           	Unsigned32,
+            brModeStaMac        		MacAddress,
+            brModeStaRssi				Integer32,
+            brModeStaSnr				Unsigned32,
+            brModeStaTxRate				DisplayString
+        }
+
+        brModeStaId		               		OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "bridge mode station id"
+                                            ::= {apBrModeStaInfoEntry 1}
+        brModeStaMode               		OBJECT-TYPE SYNTAX Unsigned32{ponit-point(0), point-multiplepoint(1)}
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "bridge mode station mode"
+                                            ::= {apBrModeStaInfoEntry 2}
+        brModeStaMac        				OBJECT-TYPE SYNTAX MacAddress
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "bridge mode station mac"
+                                            ::= {apBrModeStaInfoEntry 3}
+        brModeStaRssi						OBJECT-TYPE SYNTAX Integer32 UNITS "dBm"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "bridge mode station rssi"
+                                            ::= {apBrModeStaInfoEntry 4}
+        brModeStaSnr						OBJECT-TYPE SYNTAX Unsigned32 UNITS "dB"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "bridge mode station snr"
+                                            ::= {apBrModeStaInfoEntry 5}
+        brModeStaTxRate		                OBJECT-TYPE SYNTAX DisplayString UNITS "Mbps"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "bridge mode station tx rate"
+                                            ::= {apBrModeStaInfoEntry 6}
+    ----------------------------------------------------------------------------
+    -- ap24RogueApInfo
+    ----------------------------------------------------------------------------
+    ap24RogueApInfo                   		OBJECT IDENTIFIER ::= {apStat 114}
+    
+    	wifi24RogueApNum                    OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G rogue ap num"
+                                            ::= {ap24RogueApInfo 1}
+	----------------------------------------------------------------------------
+    -- ap24RogueApInfoTable
+    ----------------------------------------------------------------------------
+    ap24RogueApInfoTable                  OBJECT-TYPE
+        SYNTAX                  SEQUENCE OF Ap24RogueApInfoEntry
+        MAX-ACCESS              not-accessible
+        STATUS                  current
+        DESCRIPTION             ""
+        ::= {ap24RogueApInfo       10}
+
+        ap24RogueApInfoEntry              OBJECT-TYPE
+            SYNTAX                  Ap24RogueApInfoEntry
+            MAX-ACCESS              not-accessible
+            STATUS                  current
+            DESCRIPTION             ""
+            INDEX                   {wifi24RogueApIndex}
+            ::= {ap24RogueApInfoTable      1}
+
+        Ap24RogueApInfoEntry  ::= SEQUENCE
+        {
+            wifi24RogueApIndex			Unsigned32,
+            wifi24RogueApBssid			MacAddress,
+            wifi24RogueApSsid			DisplayString,
+            wifi24RogueApRssi			Integer32,
+            wifi24RogueApChannel		Unsigned32
+        }
+
+        wifi24RogueApIndex             		OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G rogue ap index"
+                                            ::= {ap24RogueApInfoEntry 1}
+        wifi24RogueApBssid             		OBJECT-TYPE SYNTAX MacAddress
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G rogue ap bssid"
+                                            ::= {ap24RogueApInfoEntry 2}
+        wifi24RogueApSsid      				OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G rogue ap ssid"
+                                            ::= {ap24RogueApInfoEntry 3}
+        wifi24RogueApRssi					OBJECT-TYPE SYNTAX Integer32 UNITS "dBm"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G rogue ap rssi"
+                                            ::= {ap24RogueApInfoEntry 4}
+        wifi24RogueApChannel				OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "2.4G rogue ap channel"
+                                            ::= {ap24RogueApInfoEntry 5} 
+    ----------------------------------------------------------------------------
+    -- ap5RogueApInfo
+    ----------------------------------------------------------------------------
+    ap5RogueApInfo                    OBJECT IDENTIFIER ::= {apStat 115}
+    
+    	wifi5RogueApNum                     OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G rogue ap num"
+                                            ::= {ap5RogueApInfo 1}
+    ----------------------------------------------------------------------------
+    -- ap5RogueApInfoTable
+    ----------------------------------------------------------------------------
+    ap5RogueApInfoTable                  OBJECT-TYPE
+        SYNTAX                  SEQUENCE OF Ap5RogueApInfoEntry
+        MAX-ACCESS              not-accessible
+        STATUS                  current
+        DESCRIPTION             ""
+        ::= {ap5RogueApInfo       10}
+
+        ap5RogueApInfoEntry              OBJECT-TYPE
+            SYNTAX                  Ap5RogueApInfoEntry
+            MAX-ACCESS              not-accessible
+            STATUS                  current
+            DESCRIPTION             ""
+            INDEX                   {wifi5RogueApIndex}
+            ::= {ap5RogueApInfoTable      1}
+
+        Ap5RogueApInfoEntry  ::= SEQUENCE
+        {
+            wifi5RogueApIndex			Unsigned32,
+            wifi5RogueApBssid			MacAddress,
+            wifi5RogueApSsid			DisplayString,
+            wifi5RogueApRssi			Integer32,
+            wifi5RogueApChannel			Unsigned32
+        }
+
+        wifi5RogueApIndex             		OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G rogue ap index"
+                                            ::= {ap5RogueApInfoEntry 1}
+        wifi5RogueApBssid             		OBJECT-TYPE SYNTAX MacAddress
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G rogue ap bssid"
+                                            ::= {ap5RogueApInfoEntry 2}
+        wifi5RogueApSsid      				OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G rogue ap ssid"
+                                            ::= {ap5RogueApInfoEntry 3}
+        wifi5RogueApRssi					OBJECT-TYPE SYNTAX Integer32 UNITS "dBm"
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G rogue ap rssi"
+                                            ::= {ap5RogueApInfoEntry 4}
+        wifi5RogueApChannel					OBJECT-TYPE SYNTAX Unsigned32
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "5G rogue ap channel"
+                                            ::= {ap5RogueApInfoEntry 5}
+    ----------------------------------------------------------------------------
+    -- apOper
+    ----------------------------------------------------------------------------
+    apOper                                  OBJECT IDENTIFIER ::= {rg-ap220l 14}
+    ----------------------------------------------------------------------------
+    -- apSysOper
+    ----------------------------------------------------------------------------
+    apSysOper                               OBJECT IDENTIFIER ::= {apOper 1} 
+    
+    	
+        apSoftwareUpdate                    OBJECT-TYPE SYNTAX Integer32{normal(0), update(1)}    
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "ap software update"
+                                            ::= {apSysOper 1} 
+        apSysRestart                        OBJECT-TYPE SYNTAX Integer32{normal(0), restart(1)}    
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "ap system restart"
+                                            ::= {apSysOper 2}
+        apSysReset                        	OBJECT-TYPE SYNTAX Integer32{normal(0), reset(1)}    
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "ap system reset"
+                                            ::= {apSysOper 3}
+        apCfgDataFileImpExp                 OBJECT-TYPE SYNTAX Integer32{normal(0), import(1), export(2)}    
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "ap config data file import/export"
+                                            ::= {apSysOper 4}
+        apDiagnoseFile                      OBJECT-TYPE SYNTAX Integer32{normal(0), export(1)}    
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "ap diagnose file"
+                                            ::= {apSysOper 5}              
+                                                                                                               
+    ----------------------------------------------------------------------------
+    -- apFileTransConfig
+    ----------------------------------------------------------------------------
+    apFileTransConfig                       OBJECT IDENTIFIER ::= {apOper 2} 
+    
+
+        loadFlag                            OBJECT-TYPE SYNTAX Integer32{download(1),upload(2)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "load flag"
+                                            DEFVAL {1}
+                                            ::= {apFileTransConfig 1}
+        fileName                            OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "file name"
+                                            ::= {apFileTransConfig 2}
+        fileType                            OBJECT-TYPE SYNTAX Integer32{software(1),config(2),diagnose(3),other(4)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "file type"
+                                            DEFVAL {1}
+                                            ::= {apFileTransConfig 3}
+        transProtocol                       OBJECT-TYPE SYNTAX Integer32{ftp(1),tftp(2),http(3),https(4)}
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "trans protocol"
+                                            DEFVAL {1}
+                                            ::= {apFileTransConfig 4}
+        serverAddr                          OBJECT-TYPE SYNTAX IpAddress
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "server address"
+                                            ::= {apFileTransConfig 5}
+        serverPort                          OBJECT-TYPE SYNTAX Integer32
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "server port"
+                                            ::= {apFileTransConfig 6}
+        serverUserName                      OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "server user name"
+                                            ::= {apFileTransConfig 7}
+        serverPasswd                        OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "server password"
+                                            ::= {apFileTransConfig 8}
+        transStatus                         OBJECT-TYPE SYNTAX Integer32{success(1),get-file-fail(2),file-wrong(3),flash-error(4)}
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "transfer status"
+                                            ::= {apFileTransConfig 9}
+        failReason                          OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-only   STATUS current 
+                                            DESCRIPTION "fail reason"
+                                            ::= {apFileTransConfig 10}
+        fileVersion                         OBJECT-TYPE SYNTAX DisplayString
+                                            MAX-ACCESS  read-write   STATUS current 
+                                            DESCRIPTION "file version"
+                                            ::= {apFileTransConfig 11}
+
+                                                                                                            
+	
+END
+   

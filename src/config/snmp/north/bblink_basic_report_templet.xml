@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BblinkBasicReportTemplate>
+	<relative>true</relative>
+	<sysName>.11.1.1.17</sysName>
+	<partner>.11.1.1.22</partner>
+	<sysHotId>.11.1.1.18</sysHotId>
+	<sysIpAddress>.11.1.1.9</sysIpAddress>
+	<softwareVersion>.11.1.2.3</softwareVersion>
+	<sysMacAddress>.11.1.1.1</sysMacAddress>
+	<line>.11.1.1.23</line>
+	<ipMode>.11.1.4.10.1.2</ipMode>
+</BblinkBasicReportTemplate>
+
+
+

@@ -1,0 +1,88 @@
+ <context>
+ <verdorList>
+ 	<verdor name="example">
+	  <groupList>
+	  	<group id="1" name="ac性能">
+		    <list>
+		    	<node name="apOnlineMac" oid=".1.10.13.110.2.10.1.3"></node>
+		    	<node name="apOfflineMac" oid=".1.10.13.110.3.10.1.3"></node>
+		    </list>
+	  	</group> 
+	  </groupList>
+ 	</verdor>
+ 	
+ 	<verdor name="ruijie">
+ 		  <groupList>
+		  	<group id="1" name="ACResource">
+			    <list>
+			    	<node name="acCPURTUsage" oid=".1.10.13.101.1.0"></node>
+			    	<node name="acMemRTUsage" oid=".1.10.13.101.4.0"></node>
+			    </list>
+		  	</group> 
+		  	<group id="2" name="APResource">
+			    <list>
+			    	<node name="apID" oid=".1.10.23.101.1.1.1"></node>
+			    	<node name="apCPURTUsage" oid=".1.10.23.101.1.1.2"></node>
+			    	<node name="apMemRTUsage" oid=".1.10.23.101.1.1.5"></node>
+			    </list>
+		  	</group> 
+		  	<group id="3" name="CPEFlowStat">
+			    <list>
+			    	<node name="totalAssocTxPkts" oid=".1.15.13.116.2.3.0"></node>
+			    	<node name="totalAssocRxPkts" oid=".1.15.13.116.2.4.0"></node>
+ 				    <node name="totalAssocTxBytes" oid=".1.15.13.116.2.5.0"></node>
+			    	<node name="totalAssocRxBytes" oid=".1.15.13.116.2.6.0"></node>
+			    </list>
+		  	</group> 
+		  	<group id="4" name="APWfCount">
+			    <list>
+			    	<node name="apID" oid=".1.10.23.109.1.1.1"></node>
+			    	<node name="wifiUplinkDataOctets" oid=".1.10.23.109.1.1.9"></node>
+			    	<node name="wifiDwlinkDataOctets" oid=".1.10.23.109.1.1.19"></node>
+			    	<node name="ifInOctets" oid=".1.10.23.104.1.1.11"></node>
+			    	<node name="ifOutOctets" oid=".1.10.23.104.1.1.22"></node>
+			    </list>
+		  	</group> 
+		  	<group id="5" name="ACDhcpStat">
+			    <list>
+			    	<node name="vapId" oid=".1.10.13.105.10.10.1.3"></node>
+			    	<node name="wapiControlledPortStatus" oid=".1.10.13.105.10.10.1.7"></node>
+			    	<node name="wapiSelectedUnicastCipher" oid=".1.10.13.105.10.10.1.8"></node>
+			    	<node name="wapiReplayCounter" oid=".1.10.13.105.10.10.1.9"></node>
+			    </list>
+		  	</group> 
+		  	<group id="6" name="ACTotalStat">
+			    <list>
+			    	<node name="acAPRegisterCount" oid=".1.10.13.102.1.0"></node>
+			    	<node name="apNum" oid=".1.10.13.110.2.1.0"></node>
+			    </list>
+		  	</group> 
+		  	<group id="7" name="ACPortalStat">
+			    <list>
+			    	<node name="onlineUserNum" oid=".1.10.13.107.7.0"></node>
+			    	<node name="portalAuthReqCount" oid=".1.10.13.107.12.0"></node>
+			    	<node name="portalChallengeReqCount" oid=".1.10.13.107.13.0"></node>
+			    	<node name="portalAuthRespCount" oid=".1.10.13.107.14.0"></node>
+			    	<node name="portalChallengeRespCount" oid=".1.10.13.107.15.0"></node>
+			    </list>
+		  	</group> 
+		  	<group id="8" name="ACFlowStat">
+			    <list>
+			    	<node name="ifID" oid=".1.10.13.103.10.10.1.1"></node>
+			    	<node name="ifInUcastPkts" oid=".1.10.13.103.10.10.1.2"></node>
+			    	<node name="ifInNUcastPkts" oid=".1.10.13.103.10.10.1.16"></node>
+			    	<node name="ifInOctets" oid=".1.10.13.103.10.10.1.5"></node>
+			    	<node name="ifInDiscardPkts" oid=".1.10.13.103.10.10.1.6"></node>
+			    	<node name="ifInErrPkts" oid=".1.10.13.103.10.10.1.7"></node>
+			    	<node name="ifOutUcastPkts" oid=".1.10.13.103.10.10.1.8"></node>
+			    	<node name="ifOutNUcastPkts" oid=".1.10.13.103.10.10.1.17"></node>
+			    	<node name="ifOutOctets" oid=".1.10.13.103.10.10.1.11"></node>
+			    	<node name="ifOutDiscardPkts" oid=".1.10.13.103.10.10.1.12"></node>
+			    	<node name="ifOutErrPkts" oid=".1.10.13.103.10.10.1.13"></node>
+			    </list>
+		  	</group> 
+		  </groupList>
+ 	</verdor>
+ </verdorList>
+
+</context>

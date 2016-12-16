@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <!-- sql到oracle，oracle到oracle数据同步  -->
+    <!--<bean id="syncDataListenerJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">-->
+    <!--<property name="targetObject">-->
+    <!--<bean id="workflowService" class="net.cabletension.web.manager.SyncDataManager"/>-->
+    <!--</property>-->
+    <!--<property name="targetMethod" value="sync"/>-->
+    <!--</bean>-->
+
+    <!--<bean id="syncDataCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">-->
+    <!--<property name="jobDetail" ref="syncDataListenerJob"/>-->
+    <!--&lt;!&ndash; 每天晚上23时59分59秒触发  &ndash;&gt;-->
+    <!--<property name="cronExpression" value="59 59 23 * * ?"/>-->
+    <!--</bean>-->
+
+    <!--<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">-->
+    <!--<property name="triggers">-->
+    <!--<list>-->
+    <!--<ref local="syncDataCronTrigger"/>-->
+    <!--</list>-->
+    <!--</property>-->
+    <!--</bean>-->
+
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 设置上传文件的最大尺寸为20MB -->
+        <property name="maxUploadSize">
+            <value>20971520</value>
+        </property>
+    </bean>
+</beans>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modules display="OMC_BS" id="0"
+	xmlns="http://www.gbcom.com/security" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.gbcom.com/security http://www.gbcom.com/security ">
+	<module display="安全管理" id="1">
+		<!-- 告警模块角色管理  -->
+		<module display="告警模块" id="10000">
+			<operation display="告警历史查询" id="10001"
+				methodName="com.gbcom.omc.bs.service.service.AlarmServiceImpl.queryHistoryAlarms" />
+			<operation display="活跃告警查询" id="10002"
+				methodName="com.gbcom.omc.bs.service.service.AlarmServiceImpl.queryActiveAlarms" />
+			<operation display="清除告警历史" id="10003"
+				methodName="com.gbcom.omc.bs.service.service.AlarmServiceImpl.queryHistoryAlarms" />
+			<operation display="查询告警等级" id="10004"
+				methodName="com.gbcom.omc.bs.service.service.AlarmServiceImpl.queryAlarmLevels" />
+			<operation display="修改告警等级" id="10005"
+				methodName="com.gbcom.omc.bs.service.service.AlarmServiceImpl.saveAlarmLevel" />
+				
+		</module>
+		
+		<module display="配置模块" id="20000">
+			<operation display="新增AC" id="20001"
+				methodName="com.gbcom.omc.bs.service.rpcimpl.cm.ServiceAcConfigImpl.addAc" />
+			<operation display="修改AC" id="20002"
+				methodName="com.gbcom.omc.bs.service.rpcimpl.cm.ServiceAcConfigImpl.modifyAc" />
+			<operation display="删除AC" id="20003"
+				methodName="com.gbcom.omc.bs.service.rpcimpl.cm.ServiceAcConfigImpl.deleteAc" />
+			<operation display="查询AC" id="20004"
+				methodName="com.gbcom.omc.bs.service.rpcimpl.cm.ServiceAcConfigImpl.queryAc" />
+			<operation display="新增热点" id="20011"
+				methodName="com.gbcom.omc.bs.service.rpcimpl.cm.ServiceAcConfigImpl.addAc" />
+			<operation display="修改热点" id="20012"
+				methodName="com.gbcom.omc.bs.service.rpcimpl.cm.ServiceAcConfigImpl.modifyAc" />
+			<operation display="删除热点" id="20013"
+				methodName="com.gbcom.omc.bs.service.rpcimpl.cm.ServiceAcConfigImpl.deleteAc" />
+			<operation display="查询热点" id="20014"
+				methodName="com.gbcom.omc.bs.service.rpcimpl.cm.ServiceAcConfigImpl.queryAc" />
+				
+		</module>
+		
+		<module display="日志模块" id="30000">
+			<operation display="查询操作日志" id="30001"
+				methodName="com.gbcom.omc.bs.service.rpcimpl.lm.ServiceLogQueryImpl.queryData" />
+			<operation display="日志设置" id="30002"
+				methodName="com.gbcom.omc.bs.service.rpcimpl.lm.ServiceLogQueryImpl.setLog" />
+			<operation display="查询网元变更数据" id="30003"
+				methodName="com.gbcom.omc.bs.service.rpcimpl.lm.ServiceLogQueryImpl.queryNeData" />
+		</module>
+		
+		
+		<module display="安全管理" id="40000">
+			<operation display="新增用户组" id="40001"
+				methodName="com.gbcom.omc.bs.service.rpcimpl.sec.ServiceSecImpl.createGroup" />
+			<operation display="修改用户组" id="40002"
+				methodName="com.gbcom.omc.bs.service.rpcimpl.sec.ServiceSecImpl.updateGroup" />
+			<operation display="删除用户组" id="40003"
+				methodName="com.gbcom.omc.bs.service.rpcimpl.sec.ServiceSecImpl.deleteGroup" />
+			<operation display="查询用户组" id="40004"
+				methodName="com.gbcom.omc.bs.service.rpcimpl.sec.ServiceSecImpl.queryGroup" />
+				
+			<operation display="新增用户" id="40011"
+				methodName="com.gbcom.omc.bs.service.rpcimpl.sec.ServiceSecImpl.createUser" />
+			<operation display="修改用户" id="40012"
+				methodName="com.gbcom.omc.bs.service.rpcimpl.sec.ServiceSecImpl.updateUser" />
+			<operation display="删除用户" id="40013"
+				methodName="com.gbcom.omc.bs.service.rpcimpl.sec.ServiceSecImpl.deleteUser" />
+			<operation display="根据用户组查询用户" id="40014"
+				methodName="com.gbcom.omc.bs.service.rpcimpl.sec.ServiceSecImpl.queryUser" />
+			<operation display="查询用户" id="40015"
+				methodName="com.gbcom.omc.bs.service.rpcimpl.sec.ServiceSecImpl.queryUser" />
+			<operation display="修改用户密码" id="40016"
+				methodName="com.gbcom.omc.bs.service.rpcimpl.sec.ServiceSecImpl.modifyPassword" />
+				
+			<operation display="新增角色" id="40021"
+				methodName="com.gbcom.omc.bs.service.rpcimpl.sec.ServiceSecImpl.createRole" />
+			<operation display="修改角色" id="40022"
+				methodName="com.gbcom.omc.bs.service.rpcimpl.sec.ServiceSecImpl.updateRole" />
+			<operation display="删除角色" id="40023"
+				methodName="com.gbcom.omc.bs.service.rpcimpl.sec.ServiceSecImpl.deleteRole" />
+			<operation display="查询角色" id="40024"
+				methodName="com.gbcom.omc.bs.service.rpcimpl.sec.ServiceSecImpl.queryRole" />
+			<operation display="修改操作信息" id="40025"
+				methodName="com.gbcom.omc.bs.service.rpcimpl.sec.ServiceSecImpl.updateOperation" />
+			<operation display="查询操作信息" id="40026"
+				methodName="com.gbcom.omc.bs.service.rpcimpl.sec.ServiceSecImpl.queryData" />
+			<operation display="根据角色ID查询操作信息" id="40027"
+				methodName="com.gbcom.omc.bs.service.rpcimpl.sec.ServiceSecImpl.queryOperation" />
+		</module>
+	</module>
+</modules>

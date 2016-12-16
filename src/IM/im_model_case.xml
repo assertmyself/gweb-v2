@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+		<Tplclz id="16760000" name="glbSsidSetup" alias="SSID基本配置" scalar="false"></class>
+		<Tplclz id="16760001" name="ssidBasic" alias="SSID基本配置" scalar="false"></class>
+		<Tplclz id="16760002" name="ssidSec" alias="SSID安全配置" scalar="false"></class>
+		<Tplclz id="16760003" name="ssidAdvance" alias="SSID高级配置" scalar="false"></class>
+		<Tplclz id="16760004" name="ssidFlowControl" alias="SSID流控配置" scalar="false"></class>
+		<Tplclz id="16770001" name="2.4GWifiMode" alias="2.4GWifi模式配置" scalar="true"></class>
+		<Tplclz id="16770002" name="2.4GWifiRate" alias="2.4GWifi速率配置" scalar="true"></class>
+		<Tplclz id="16770003" name="2.4GWifiAdvanced" alias="2.4GWifi高级配置" scalar="true"></class>
+		<Tplclz id="16770004" name="2.4GWifiWids" alias="2.4GWifi钓鱼配置"scalar="true"></class>
+		<Tplclz id="16770011" name="5GWifiMode" alias="5GWifi模式配置"scalar="true"></class>
+		<Tplclz id="16770012" name="5GWifiRate" alias="5GWifi速率配置"scalar="true"></class>
+		<Tplclz id="16770013" name="5GWifiAdvanced" alias="5GWifi高级配置"scalar="true"></class>
+		<Tplclz id="16770014" name="5GWifiWids" alias="5GWifi钓鱼配置"	scalar="true"></class>
+		<Tplclz id="16780001" name="locatorServer" alias="定位服务配置" scalar="true"></class>
+		<Tplclz id="16780002" name="sntpTimer" alias="时间配置配置" scalar="true"></class>
+		<Tplclz id="16780003" name="wifidog" alias="热点配置" scalar="true"></class>
+		<Tplclz id="16790001" name="netsniff" alias="监控配置" scalar="true">
+		<Tplclz id="16790002" name="locatorDWBasic" alias="感知基本配置" scalar="true">
+		<Tplclz name="locatorDWAdvance" alias ="感知高级配置" tab1="网监配置" />
+ -->
+  <TplInfoContext>
+ <list>
+	  <TplInfo id ="1" name ="tpl-1" jsp="configItemTemplet_1" sysmodels="WA2020,TA2020SP,OA2020,OA2020L" >
+	 	<list>
+		  	<Tplclz name="sntpTimer" tab1="时间配置" />
+		  	<Tplclz name="locatorServer" tab1="定位服务配置" />
+		  	
+		  	<Tplclz name="2.4GWifiMode" tab1="2.4GWi-Fi模式配置" />
+		  	<Tplclz name="2.4GWifiRate" tab1="2.4GWi-Fi速率配置" />
+		  	<Tplclz name="2.4GWifiAdvanced" tab1="2.4GWi-Fi高级配置" />
+		  	<Tplclz name="2.4GWifiWids" tab1="2.4GWi-Fi钓鱼配置" />
+		  	
+		  	<Tplclz name="glbSsidSetup" tab1="SSI全局" inner="true"/>
+		  	<Tplclz name="ssidBasic" tab1="SSID基本配置" />
+		  	<Tplclz name="ssidSec" tab1="SSID安全配置" />
+		  	<Tplclz name="ssidAdvance" tab1="SSID高级配置" />
+		  	<Tplclz name="ssidFlowControl" tab1="SSID流控配置" />
+	 	</list>
+	 </TplInfo>
+	 
+	  <TplInfo id ="2" name ="tpl-2" jsp="configItemTemplet_2" sysmodels="TA2025,CA2025,OA2025,TA4025" >
+	 	<list>
+		  	<Tplclz name="sntpTimer" tab1="时间配置" />
+		  	<Tplclz name="locatorServer" tab1="定位服务配置" />
+		  	
+		  	<Tplclz name="2.4GWifiMode" tab1="2.4GWi-Fi模式配置" />
+		  	<Tplclz name="2.4GWifiRate" tab1="2.4GWi-Fi速率配置" />
+		  	<Tplclz name="2.4GWifiAdvanced" tab1="2.4GWi-Fi高级配置" />
+		  	<Tplclz name="2.4GWifiWids" tab1="2.4GWi-Fi钓鱼配置" />
+		  	
+		  	<Tplclz name="5GWifiMode" tab1="5GWi-Fi模式配置" />
+		  	<Tplclz name="5GWifiRate" tab1="5GWi-Fi速率配置" />
+		  	<Tplclz name="5GWifiAdvanced" tab1="5GWi-Fi高级配置" />
+		  	<Tplclz name="5GWifiWids" tab1="5GWi-Fi钓鱼配置" />
+		  	
+		  	
+		  	<Tplclz name="glbSsidSetup" tab1="SSI全局配置" inner="true"/>
+		  	<Tplclz name="ssidBasic" tab1="SSID基本配置" />
+		  	<Tplclz name="ssidSec" tab1="SSID安全配置" />
+		  	<Tplclz name="ssidAdvance" tab1="SSID高级配置" />
+		  	<Tplclz name="ssidFlowControl" tab1="SSID流控配置" />
+		  	
+		  	<!--  pline  same sysmodel  -->
+		  	<Tplclz name="netsniff" pline="DW" alias ="网络监控" tab1="监控配置" />
+		  	<Tplclz name="locatorDWBasic" pline="DW"  alias ="感知基本配置" tab1="感知基本配置" />
+		  	<Tplclz name="locatorDWAdvance" pline="DW" alias ="感知高级配置" tab1="感知高级配置" />
+	 	</list>
+	 </TplInfo>
+	 
+	  <TplInfo id ="3" name ="tpl-3" jsp="configItemTemplet_3" sysmodels="DW-CGW500,CGW500,CGW500U,CGW350-T" >
+	 	<list>
+		  	<Tplclz name="sntpTimer" alias ="时间" tab1="时间配置" />
+		  	<Tplclz name="locatorServer" alias ="定位" tab1="定位服务配置" />
+		  	<Tplclz name="wifidog" alias ="wifidog" tab1="热点配置" />
+		  	
+		  	<Tplclz name="2.4GWifiMode" tab1="2.4GWi-Fi模式配置" />
+		  	<Tplclz name="2.4GWifiRate" tab1="2.4GWi-Fi速率配置" />
+		  	<Tplclz name="2.4GWifiAdvanced" tab1="2.4GWi-Fi高级配置" />
+		  	<Tplclz name="2.4GWifiWids" tab1="2.4GWi-Fi钓鱼配置" />
+		  	
+		  	<Tplclz name="glbSsidSetup" tab1="SSI全局配置" inner="true" />
+		  	<Tplclz name="ssidBasic" tab1="SSID基本配置" />
+		  	<Tplclz name="ssidSec" tab1="SSID安全配置" />
+		  	<Tplclz name="ssidAdvance" tab1="SSID高级配置" />
+		  	<Tplclz name="ssidFlowControl" tab1="SSID流控配置" />
+		  	<!--  pline  same sysmodel  -->
+		  	<Tplclz name="netsniff" pline="DW" alias ="网络监控" tab1="监控配置" />
+		  	<Tplclz name="locatorDWBasic" pline="DW"  alias ="感知基本配置" tab1="感知基本配置" />
+		  	<Tplclz name="locatorDWAdvance" pline="DW" alias ="感知高级配置" tab1="感知高级配置" />
+	 	</list>
+	 </TplInfo>
+	 
+	  <TplInfo id ="4" name ="tpl-4" jsp="configItemTemplet_4" sysmodels="DW-CGW1200,DW-TA2025,CGW1200,CGW1200H" >
+	 	<list>
+		  	<Tplclz name="sntpTimer" alias ="时间" tab1="时间配置" />
+		  	<Tplclz name="locatorServer" alias ="定位" tab1="定位服务配置" />
+		  	<Tplclz name="wifidog" alias ="wifidog" tab1="热点配置" />
+		  	
+		  	<Tplclz name="2.4GWifiMode" tab1="2.4GWi-Fi模式配置" />
+		  	<Tplclz name="2.4GWifiRate" tab1="2.4GWi-Fi速率配置" />
+		  	<Tplclz name="2.4GWifiAdvanced" tab1="2.4GWi-Fi高级配置" />
+		  	<Tplclz name="2.4GWifiWids" tab1="2.4GWi-Fi钓鱼配置" />
+		  	
+		  	<Tplclz name="5GWifiMode" tab1="5GWi-Fi模式配置" />
+		  	<Tplclz name="5GWifiRate" tab1="5GWi-Fi速率配置" />
+		  	<Tplclz name="5GWifiAdvanced" tab1="5GWi-Fi高级配置" />
+		  	<Tplclz name="5GWifiWids" tab1="5GWi-Fi钓鱼配置" />
+		  	
+		  	<Tplclz name="glbSsidSetup" tab1="SSI全局配置" inner="true" />
+		  	<Tplclz name="ssidBasic" tab1="SSID基本配置" />
+		  	<Tplclz name="ssidSec" tab1="SSID安全配置" />
+		  	<Tplclz name="ssidAdvance" tab1="SSID高级配置" />
+		  	<Tplclz name="ssidFlowControl" tab1="SSID流控配置" />
+		  	<!--  pline  same sysmodel  -->
+		  	<Tplclz name="netsniff" pline="DW" alias ="网络监控" tab1="监控配置" />
+		  	<Tplclz name="locatorDWBasic" pline="DW"  alias ="感知基本配置" tab1="感知基本配置" />
+		  	<Tplclz name="locatorDWAdvance" pline="DW" alias ="感知高级配置" tab1="感知高级配置" />
+		  	
+	 	</list>
+	 </TplInfo>
+	  <TplInfo id ="5" name ="tpl-5" jsp="configItemTemplet_5" sysmodels="CGW2000,CGW3000,CGW3000T" >
+	 	<list>
+		  	<Tplclz name="sntpTimer" alias ="时间" tab1="时间配置" />
+		  	<Tplclz name="locatorServer" alias ="定位" tab1="定位服务配置" />
+		  	<Tplclz name="wifidog" alias ="wifidog" tab1="热点配置" />
+		  	<!--  pline  same sysmodel  
+		  	<Tplclz name="netsniff" pline="DW" alias ="网络监控" tab1="网监配置" />
+		  	<Tplclz name="locatorDWBasic" pline="DW"  alias ="感知基本配置" tab1="网监配置" />
+		  	<Tplclz name="locatorDWAdvance" pline="DW" alias ="感知高级配置" tab1="网监配置" />-->
+	 	</list>
+	 </TplInfo>
+	  <TplInfo id ="6" name ="tpl-6" jsp="configItemTemplet_6" sysmodels="DW-OA2025,DW-LA2000,DW-LA1000,DW-LFC25,DW-LA1000-A" >
+	 	<list>
+		  	<Tplclz name="sntpTimer" alias ="时间" tab1="时间配置" />
+		  	<Tplclz name="wifidog" alias ="wifidog" tab1="热点配置" />
+		  	
+		  	<Tplclz name="netsniff" pline="DW" alias ="网络监控" tab1="监控配置" />
+		  	<Tplclz name="locatorDWBasic" pline="DW"  alias ="感知基本配置" tab1="感知基本配置" />
+		  	<Tplclz name="locatorDWAdvance" pline="DW" alias ="感知高级配置" tab1="感知高级配置" />
+	 	</list>
+	 </TplInfo>
+	 </list>
+	 
+	 
+	 </TplInfoContext>

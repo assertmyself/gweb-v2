@@ -1,0 +1,36 @@
+    package com.gbcom.common.drools
+    import com.gbcom.ccsv3.domain.ApDevice;  
+    
+	rule one  
+	salience 0
+	    when  
+	    	$domain:ApDevice(assocState == 1 ,name:apName)
+	    then  
+	     	System.out.println("rule 1");
+	        System.out.println( name +" -- one" );  
+	        System.out.println( $domain.getApName() +" -- one" );  
+	        $domain.drlUpdate("abc");
+	        //update( m );  
+	end 
+ 
+ 
+	rule two  
+	salience 1
+	    when  
+	        $domain : ApDevice( devForm != 1, name : apName )  
+	    then  
+	        System.out.println( name +" -- two" );  
+	       // update( m );  
+	end  
+	
+	rule three  
+	salience 2
+	    when  
+	        $domain : ApDevice( devForm == 1, name : apName )  
+	    then  
+	        System.out.println( name +" -- three" );  
+	        //AutoRebootHandler.getInstance().add( $domain.getManageMac());
+	        retract($domain);
+	        //update( m );  
+	end  
+

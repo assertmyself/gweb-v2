@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.gbcom.system.domain">
+    <class
+            name="SysParameter"
+            table="SYS_PARAMETER"
+            >
+
+        <meta attribute="sync-DAO">false</meta>
+        <meta attribute="sync-jsp">true</meta>
+        <meta attribute="sync-boolean">get</meta>
+        <meta attribute="treeable">false</meta>
+        <meta attribute="projectable">false</meta>
+        <meta attribute="tableName">系统参数表</meta>
+        <meta attribute="tableComment">系统参数表</meta>
+        <meta attribute="sync-templatePatterns">list\w*</meta>
+        <meta attribute="sub-system">system</meta>
+
+        <id
+                name="id"
+                type="java.lang.Long"
+                column="ID"
+                >
+            <generator class="com.hc.core.orm.hibernate.LongIdGenerator"/>
+        </id>
+
+        <property
+                name="code"
+                column="CODE"
+                type="string"
+                not-null="false"
+                length="50"
+                >
+            <meta attribute="ColumnName">参数代码</meta>
+            <meta attribute="ColumnComment">参数代码</meta>
+        </property>
+
+        <property
+                name="name"
+                column="NAME"
+                type="string"
+                not-null="false"
+                length="50"
+                >
+            <meta attribute="ColumnName">参数名称</meta>
+            <meta attribute="ColumnComment">参数名称</meta>
+        </property>
+
+        <property
+                name="value"
+                column="VALUE"
+                type="string"
+                not-null="false"
+                length="200"
+                >
+            <meta attribute="ColumnName">参数值</meta>
+            <meta attribute="ColumnComment">参数值</meta>
+        </property>
+
+        <property
+                name="constraint"
+                column="CONSTRAINT"
+                type="string"
+                not-null="false"
+                >
+            <meta attribute="ColumnName">约束</meta>
+            <meta attribute="ColumnComment">约束</meta>
+        </property>
+
+        <property
+                name="clobvalue"
+                column="CLOBVALUE"
+                type="string"
+                not-null="false"
+                >
+            <meta attribute="ColumnName">长参数</meta>
+            <meta attribute="ColumnComment">长参数</meta>
+        </property>
+
+        <property
+                name="createTime"
+                column="CREATE_TIME"
+                type="timestamp"
+                not-null="false"
+                length="7"
+                >
+            <meta attribute="ColumnName">创建时间</meta>
+            <meta attribute="ColumnComment">创建时间</meta>
+        </property>
+
+        <property
+                name="updateTime"
+                column="UPDATE_TIME"
+                type="timestamp"
+                not-null="false"
+                length="7"
+                >
+            <meta attribute="ColumnName">更新时间</meta>
+            <meta attribute="ColumnComment">更新时间</meta>
+        </property>
+
+        <property
+                name="createUser"
+                column="CREATE_USER"
+                type="string"
+                not-null="false"
+                length="100"
+                >
+            <meta attribute="ColumnName">创建人</meta>
+            <meta attribute="ColumnComment">创建人</meta>
+        </property>
+
+        <property
+                name="updateUser"
+                column="UPDATE_USER"
+                type="string"
+                not-null="false"
+                length="100"
+                >
+            <meta attribute="ColumnName">更新人</meta>
+            <meta attribute="ColumnComment">更新人</meta>
+        </property>
+
+
+    </class>
+    <query name="sysparameter_all_data_query">
+        <![CDATA[FROM SysParameter]]>
+    </query>
+</hibernate-mapping>

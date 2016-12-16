@@ -1,0 +1,184 @@
+ <context>
+  <collectionList>
+  	<collection item="example" isVector="false">
+    <list>
+    	<node name="apOnlineMac" oid=".1.10.13.110.2.10.1.3"></node>
+    	<node name="apOfflineMac" oid=".1.10.13.110.3.10.1.3"></node>
+    </list>
+  </collection> 
+   <collection item="BasicInfo"  isVector="false">
+    <list>
+    	<node name="sysMacAddress" oid=".1.3.1.1.110.11.1.1.1.0"></node>
+    	<node name="sysIpAddress" oid=".1.3.1.1.110.11.1.1.9.0"></node>
+    	<node name="sysModel" oid=".1.3.1.1.110.11.1.1.13.0"></node>
+    	<node name="sysManageState" oid=".1.3.1.1.110.11.1.1.10.0"></node>
+    	<node name="softwareVersion" oid=".1.3.1.1.110.11.1.2.1.0"></node>
+    	<node name="hardwareVersion" oid=".1.3.1.1.110.11.1.3.5.0"></node>
+    	<node name="diskSize" oid=".1.3.1.1.110.11.1.3.4.0"></node>
+    </list>
+  </collection> 
+  <collection item="RunningInfo" isVector="false">
+    <list>
+    	<node name="sysUpTime" oid=".1.3.1.1.110.11.1.1.2.0"></node>
+    	<node name="sysIpAddress" oid=".1.3.1.1.110.11.1.1.9.0"></node>
+    	<node name="apCPURTUsage" oid=".1.3.1.1.110.13.101.1.0"></node>
+    	<node name="apCPUAvgUsage" oid=".1.3.1.1.110.13.101.3.0"></node>
+		<node name="apMemRTUsage" oid=".1.3.1.1.110.13.101.4.0"></node>
+		<node name="apMemAvgUsage" oid=".1.3.1.1.110.13.101.6.0"></node>
+    </list>
+  </collection> 
+
+    <collection item="ApUserList" isVector="true">
+    <list>
+    	<node name="staID" oid=".1.3.1.1.110.13.105.10.1.1"></node>
+    	<node name="bssid" oid=".1.3.1.1.110.13.105.10.1.2"></node>
+    	<node name="ssid" oid=".1.3.1.1.110.13.105.10.1.3"></node>
+    	<node name="staVlanId" oid=".1.3.1.1.110.13.105.10.1.4"></node>
+    	<node name="staVlanEnable" oid=".1.3.1.1.110.13.105.10.1.5"></node>
+    	<node name="staMacAddress" oid=".1.3.1.1.110.13.105.10.1.6"></node>
+    	<node name="staDevType" oid=".1.3.1.1.110.13.105.10.1.7"></node>
+    	<node name="staConnectTime" oid=".1.3.1.1.110.13.105.10.1.8"></node>
+    	<node name="staUplinkOctets" oid=".1.3.1.1.110.13.105.10.1.9"></node>
+    	<node name="staDownlinkOctets" oid=".1.3.1.1.110.13.105.10.1.10"></node>
+    	<node name="rssi" oid=".1.3.1.1.110.13.105.10.1.11"></node>
+    	<node name="frequency" oid=".1.3.1.1.110.13.105.10.1.12"></node>
+    	<node name="snr" oid=".1.3.1.1.110.13.105.10.1.13"></node>
+    	<node name="txRate" oid=".1.3.1.1.110.13.105.10.1.14"></node>
+    	<node name="errRate" oid=".1.3.1.1.110.13.105.10.1.15"></node>
+    	<node name="assoRate" oid=".1.3.1.1.110.13.105.10.1.16"></node>
+    	<node name="staIp" oid=".1.3.1.1.110.13.105.10.1.17"></node>
+    </list>
+  </collection> 
+  
+  <collection item="apVapBasicEntry" isVector="true">
+    <list>
+    	<node name="ssidBasicIndex" oid=".1.3.1.1.110.11.20.10.1.1"></node>
+    	<node name="vapId" oid=".1.3.1.1.110.11.20.10.1.2"></node>
+    	<node name="wifiId" oid=".1.3.1.1.110.11.20.10.1.3"></node>
+    	<node name="ssidBasicName" oid=".1.3.1.1.110.11.20.10.1.4"></node>
+    	<node name="ssidEnabled" oid=".1.3.1.1.110.11.20.10.1.5"></node>
+    	<node name="ssidBroadcast" oid=".1.3.1.1.110.11.20.10.1.6"></node>
+    	<node name="ssidVlanId" oid=".1.3.1.1.110.11.20.10.1.7"></node>
+    	<node name="ssidVlanEnable" oid=".1.3.1.1.110.11.20.10.1.8"></node>
+    	<node name="vapBssid" oid=".1.3.1.1.110.11.20.10.1.9"></node>
+    	<node name="maxUserNum" oid=".1.3.1.1.110.11.20.10.1.10"></node>
+    	<node name="vapFlowSwitch" oid=".1.3.1.1.110.11.20.10.1.11"></node>
+    	<node name="vapUplinkMaxRate" oid=".1.3.1.1.110.11.20.10.1.12"></node>
+    	<node name="vapDownlinkMaxRate" oid=".1.3.1.1.110.11.20.10.1.13"></node>
+    	<node name="userUpload" oid=".1.3.1.1.110.11.20.10.1.14"></node>
+    	<node name="userDownload" oid=".1.3.1.1.110.11.20.10.1.15"></node>
+    	<node name="airtimeFairness" oid=".1.3.1.1.110.11.20.10.1.16"></node>
+    	<node name="endUserTime" oid=".1.3.1.1.110.11.20.10.1.17"></node>
+    </list>
+  </collection> 
+  
+	   <collection item="gwOnlineUser"  isVector="true">
+	    <list>
+	    	<node name="onlineUserMac" oid=".13.120.1.1" required="false" defValue="1"></node>
+	    	<node name="userType" oid=".13.120.1.2" required="false" defValue="1"></node>
+	    	<node name="userTotalUp" oid=".13.120.1.6" required="false" defValue="1"></node>
+	    	<node name="userTotalDown" oid=".13.120.1.7" required="false" defValue="1"></node>
+	    	<node name="userIp" oid=".13.120.1.10" required="false" defValue="1"></node>
+	    </list>
+	  </collection> 
+	  
+	   <collection item="dhcpStat"  isVector="true">
+	    <list>
+	    	<node name="dhcpIndex" oid=".13.106.10.1.1" required="false" defValue="1"></node>
+	    	<node name="dhcpTotalIpNum" oid=".13.106.10.1.2" required="false" defValue="1"></node>
+	    	<node name="dhcpUsedIpNum" oid=".13.106.10.1.3" required="false" defValue="1"></node>
+	    	<node name="dhcpFreeIpNum" oid=".13.106.10.1.4" required="false" defValue="1"></node>
+	    	<node name="dhcpPoolUsage" oid=".13.106.10.1.5" required="false" defValue="1"></node>
+	    </list>
+	  </collection> 
+   <collection item="Heart" isVector="false">
+    <list>
+    	<!-- <node name="associateStatus" oid=".1.15.11.5.1.1.0"></node> -->
+    	<node name="transmitPower" oid=".1.3.1.1.110.11.10.3.4.0"></node>
+    	<node name="channelUsing" oid=".1.3.1.1.110.11.10.2.3.0"></node>
+    </list>
+  </collection> 
+  
+   <collection item="interval" isVector="false">
+    <list>
+    	<!-- <node name="associateStatus" oid=".1.15.11.5.1.1.0"></node> -->
+    	<node name="heartBeatPeriod" oid=".1.3.1.1.110.11.1.1.15.0"></node>
+    	<node name="timeOutInterval" oid=".1.3.1.1.110.11.1.1.14.0"></node>
+    </list>
+  </collection> 
+
+  
+  <collection item="Upgrade" isVector="false">
+    <list>
+	    <node name="loadFlag" oid=".1.3.1.1.110.14.2.1.0"></node>
+	    <node name="fileName" oid=".1.3.1.1.110.14.2.2.0"></node>
+	    <node name="fileType" oid=".1.3.1.1.110.14.2.3.0"></node>
+	    <node name="transProtocol" oid=".1.3.1.1.110.14.2.4.0"></node>
+	    <node name="serverAddr" oid=".1.3.1.1.110.14.2.5.0"></node>
+	    <node name="serverPort" oid=".1.3.1.1.110.14.2.6.0"></node>
+	    <node name="serverUserName" oid=".1.3.1.1.110.14.2.7.0"></node>
+	   	<node name="serverPasswd" oid=".1.3.1.1.110.14.2.8.0"></node>
+<!-- 	    <node name="transStatus" oid=".1.3.1.1.110.14.2.9.0"></node>
+	    <node name="failReason" oid=".1.3.1.1.110.14.2.10.0"></node> -->
+    </list>
+  </collection> 
+  
+<!--   <collection item="AutoSearch" isVector="false">
+    <list>
+    	<node name="snmpManagerIp" oid=".1.15.11.40.1.0"></node>
+    	<node name="snmpManageState" oid=".1.15.11.40.2.0"></node>
+    </list>
+  </collection>  -->
+    <collection item="Mac" isVector="false">
+    <list>
+    	<node name="sysMacAddress" oid=".1.3.1.1.110.11.1.1.1.0"></node>
+    </list>
+  </collection> 
+  
+   <collection item="SnmpState" isVector="false">
+    <list>
+    	<node name="sysManageState" oid=".1.3.1.1.110.11.1.1.10.0"></node>
+    </list>
+  </collection>
+   <collection item="SsidInfo" isVector="true">
+    <list>
+    	<node name="ssidBasicName" oid=".1.3.1.1.110.11.20.10.1.4"></node>
+    	<node name="vapBssid" oid=".1.3.1.1.110.11.20.10.1.9"></node>
+    </list>
+  </collection>
+  
+  
+   <collection item="SwUpdate" isVector="false">
+    <list>
+    	<node name="apSoftwareUpdate" oid=".1.3.1.1.110.14.1.1.0"></node>
+    </list>
+  </collection>
+  
+  <collection item="ConfigChange" isVector="false">
+   <list>
+   	<node name="tplSequence" oid=".14.1.7.0"></node>
+   </list>
+  </collection>
+  
+   <collection item="Reboot" isVector="false">
+    <list>
+    	<node name="apSysRestart" oid=".1.3.1.1.110.14.1.2.0"></node>
+    </list>
+  </collection> 
+  <collection item="Reset" isVector="false">
+    <list>
+    	<node name="apSysReset" oid=".1.3.1.1.110.14.1.3.0"></node>
+    </list>
+  </collection> 
+  <collection item="CfgFile" isVector="false">
+    <list>
+    	<node name="apCfgDataFileImpExp" oid=".1.3.1.1.110.14.1.4.0"></node>
+    </list>
+  </collection> 
+  <collection item="DiagnoseFile" isVector="false">
+    <list>
+    	<node name="apDiagnoseFile" oid=".1.3.1.1.110.14.1.5.0"></node>
+    </list>
+  </collection> 
+  </collectionList>
+</context>

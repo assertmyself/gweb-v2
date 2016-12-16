@@ -1,0 +1,95 @@
+@media (min-width: 768px) {
+.modal-dialog-sm {
+    margin: 30px auto;
+    width: 500px;
+}
+}
+#alertWinOpenId .modal-footer{
+	background:#eff3f8;
+}
+.btn-close{
+    background-color: #abbac3 !important;
+    border-color: #abbac3;
+}
+body #wrapper{
+	overflow: hidden;
+}
+body .footer{
+	padding-top: 5px; 
+	border-top-width: 0px;
+}
+
+#page-wrapper #content-main{
+	overflow:auto;
+}
+.br-l{
+	border-left:1px solid #e7eaec;
+}
+#treeId{
+	overflow:auto;
+}
+
+
+table{	/* 换行用 */
+	TABLE-LAYOUT: fixed;
+}
+td{	/* 换行用 */
+	WORD-WRAP: break-word;
+}
+#dataInfo .jqGrid_wrapper table{
+	font-size:13px;
+	font-family:"open sans","Helvetica Neue","Helvetica","Arial,sans-serif";
+}
+
+.form_div .table>tbody>tr:first-of-type>td{ /* view.jsp使用，jsp会自动添加tbody标签 */
+	border-top: 0px;
+}
+.form_div .table>tbody>tr>td{
+	font-size: 13px;
+}
+.form_div .table>tbody>tr>td:first-of-type{
+    font-weight: 700;
+    text-align: right;
+    width: 30%;
+}
+.form_div .table>tbody>tr>td:last-of-type{
+    width: 70%;
+    padding-left: 20px;
+}
+
+.mini-navbar #wrapper .slimScrollDiv >* {
+	overflow: visible!important;
+}
+.mini-navbar .sidebar-collapse ul ul {
+    display: none;
+    margin-left:0px;
+}
+.mini-navbar .sidebar-collapse ul li:hover > ul {
+    display: block;
+	background: #4b545f;
+	background: linear-gradient(top, #4f5964 0%, #5f6975 40%);
+	background: -moz-linear-gradient(top, #4f5964 0%, #5f6975 40%);
+	background: -webkit-linear-gradient(top, #4f5964 0%,#5f6975 40%);
+	opacity: 0.9;
+}
+.mini-navbar .sidebar-collapse ul {
+	 position: relative;
+}
+.mini-navbar .sidebar-collapse ul li a {
+    display: block;
+}
+.mini-navbar .sidebar-collapse ul ul li {
+    float: none;
+    position: relative;
+}
+.mini-navbar .sidebar-collapse ul ul ul {
+    position: absolute;
+    left:100%;
+    background: #2f4050 none repeat scroll 0 0;
+    margin-top:-35px;
+    width:120px;
+}
+.mini-navbar .sidebar-collapse ul ul ul li:hover{
+    display: block;
+    background: #293846 none repeat scroll 0 0;
+}

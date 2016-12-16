@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<conf>
+	<templetFile>
+		<fileName>alarm_templet_gbcom</fileName>
+	</templetFile>
+	<alarmSound>
+		<fatal>sound\alarm_fatal.wav</fatal>
+		<main>sound\alarm_main.wav</main>
+		<minor>sound\alarm_minor.wav</minor>
+		<warning>sound\alarm_warning.wav</warning>
+	</alarmSound>
+</conf>

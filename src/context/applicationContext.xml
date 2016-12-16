@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+          http://www.springframework.org/schema/tx
+          http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+          http://www.springframework.org/schema/context
+          http://www.springframework.org/schema/context/spring-context-3.0.xsd
+          http://www.springframework.org/schema/aop
+          http://www.springframework.org/schema/aop/spring-aop-3.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd"
+       default-autowire="byName" default-lazy-init="false">
+    <!-- 注意上面的default-autowire="byName"，如果没有这个声明那么HibernateDaoSupport中的sessionFactory不会被注入 -->
+
+    <!-- 定义受环境影响易变的变量 -->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
+        <property name="ignoreResourceNotFound" value="true"/>
+        <property name="locations">
+            <list>
+                <value>classpath:context/application.properties</value>
+                <value>classpath:context/messages.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename">
+            <value>context/messages</value>
+        </property>
+    </bean>
+
+    <!-- 约定优于配置，约定优于配置结合 show processlist -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="${driverClass}"></property>
+        <property name="jdbcUrl" value="${jdbcUrl}"></property>
+        <property name="minPoolSize" value="3"></property>
+        <property name="maxPoolSize" value="30"></property>
+        <!--初始化时获取三个连接，取值应在minPoolSize与maxPoolSize之间。Default: 3 -->
+        <property name="initialPoolSize" value="5"></property>
+        
+        
+        <!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 -->
+        <property name="acquireIncrement" value="5"></property>
+        <!--定义在从数据库获取新连接失败后重复尝试的次数。Default: 30 -->
+        <property name="acquireRetryAttempts" value="30"></property>
+        <!--两次连接中间隔时间，单位毫秒。Default: 1000 -->
+        <property name="acquireRetryDelay" value="1000"></property>
+        
+        <!--最大空闲时间,60秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 -->
+	  	<property name="maxIdleTime" value="120"/>
+	  	
+	  	<!-- 8小时链接问题 -->
+		<property name="preferredTestQuery" value="SELECT 1"/>  
+	  	<property name="idleConnectionTestPeriod" value="5"/>  
+	  	<property name="testConnectionOnCheckout" value="true"/> 
+
+        <!--JDBC的标准参数，用以控制数据源内加载的PreparedStatements数量。但由于预缓存的statements
+       属于单个connection而不是整个连接池。所以设置这个参数需要考虑到多方面的因素。
+       如果maxStatements与maxStatementsPerConnection均为0，则缓存被关闭。Default: 0-->
+        <property name="maxStatements" value="0"></property>
+        <!--连接池内单个连接所拥有的最大缓存statements数。Default: 0 -->
+        <property name="maxStatementsPerConnection" value="100"></property>
+
+        <!--获取连接失败将会引起所有等待连接池来获取连接的线程抛出异常。但是数据源仍有效保留，并在下次调用getConnection()的时候继续尝试获取连接。
+       如果设为true，那么在尝试获取连接失败后该数据源将申明已断开并永久关闭。Default: false-->
+        <property name="breakAfterAcquireFailure" value="false"></property>
+
+        <!--当连接池用完时客户端调用getConnection()后等待获取新连接的时间，超时后将抛出SQLException,如设为0则无限期等待。单位毫秒。Default: 0 -->
+        <property name="checkoutTimeout" value="1000"></property>
+
+
+        <!--如果设为true那么在取得连接的同时将校验连接的有效性。默认为false-->
+        <!--<property name="testConnectionOnCheckin" value="true"></property>-->
+
+        <!--<property name="connectionCustomizerClassName"-->
+                  <!--value="com.hc.core.c3p0.OracleConnectionCustomizer"/>-->
+        <property name="properties">
+            <props>
+                <prop key="v$session.program">${v$session.program}</prop>
+                <prop key="user">${user}</prop>
+                <prop key="password">${password}</prop>
+            </props>
+        </property>
+    </bean>
+
+
+	<!-- 配置cmps 访问  数据源>template>事务Manager>事务拦截 -->
+	<!--
+	<bean id="cmpsDataSource" class="org.apache.commons.dbcp.BasicDataSource" 
+		destroy-method="close"
+		p:driverClassName="${driverClass}"
+		p:url="${cmps.jdbc.url}"
+		p:username="${cmps.jdbc.username}"
+		p:password="${cmps.jdbc.password}"
+		>
+	</bean>
+	<bean id="jdbcCmpsTemplate" class="org.springframework.jdbc.core.JdbcTemplate" 
+		p:dataSource-ref="cmpsDataSource" >
+	</bean>
+	
+	-->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate" 
+		p:dataSource-ref="dataSource" >
+	</bean>
+	  
+
+
+	<!-- ServiceLocator bs-core -->
+	<!--<bean id="serviceLocator" class="com.gbcom.spring.ServiceLocator" />
+	
+	
+	
+	--><!-- 夸数据源事务，需要使用JTA ：-->
+<!-- 	<bean id="jdbcManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		p:dataSource-ref="cmpsDataSource" >
+	</bean> -->
+<!-- 	<aop:config proxy-target-class="true">
+		<aop:pointcut id="serviceJdbcMethod" expression="within(com.gbcom.omc.ccsv2.server.service.cmps.CmpsService+)" />
+		<aop:advisor pointcut-ref="serviceJdbcMethod" advice-ref="jdbcAdvice"
+			order="0" />
+	</aop:config> 
+	<tx:advice id="jdbcAdvice" transaction-manager="jdbcManager">
+		<tx:attributes>
+			<tx:method name="*" />
+		</tx:attributes>
+	</tx:advice>
+	-->
+	
+	
+    <!-- Hibernate配置 -->
+    <bean name="treeIdIncrease" class="java.lang.Integer">
+        <constructor-arg value="1"/>
+    </bean>
+
+    <bean id="hibernateInterceptor" class="com.hc.core.orm.hibernate.HibernateInterceptor">
+        <property name="treeIdIncrease" ref="treeIdIncrease"/>
+        <property name="tableLogger" ref="sysOperationTableLogManager"/>
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="entityInterceptor" ref="hibernateInterceptor"></property>
+        <property name="namingStrategy">
+            <bean class="org.hibernate.cfg.ImprovedNamingStrategy"/>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <!--<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>-->
+                <prop key="hibernate.dialect">com.gbcom.system.mysql.MySQLTextDialect</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.jdbc.batch_size">50</prop>
+    		</props>
+        </property>
+        <property name="mappingDirectoryLocations">
+            <list>
+                <value>classpath:/com/gbcom/*/domain/hbm</value>
+            </list>
+        </property>
+    </bean>
+
+
+
+    <bean id="hibernateAwareObjectMapper" class="com.gbcom.system.utils.jackson.HibernateAwareObjectMapper"/>
+    <!-- 使用annocation创建Controller的bean,同时注入属性编辑器 -->
+    <!--因为在dispatcher-servlet中的BindingInitializer中applicationContext不能完全初始化，不能取到daoservice-->
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="cacheSeconds" value="0"/>
+        <property name="webBindingInitializer">
+            <bean class="com.hc.core.editor.BindingInitializer"/>
+        </property>
+        <!-- 配置一下对json数据的转换 -->
+        <property name="messageConverters">
+            <list>
+                <bean name="CustomMappingJacksonHttpMessageConverter"
+                      class="com.gbcom.system.utils.jackson.MappingJacksonHttpMessageConverter">
+                    <property name="objectMapper" ref="hibernateAwareObjectMapper"></property>
+                </bean>
+            </list>
+        </property>
+
+    </bean>
+
+    <!-- 事务配置 -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <aop:config proxy-target-class="true">
+        <aop:advisor
+                pointcut="execution(* com.hc.core.orm.hibernate.EntityService.*(..))"
+                advice-ref="txadvice"/>
+        <aop:advisor
+                pointcut="execution(* com.hc.*.daoservice.*Service.*(..))"
+                advice-ref="txadvice"/>
+        <aop:advisor
+                pointcut="execution(* com.gbcom.*.daoservice.*Service.*(..))"
+                advice-ref="txadvice"/>
+        <aop:advisor
+                pointcut="execution(* com.hc.core.service..*(..))"
+                advice-ref="txadvice"/>
+        <aop:advisor pointcut="execution(* *..manager..*(..))" advice-ref="txadvice"/>
+    </aop:config>
+
+    <tx:advice id="txadvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="*" propagation="REQUIRED" rollback-for="Exception"/>
+            <!--<tx:method name="*" propagation="REQUIRED"/>-->
+            <tx:method name="get*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="gridData*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="find*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="save*" propagation="REQUIRED"/>
+            <tx:method name="insert*" propagation="REQUIRED"/>
+            <tx:method name="update*" propagation="REQUIRED"/>
+            <tx:method name="delete*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+
+
+    
+
+    <!-- 自动扫描组件，这里要把web下面的 controller去除，他们是在spring3-servlet.xml中配置的，如果不去除会影响事务管理的。,com.gbcom.ccsv3.manager-->
+    <context:component-scan base-package="com.gbcom,com.hc">
+        <!--context:exclude-filter type="regex" expression="com.hc.*.controller.*"/-->
+    </context:component-scan>
+
+
+    
+    <import resource="applicationContext-security.xml"/>
+    <import resource="applicationContext-beans.xml"/>
+    <import resource="applicationContext-mvc.xml"/>
+    <import resource="applicationContext-config.xml"/>
+    <import resource="applicationContext-webservice.xml"/>
+    <import resource="applicationContext-setup.xml"/>
+
+    <mvc:default-servlet-handler/>
+
+    <bean id="springContextUtil" class="com.gbcom.system.utils.SpringContextUtil"/>
+
+    <bean name="systemMap" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <!--<entry key="picName" value="${picName}"/>-->
+            </map>
+        </constructor-arg>
+    </bean>
+
+
+</beans>

@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.gbcom.system.domain">
+    <class
+            name="SysPerson"
+            table="SYS_PERSON"
+            >
+
+        <meta attribute="sync-DAO">false</meta>
+        <meta attribute="sync-jsp">true</meta>
+        <meta attribute="sync-boolean">get</meta>
+        <meta attribute="treeable">false</meta>
+        <meta attribute="projectable">false</meta>
+        <meta attribute="tableName">系统人员管理</meta>
+        <meta attribute="tableComment">系统人员管理</meta>
+        <meta attribute="sync-templatePatterns">list\w*</meta>
+        <meta attribute="sub-system">system</meta>
+
+        <id
+                name="id"
+                type="java.lang.Long"
+                column="ID"
+                >
+            <generator class="com.hc.core.orm.hibernate.LongIdGenerator"/>
+        </id>
+
+        <property
+                name="code"
+                column="CODE"
+                type="string"
+                not-null="false"
+                length="50"
+                >
+            <meta attribute="ColumnName">编号</meta>
+            <meta attribute="ColumnComment">编号</meta>
+        </property>
+
+        <property
+                name="name"
+                column="NAME"
+                type="string"
+                not-null="false"
+                length="50"
+                >
+            <meta attribute="ColumnName">姓名</meta>
+            <meta attribute="ColumnComment">姓名</meta>
+        </property>
+
+        <property
+                name="card"
+                column="CARD"
+                type="string"
+                not-null="false"
+                length="50"
+                >
+            <meta attribute="ColumnName">身份证号</meta>
+            <meta attribute="ColumnComment">身份证号</meta>
+        </property>
+
+        <property
+                name="age"
+                column="AGE"
+                type="integer"
+                not-null="false"
+                length="5"
+                >
+            <meta attribute="ColumnName">年龄</meta>
+            <meta attribute="ColumnComment">年龄</meta>
+        </property>
+
+        <property
+                name="sex"
+                column="SEX"
+                type="java.lang.Boolean"
+                not-null="false"
+                length="1"
+                >
+            <meta attribute="ColumnName">性别</meta>
+            <meta attribute="ColumnComment">性别</meta>
+        </property>
+
+        <property
+                name="bornDate"
+                column="BORN_DATE"
+                type="date"
+                not-null="false"
+                length="7"
+                >
+            <meta attribute="ColumnName">出生年月</meta>
+            <meta attribute="ColumnComment">出生年月</meta>
+        </property>
+
+        <property
+                name="bornPlace"
+                column="BORN_PLACE"
+                type="string"
+                not-null="false"
+                length="100"
+                >
+            <meta attribute="ColumnName">籍贯</meta>
+            <meta attribute="ColumnComment">籍贯</meta>
+        </property>
+
+        <property
+                name="mobile"
+                column="MOBILE"
+                type="string"
+                not-null="false"
+                length="50"
+                >
+            <meta attribute="ColumnName">移动电话</meta>
+            <meta attribute="ColumnComment">移动电话</meta>
+        </property>
+
+        <property
+                name="officeTel"
+                column="OFFICE_TEL"
+                type="string"
+                not-null="false"
+                length="50"
+                >
+            <meta attribute="ColumnName">固定电话</meta>
+            <meta attribute="ColumnComment">固定电话</meta>
+        </property>
+
+        <property
+                name="faxTel"
+                column="FAX_TEL"
+                type="string"
+                not-null="false"
+                length="50"
+                >
+            <meta attribute="ColumnName">传真</meta>
+            <meta attribute="ColumnComment">传真</meta>
+        </property>
+
+        <property
+                name="email"
+                column="EMAIL"
+                type="string"
+                not-null="false"
+                length="100"
+                >
+            <meta attribute="ColumnName">邮件</meta>
+            <meta attribute="ColumnComment">邮件</meta>
+        </property>
+
+        <property
+                name="zipcode"
+                column="ZIPCODE"
+                type="string"
+                not-null="false"
+                length="50"
+                >
+            <meta attribute="ColumnName">邮政编码</meta>
+            <meta attribute="ColumnComment">邮政编码</meta>
+        </property>
+
+        <property
+                name="workYear"
+                column="WORK_YEAR"
+                type="integer"
+                not-null="false"
+                length="2"
+                >
+            <meta attribute="ColumnName">工作年限</meta>
+            <meta attribute="ColumnComment">工作年限</meta>
+        </property>
+
+        <property
+                name="msnCode"
+                column="MSN_CODE"
+                type="string"
+                not-null="false"
+                length="100"
+                >
+            <meta attribute="ColumnName">MSN_CODE</meta>
+            <meta attribute="ColumnComment">MSN_CODE</meta>
+        </property>
+
+        <property
+                name="qqCode"
+                column="QQ_CODE"
+                type="string"
+                not-null="false"
+                length="100"
+                >
+            <meta attribute="ColumnName">QQ_CODE</meta>
+            <meta attribute="ColumnComment">QQ_CODE</meta>
+        </property>
+
+        <property
+                name="memo"
+                column="MEMO"
+                type="string"
+                not-null="false"
+                length="500"
+                >
+            <meta attribute="ColumnName">备注</meta>
+            <meta attribute="ColumnComment">备注</meta>
+        </property>
+
+        <property
+                name="createTime"
+                column="CREATE_TIME"
+                type="timestamp"
+                not-null="false"
+                length="7"
+                >
+            <meta attribute="ColumnName">创建时间</meta>
+            <meta attribute="ColumnComment">创建时间</meta>
+        </property>
+
+        <property
+                name="updateTime"
+                column="UPDATE_TIME"
+                type="timestamp"
+                not-null="false"
+                length="7"
+                >
+            <meta attribute="ColumnName">更新时间</meta>
+            <meta attribute="ColumnComment">更新时间</meta>
+        </property>
+
+        <property
+                name="updateUser"
+                column="UPDATE_USER"
+                type="string"
+                not-null="false"
+                length="100"
+                >
+            <meta attribute="ColumnName">更新人</meta>
+            <meta attribute="ColumnComment">更新人</meta>
+        </property>
+
+        <property
+                name="createUser"
+                column="CREATE_USER"
+                type="string"
+                not-null="false"
+                length="100"
+                >
+            <meta attribute="ColumnName">创建人</meta>
+            <meta attribute="ColumnComment">创建人</meta>
+        </property>
+        
+        <property
+                name="profilePhotoUrl"
+                column="profilePhotoUrl"
+                type="string"
+                not-null="false"
+                length="500"
+                >
+            <meta attribute="ColumnName">生活照</meta>
+            <meta attribute="ColumnComment">生活照</meta>
+        </property>
+        <property
+                name="avatarUrl"
+                column="avatarUrl"
+                type="string"
+                not-null="false"
+                length="500"
+                >
+            <meta attribute="ColumnName">头像</meta>
+            <meta attribute="ColumnComment">头像</meta>
+        </property>
+
+        <many-to-one
+                name="education"
+                column="EDUCATION"
+                class="SysCodeDetail"
+                not-null="false"
+                >
+        </many-to-one>
+
+
+        <set name="sysUsers" inverse="true">
+            <key column="PERSON_ID"/>
+            <one-to-many class="SysUser"/>
+        </set>
+
+        <set name="sysPersonDepts" inverse="true">
+            <key column="PERSON_ID"/>
+            <one-to-many class="SysPersonDept"/>
+        </set>
+
+    </class>
+    <query name="sysperson_all_data_query">
+        <![CDATA[FROM SysPerson]]>
+    </query>
+</hibernate-mapping>

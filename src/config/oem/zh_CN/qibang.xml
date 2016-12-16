@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vendor>
+	<name>qibang</name>
+	<alias> QIBANG </alias>
+	<code> 28723</code>
+	<product>CCSV3</product>
+	<imgPath>qibang</imgPath>
+	<version>v3.0.8</version>
+	<services>
+		<service>N/A</service>
+	</services>
+	<models>
+		<!-- AP -->
+		<model sysModel="CA2025" venModel="VT-AP204"></model>
+		<model sysModel="TA2020SP" venModel="VT-AP100"></model>
+		<model sysModel="TA2025" venModel="VT-AP200"></model>
+		<!-- GW -->
+		<model sysModel="CA1020C" venModel="VT-CP101"></model>
+		<model sysModel="CA2020C" venModel="N/A"></model>
+		<model sysModel="CA2025C" venModel="VT-CP204"></model>
+		<model sysModel="TA2020C" venModel="VT-CP100"></model>
+		<model sysModel="CGW500" venModel="VT-CP102A"></model>
+		<model sysModel="CGW1000" venModel="VSS-WG-100"></model>
+		<model sysModel="CGW1200" venModel="VSS-WG-120"></model>
+		<model sysModel="CGW2000" venModel="VSS-WG-200"></model>
+		<model sysModel="CGW3000" venModel="VSS-WG-1000"></model>
+		<model sysModel="VT-502W" venModel="VT-502W"></model>
+	</models>
+	
+</vendor>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templet>
+  <nodes name="TR069_TEMPLET_CONNECT_REQUEST_MESSAGE" type="1">
+  	<node name="InternetGatewayDevice.ManagementServer.ConnectionRequestURL" type="1"/>
+  	<node name="InternetGatewayDevice.ManagementServer.ConnectionRequestUsername" type="1"/>
+  	<node name="InternetGatewayDevice.ManagementServer.ConnectionRequestPassword" type="1"/>
+  	<node name="InternetGatewayDevice.WANDevice.1.WANEthernetInterfaceConfig.MACAddress" type="1"/>
+  	<node name="InternetGatewayDevice.DeviceInfo.X_OUI_PRIVATE_SOFTVER" type="1"/>
+  	<node name="InternetGatewayDevice.DeviceInfo.X_OUI_PLATFORM_VER" type="1"/>
+  </nodes>
+  
+  <nodes name="TR069_TEMPLET_NOTIFY_PARA_MESSAGE" type="2">
+  	<node name="InternetGatewayDevice.ManagementServer.URL" type="1"/>
+  	<node name="InternetGatewayDevice.ManagementServer.Username" type="1"/>
+  	<node name="InternetGatewayDevice.ManagementServer.Password" type="1"/>
+  	<node name="InternetGatewayDevice.ManagementServer.ConnectionRequestUsername" type="1"/>
+  	<node name="InternetGatewayDevice.ManagementServer.ConnectionRequestPassword" type="1"/>
+    <node name="InternetGatewayDevice.DeviceInfo.X_OUI_PRIVATE_SOFTVER" type="1"/>
+  	<node name="InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANIPConnection.1.ExternalIPAddress" type="1"/>
+  	<node name="InternetGatewayDevice.LANDevice.1.WLANConfiguration.1.SSID" type="1"/>
+  	<node name="InternetGatewayDevice.LANDevice.1.WLANConfiguration.2.SSID" type="1"/>
+  	<node name="InternetGatewayDevice.DeviceInfo.X_OUI_DEV_RUNNING_MODE" type="1"/>
+  	<node name="InternetGatewayDevice.DeviceInfo.X_OUI_DEV_SIGN" type="1"/>
+  </nodes>
+</templet>

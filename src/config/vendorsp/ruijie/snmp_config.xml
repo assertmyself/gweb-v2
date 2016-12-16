@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SnmpContext>
+	<list>
+		<!--  默认 snmp配置     如果需要根据厂商 需要修改为 cm-manager.xml形式-->
+		
+		<!-- 	
+			虹信: 1.3.6.1.4.1.33940
+			邦讯：1.2.156.112567（部分外场使用gbcom根节点）
+			东洲：1.3.6.1.4.1.39743
+			寰创：1.3.6.1.4.1.28723
+			中兴：1.3.6.1.4.1.3902
+			三元达：1.3.6.1.4.1.32870
+			
+			
+			暂没根节点的OEM厂商   （使用nooem版本，暂不单独做版本）
+			大唐：1.3.6.1.4.1.28723
+			杰赛：1.3.6.1.4.1.28723
+			京信：1.3.6.1.4.1.28723
+			
+		 -->
+		 
+		 <!-- oem厂商修改涉及以下文件
+		       1.告警模本文件5个
+		       2.snmp相关  包括此文件3个
+		       3.oem文件修改 1-2个
+		       4.mib 文件修改 2个（boomsence不能直接修改。其他貌似可以。）
+		  -->
+		  
+		<SnmpConfig>
+			<vendor>ruijie</vendor>
+			<rootOID>1.3.6.1.4.1.4881</rootOID>
+			<community>public</community>
+			<defaultMib>FATAP-OPENMIB-RUIJIE</defaultMib>
+			<heartCacheKey>1.3.6.1.4.1.4881.1.3.1.1.110.12.10.1.11</heartCacheKey>
+		</SnmpConfig>
+	</list>
+
+</SnmpContext>

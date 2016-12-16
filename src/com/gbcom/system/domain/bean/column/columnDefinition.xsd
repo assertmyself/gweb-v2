@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v4.1 U (http://www.xmlspy.com) by dingweiqing (dingweiqing) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+    <xs:element name="columnDefinition">
+        <xs:annotation>
+            <xs:documentation>Comment describing your root element</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="columnParam" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="columnParam">
+        <xs:complexType>
+            <xs:attribute name="column" type="xs:string" use="required"/>
+            <xs:attribute name="formId" type="xs:string"/>
+            <xs:attribute name="key" type="xs:string"/>
+            <xs:attribute name="isValid" type="xs:boolean"/>
+            <xs:attribute name="isGridShow" type="xs:boolean"/>
+            <xs:attribute name="gridName" type="xs:string"/>
+            <xs:attribute name="gridWidth" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

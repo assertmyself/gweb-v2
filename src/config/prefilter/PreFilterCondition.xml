@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<conditionContext>
+<filterSwitch >false</filterSwitch>
+	<list>
+	<!-- 101,102,103,104,105,106,201,202,203,204,205,206,301,302 
+		 101： SSID配置
+		 102：SSID加密配置
+		 103：SSID基本配置
+		 104：无线信道配置
+		 105：无线信道配置(5G)
+		 106：IP配置
+		 201：动态查询基本信息
+		 202：动态查询运行信息
+		 203：动态查询用户列表信息
+		 204：动态查询vap基本信息
+		 205：动态查询dhcp信息
+		 206：动态查询在线用户信息
+		 301：系统操作：一键收集
+		 302：系统操作：本地web
+		 说明：配置了相应的操作号，说明该类型的设备支持相应的操作
+	-->
+		<condition sysmodel="WA2020" version="*" oper="and" value="104,105,106,201,202,203,204,302"></condition>
+		<condition sysmodel="TA2020SP" version="*" oper="and" value="104,105,106,201,202,203,204,302"></condition>
+		<condition sysmodel="TA2025" version="*" oper="and" value="104,105,106,201,202,203,204,302"></condition>
+		<condition sysmodel="CA2025" version="*" oper="and" value="104,105,106,201,202,203,204,302"></condition>
+		<condition sysmodel="OA2020" version="*" oper="and" value="104,105,106,201,202,203,204,302"></condition>
+		<condition sysmodel="OA2020L" version="*" oper="and" value="104,105,106,201,202,203,204,302"></condition>
+		<condition sysmodel="OA2025" version="*" oper="and" value="104,105,106,201,202,203,204,302"></condition>
+		<condition sysmodel="TA4025" version="*" oper="and" value="104,105,106,201,202,203,204,302"></condition>
+		
+		<!--  网关-->
+		<condition sysmodel="CGW500" version="*" oper="and" value="104,105,106,201,202,203,204,302"></condition>
+		<condition sysmodel="CGW500U" version="*" oper="and" value="104,105,106,201,202,203,204,302"></condition>
+		<condition sysmodel="CGW350-T" version="*" oper="and" value="104,105,106,201,202,203,204,302"></condition>
+		<condition sysmodel="CGW1200" version="*" oper="and" value="104,105,106,201,202,203,204,302"></condition>
+		<condition sysmodel="CGW1200H" version="*" oper="and" value="104,105,106,201,202,203,204,302"></condition>
+		<condition sysmodel="CGW2000" version="*" oper="and" value="104,105,106,201,202,203,204,302"></condition>
+		<condition sysmodel="CGW3000" version="*" oper="and" value="104,105,106,201,202,203,204,302"></condition>
+		<condition sysmodel="CGW3000T" version="*" oper="and" value="104,105,106,201,202,203,204,302"></condition>
+		
+		
+		<!--  网监-->
+		<condition sysmodel="DW-CGW1200" version="*" oper="and" value="104,105,106,201,202,203,204,302"></condition>
+		<condition sysmodel="DW-LA2000" version="*" oper="and" value="104,105,106,201,202,203,204,302"></condition>
+		<condition sysmodel="DW-LA1000" version="*" oper="and" value="104,105,106,201,202,203,204,302"></condition>
+		<condition sysmodel="DW-LFC25" version="*" oper="and" value="104,105,106,201,202,203,204,302"></condition>
+		<condition sysmodel="DW-TA2025" version="*" oper="and" value="104,105,106,201,202,203,204,302"></condition>
+		<condition sysmodel="DW-CGW500" version="*" oper="and" value="104,105,106,201,202,203,204,302"></condition>
+		<condition sysmodel="DW-OA2025" version="*" oper="and" value="104,105,106,201,202,203,204,302"></condition>
+		<condition sysmodel="DW-LA1000-A" version="*" oper="and" value="104,105,106,201,202,203,204,302"></condition>
+	
+		 <!-- 齐帮定制型号，已停售 -->
+		<condition sysmodel="CA1020C" version="*" oper="and" value="104,105,106,201,202,203,204,302"></condition>
+		<condition sysmodel="CA2020C" version="*" oper="and" value="104,105,106,201,202,203,204,302"></condition>
+		<condition sysmodel="CA2025C" version="*" oper="and" value="104,105,106,201,202,203,204,302"></condition>
+		<condition sysmodel="TA2020C" version="*" oper="and" value="104,105,106,201,202,203,204,302"></condition>
+		<condition sysmodel="CGW1000" version="*" oper="and" value="104,105,106,201,202,203,204,302"></condition>
+		<condition sysmodel="VT-502W" version="*" oper="and" value="104,105,106,201,202,203,204,302"></condition>
+	</list>
+</conditionContext>
+
+
+
+
+
+
+

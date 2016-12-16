@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<northTransferdb>
+	<!-- 同一张表中，储存不同北向的内容， -->
+	<list>
+		<!-- 鹏博士 -->
+		<northVendor vendor="peng" r001="authCode" r002="gwId" r003="" r004="" r005="" 
+			r006="" r007="" r008="" r009="" r010="">
+		</northVendor>
+		
+		<!-- 贝联 -->
+		<northVendor vendor="bblink" r001="name" r002="line" r003="wanIp" r004="partner" r005="firmware" 
+			r006="type" r007="mac" r008="gwid" r009="" r010="">			
+		</northVendor>
+		
+		<!-- 华数 -->
+		<northVendor vendor="wasu" r001="manufacturer" r002="sysHotId" r003="serialNumber" 
+			r004="configState" r005="mac" r006="" r007="" r008="" r009="" r010="">			
+		</northVendor>
+		
+		<!-- 中传 -->
+		<northVendor vendor="zchuan" r001="manufacturer" r002="ssid" r003="serialNumber" 
+			r004="mac" r005="" r006="" r007="" r008="" r009="" r010="">
+		</northVendor>
+	</list>
+</northTransferdb>

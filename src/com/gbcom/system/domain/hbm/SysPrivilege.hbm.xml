@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.gbcom.system.domain">
+    <class
+            name="SysPrivilege"
+            table="SYS_PRIVILEGE"
+            >
+
+        <meta attribute="sync-DAO">false</meta>
+        <meta attribute="sync-jsp">true</meta>
+        <meta attribute="sync-boolean">get</meta>
+        <meta attribute="treeable">true</meta>
+        <meta attribute="projectable">false</meta>
+        <meta attribute="tableName">系统权限管理</meta>
+        <meta attribute="tableComment">系统权限管理</meta>
+        <meta attribute="sync-templatePatterns">tree\w*</meta>
+        <meta attribute="sub-system">system</meta>
+
+        <id
+                name="id"
+                type="java.lang.Long"
+                column="ID"
+                >
+            <generator class="com.hc.core.orm.hibernate.LongIdGenerator"/>
+        </id>
+
+        <property
+                name="code"
+                column="CODE"
+                type="string"
+                not-null="true"
+                length="100"
+                >
+            <meta attribute="ColumnName">权限编码</meta>
+            <meta attribute="ColumnComment">权限编码</meta>
+        </property>
+
+        <property
+                name="name"
+                column="NAME"
+                type="string"
+                not-null="false"
+                length="80"
+                >
+            <meta attribute="ColumnName">权限名称</meta>
+            <meta attribute="ColumnComment">权限名称</meta>
+        </property>
+
+        <property
+                name="tag"
+                column="TAG"
+                type="java.lang.Long"
+                not-null="false"
+                length="10"
+                >
+            <meta attribute="ColumnName">TAG</meta>
+            <meta attribute="ColumnComment">TAG</meta>
+        </property>
+
+        <property
+                name="url"
+                column="URL"
+                type="string"
+                not-null="false"
+                length="400"
+                >
+            <meta attribute="ColumnName">页面地址</meta>
+            <meta attribute="ColumnComment">页面地址</meta>
+        </property>
+
+        <property
+                name="definition"
+                column="DEFINITION"
+                type="string"
+                not-null="false"
+                >
+            <meta attribute="ColumnName">定义</meta>
+            <meta attribute="ColumnComment">定义</meta>
+        </property>
+
+        <property
+                name="description"
+                column="DESCRIPTION"
+                type="string"
+                not-null="false"
+                length="100"
+                >
+            <meta attribute="ColumnName">描述</meta>
+            <meta attribute="ColumnComment">描述</meta>
+        </property>
+
+        <property
+                name="isLeaf"
+                column="IS_LEAF"
+                type="java.lang.Boolean"
+                not-null="false"
+                length="1"
+                >
+            <meta attribute="ColumnName">是否叶节点</meta>
+            <meta attribute="ColumnComment">是否叶节点</meta>
+        </property>
+
+        <property
+                name="treeId"
+                column="TREE_ID"
+                type="string"
+                not-null="false"
+                length="200"
+                >
+            <meta attribute="ColumnName">树形层次</meta>
+            <meta attribute="ColumnComment">树形层次</meta>
+        </property>
+
+        <many-to-one
+                name="parent"
+                column="PARENT_ID"
+                class="SysPrivilege"
+                not-null="false"
+                >
+        </many-to-one>
+
+        <many-to-one
+                name="type"
+                column="TYPE"
+                class="SysCodeDetail"
+                not-null="false"
+                >
+        </many-to-one>
+
+        <set name="sysRolePrivileges" inverse="true">
+            <key column="PRIVILEGE_ID"/>
+            <one-to-many class="SysRolePrivilege"/>
+        </set>
+
+        <set name="sysPrivileges" inverse="true">
+            <key column="PARENT_ID"/>
+            <one-to-many class="SysPrivilege"/>
+        </set>
+
+        <set name="sysUserPrivileges" inverse="true">
+            <key column="PRIVILEGE_ID"/>
+            <one-to-many class="SysUserPrivilege"/>
+        </set>
+
+    </class>
+    <query name="sysprivilege_all_data_query">
+        <![CDATA[FROM SysPrivilege]]>
+    </query>
+</hibernate-mapping>

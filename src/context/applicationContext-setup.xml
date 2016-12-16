@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.0.xsd" default-autowire="byName">
+    <!-- 注意上面的default-autowire="byName"，如果没有这个声明那么HibernateDaoSupport中的sessionFactory不会被注入 -->
+
+    <!-- 定义受环境影响易变的变量 -->
+    <!--<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
+    <!--<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>-->
+    <!--<property name="ignoreResourceNotFound" value="true"/>-->
+    <!--<property name="locations">-->
+    <!--<list>-->
+    <!--<value>classpath:/application.properties</value>-->
+    <!--<value>classpath:/messages.properties</value>-->
+    <!--</list>-->
+    <!--</property>-->
+    <!--</bean>-->
+
+    <!--<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">-->
+    <!--<property name="basename">-->
+    <!--<value>messages</value>-->
+    <!--</property>-->
+    <!--</bean>-->
+
+    <!-- 自动扫描组件，这里要把web下面的 controller去除，他们是在spring3-servlet.xml中配置的，如果不去除会影响事务管理的。-->
+    <!--
+    <context:component-scan base-package="com.hc">
+        <context:exclude-filter type="regex" expression="com.hc.*.controller.*"/>
+    </context:component-scan>
+    -->
+
+    <!-- 初始化服务 
+    <bean id="cloudInitService" class="com.gbcom.smarthome.service.CloudInitService" scope="singleton"
+          init-method="start" destroy-method="close">
+    </bean>
+	-->
+    <!--心跳服务--><!--
+    <bean id="deviceDiscoverService" class="com.gbcom.smarthome.transfer.device.heartbeat.DeviceDiscoverService" scope="singleton"
+          init-method="start" destroy-method="close">
+        <constructor-arg type="int" value="60000" name="port"  />   端口号
+        <constructor-arg type="int" value="90000"  name="outTime" />   心跳超时时间（毫秒）
+        <constructor-arg type="long" value="10000"  name="checkPeriod" />   checkServer 执行周期时间，建议与心跳时间一致，不要低于心跳时间
+        <constructor-arg type="int" value="2"  name="cloudConnect" />    云连接方式，1-UDP 2-TCP 3-SSL  
+        <constructor-arg type="int" value="5"  name="syncTimeout" />     同步操作超时时间，单位：秒  
+    </bean>
+
+     --><!--TCP云连接服务--><!--
+    <bean id="deviceTcpService" class="com.gbcom.smarthome.transfer.device.heartbeat.DeviceTcpService" >
+          scope="singleton" init-method="invalidStart" destroy-method="close"> 
+        <constructor-arg type="int" value="60001" name="port"  />   
+        <constructor-arg type="int" value="90000"  name="outTime" />   
+        <constructor-arg type="long" value="30000"  name="checkPeriod" />  
+    </bean>
+
+    --><!-- SSL云连接服务 -->
+    <!--<bean id="deviceSslService" class="com.gbcom.smarthome.transfer.device.heartbeat.DeviceSslService" scope="singleton"-->
+          <!--init-method="start" destroy-method="close">-->
+        <!--<constructor-arg type="int" value="60002" name="port"  />   &lt;!&ndash;端口号&ndash;&gt;-->
+        <!--<constructor-arg type="int" value="90000"  name="outTime" />   &lt;!&ndash;超时时间（毫秒）&ndash;&gt;-->
+        <!--<constructor-arg type="long" value="30000"  name="checkPeriod" />   &lt;!&ndash;checkServer 执行周期时间，建议与心跳时间一致，不要低于心跳时间&ndash;&gt;-->
+    <!--</bean>-->
+
+    <!-- 定时任务服务 -->
+    <bean id="SysTimerService" class="com.gbcom.system.timer.service.SysTimerService" scope="singleton"
+          init-method="start" destroy-method="close">
+        <constructor-arg type="long" value="30000"  name="checkPeriod" />
+    </bean>
+
+
+     <!--北向接口单利
+    <bean id="northTransferManager" class="com.gbcom.ccsv3.manager.NorthTransferManager" 
+          scope="singleton" init-method="start" destroy-method="close"> 
+    </bean>
+    -->
+    
+</beans>

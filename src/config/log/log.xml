@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<log xmlns="http://www.gbcom.com/log" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.gbcom.com/log, http://www.gbcom.com/log ">
+	<!-- 配置bean的文件的路径 ,从classpath开始-->
+	<beansPath>config/log/log_beans.xml</beansPath>
+	   <!-- 多个事件类型之间用逗号隔开 -->
+	<eventTypes>login,logout</eventTypes>
+		<!-- 多个业务类型之间用逗号隔开 -->
+	<businessTypes>security,operate,dataChange,eventlog</businessTypes>
+	<logItemList>
+		<logItem businessType="operate">
+			<type>com.gbcom.omc.cms.core.server.lm.logentity.GmNeOperateLog</type>
+			<appender>daoAppender</appender>
+		</logItem>
+		<logItem businessType="dataChange">
+			<type>com.gbcom.omc.cms.core.server.lm.logentity.GmNeDataChangeLog</type>
+			<appender>daoAppender</appender>
+		</logItem>
+		<logItem businessType="eventlog">
+			<type>com.gbcom.omc.cms.core.server.lm.logentity.GmNeEventLog</type>
+			<appender>daoAppender</appender>
+		</logItem>
+		<logItem businessType="security">
+			<type>com.gbcom.omc.cms.core.server.lm.logentity.GmSecurityLog</type>
+			<appender>daoAppender</appender>
+		</logItem>
+	</logItemList>
+</log>

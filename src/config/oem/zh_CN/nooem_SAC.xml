@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vendor>
+	<name>nooem</name>
+	<alias> </alias>
+	<code>28723</code>
+	<!-- 真正的产品名称-->
+	<product>SAC300</product>
+	<imgPath>nooem-sac</imgPath>
+	<version>v3.0.8</version>
+	<!-- 部分代码的 配置文件控制，，主流 通过 RBAC，补充的硬编码方式。 if dw and sac is conflict,can move to xml-->
+	<lit>true</lit>
+	<services>
+		<service>N/A</service>
+	</services>
+	
+	<models>
+		<model sysModel="WA2020" venModel="WA2020"></model>
+		<model sysModel="TA2020SP" venModel="TA2020SP"></model>
+		<model sysModel="TA2025" venModel="TA2025"></model>
+		<model sysModel="CA2025" venModel="CA2025"></model>
+		<model sysModel="OA2020" venModel="OA2020"></model>
+		<model sysModel="OA2020L" venModel="OA2020L"></model>
+		<model sysModel="OA2025" venModel="OA2025"></model>
+		
+		<model sysModel="TA4025" venModel="TA4025"></model>
+	</models>
+	
+</vendor>

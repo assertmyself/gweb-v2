@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alarms>
+	<alarm>
+		<vendor>gbcom</vendor>
+		<sysTime>1.3.6.1.2.1.1.3.0</sysTime>
+		<alarmOid>1.3.6.1.6.3.1.1.4.1.0</alarmOid>
+		<alarmSn>1.3.6.1.4.1.28723.1.1</alarmSn>
+		<alarmNeName>1.3.6.1.4.1.28723.1.2</alarmNeName>
+		<alarmLevel>1.3.6.1.4.1.28723.1.3</alarmLevel>
+		<alarmType>1.3.6.1.4.1.28723.1.4</alarmType>
+		<alarmReasonID>1.3.6.1.4.1.28723.1.5</alarmReasonID>
+		<alarmReason>1.3.6.1.4.1.28723.1.6</alarmReason>
+		<alarmRaiseTime>1.3.6.1.4.1.28723.1.7</alarmRaiseTime>
+		<alarmStatus>1.3.6.1.4.1.28723.1.8</alarmStatus>
+		<alarmTitle>1.3.6.1.4.1.28723.1.9</alarmTitle>
+		<alarmInfo>1.3.6.1.4.1.28723.1.10</alarmInfo>
+	</alarm>
+</alarms>
+
+
+
+

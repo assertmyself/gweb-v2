@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vendor>
+	<name>ruijie</name>
+	<alias> </alias>
+	<code> 28723</code>
+	<product>锐捷</product>
+	<imgPath>ruijie</imgPath>
+	<version>v3.0.8</version>
+	<lit>true</lit>
+	<services>
+		<service>N/A</service>
+	</services>
+	
+	<models>
+		<!-- ap
+		 <ApSysModel sysModel="RG-AP220-L" modelId="9001002"  modelName="TA2020SP" hardwareType="5" boardVersion="2" dev5g="false" desc="TA40"/>
+    <ApSysModel sysModel="RG-AP220-W" modelId="9001006"  modelName="WA2020S" hardwareType="5" boardVersion="5" dev5g="false" desc="TA40"/>
+    <ApSysModel sysModel="RG-AP3320" modelId="9002001"  modelName="TA2025" hardwareType="4" boardVersion="10" dev5g="true" desc="TA40"/>
+    
+    <ApSysModel sysModel="RG-AP6310" modelId="10001001"  modelName="OA2020L" hardwareType="5" boardVersion="2" dev5g="true" desc="TA40-02"/>
+    <ApSysModel sysModel="RG-AP6320" modelId="10001002"  modelName="OA2025" hardwareType="4" boardVersion="1" dev5g="true" desc="TA98-01"/>
+		 -->
+		<model sysModel="TA2020SP" venModel="RG-AP220-L"></model>
+		<model sysModel="WA2020S" venModel="RG-AP220-W"></model>
+		<model sysModel="TA2025" venModel="RG-AP3320"></model>
+		<model sysModel="OA2020L" venModel="RG-AP6310"></model>
+		<model sysModel="OA2025" venModel="RG-AP6320"></model>
+	</models>
+	
+</vendor>

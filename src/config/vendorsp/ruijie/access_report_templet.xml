@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AccessReportTemplate>
+	<relative>true</relative>
+	<sysMacAddress>.1.3.1.1.110.11.1.1.1</sysMacAddress>
+	<sysIpAddress>.1.3.1.1.110.11.1.1.9</sysIpAddress>
+	<sysManageState>.1.3.1.1.110.11.1.1.10</sysManageState>
+	<modelId>.1.3.1.1.110.11.1.1.11</modelId>
+	<modelName>.1.3.1.1.110.11.1.1.12</modelName>
+	<sysModel>.1.3.1.1.110.11.1.1.13</sysModel>
+	<softwareVersion>.1.3.1.1.110.11.1.2.1</softwareVersion>
+	<oemSwVersion>.1.3.1.1.110.11.1.2.3</oemSwVersion>
+	<hardwareVersion>.1.3.1.1.110.11.1.3.5</hardwareVersion>
+	<hardwareType>.1.3.1.1.110.11.1.3.6</hardwareType>
+	<boardVersion>.1.3.1.1.110.11.1.3.7</boardVersion>
+</AccessReportTemplate>

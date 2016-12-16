@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.gbcom.system.domain">
+    <class
+            name="SysMenu"
+            table="SYS_MENU"
+            >
+
+        <meta attribute="sync-DAO">false</meta>
+        <meta attribute="sync-jsp">true</meta>
+        <meta attribute="sync-boolean">get</meta>
+        <meta attribute="treeable">true</meta>
+        <meta attribute="projectable">false</meta>
+        <meta attribute="tableName">系统菜单</meta>
+        <meta attribute="tableComment">系统菜单</meta>
+        <meta attribute="sync-templatePatterns">tree\w*</meta>
+        <meta attribute="sub-system">system</meta>
+
+        <id
+                name="id"
+                type="java.lang.Long"
+                column="ID"
+                >
+            <generator class="com.hc.core.orm.hibernate.LongIdGenerator"/>
+        </id>
+
+        <property
+                name="name"
+                column="NAME"
+                type="string"
+                not-null="true"
+                length="100"
+                >
+            <meta attribute="ColumnName">名称</meta>
+            <meta attribute="ColumnComment">名称</meta>
+        </property>
+
+        <property
+                name="privilege"
+                column="PRIVILEGE"
+                type="string"
+                not-null="true"
+                length="100"
+                >
+            <meta attribute="ColumnName">权限编码</meta>
+            <meta attribute="ColumnComment">权限编码</meta>
+        </property>
+
+        <property
+                name="menuLevel"
+                column="MENU_LEVEL"
+                type="integer"
+                not-null="false"
+                length="2"
+                >
+            <meta attribute="ColumnName">层次</meta>
+            <meta attribute="ColumnComment">层次</meta>
+        </property>
+
+        <property
+                name="url"
+                column="URL"
+                type="string"
+                not-null="false"
+                length="200"
+                >
+            <meta attribute="ColumnName">链接地址</meta>
+            <meta attribute="ColumnComment">链接地址</meta>
+        </property>
+
+        <property
+                name="jsEvent"
+                column="JS_EVENT"
+                type="string"
+                not-null="false"
+                length="200"
+                >
+            <meta attribute="ColumnName">事件</meta>
+            <meta attribute="ColumnComment">事件</meta>
+        </property>
+
+        <property
+                name="isLeaf"
+                column="IS_LEAF"
+                type="java.lang.Boolean"
+                not-null="false"
+                length="1"
+                >
+            <meta attribute="ColumnName">叶节点</meta>
+            <meta attribute="ColumnComment">叶节点</meta>
+        </property>
+
+        <property
+                name="treeId"
+                column="TREE_ID"
+                type="string"
+                not-null="false"
+                length="255"
+                >
+            <meta attribute="ColumnName">树形层次</meta>
+            <meta attribute="ColumnComment">树形层次</meta>
+        </property>
+
+        <property
+                name="isValid"
+                column="IS_VALID"
+                type="java.lang.Boolean"
+                not-null="false"
+                length="1"
+                >
+            <meta attribute="ColumnName">是否有效</meta>
+            <meta attribute="ColumnComment">是否有效</meta>
+        </property>
+
+        <property
+                name="param"
+                column="PARAM"
+                type="string"
+                not-null="false"
+                length="100"
+                >
+            <meta attribute="ColumnName">参数</meta>
+            <meta attribute="ColumnComment">参数</meta>
+        </property>
+
+        <property
+                name="icon"
+                column="ICON"
+                type="string"
+                not-null="false"
+                length="200"
+                >
+            <meta attribute="ColumnName">显示图标</meta>
+            <meta attribute="ColumnComment">显示图标</meta>
+        </property>
+
+        <property
+                name="target"
+                column="TARGET"
+                type="string"
+                not-null="false"
+                length="100"
+                >
+            <meta attribute="ColumnName">目标窗口</meta>
+            <meta attribute="ColumnComment">目标窗口</meta>
+        </property>
+
+        <many-to-one
+                name="parent"
+                column="PARENT_ID"
+                class="SysMenu"
+                not-null="false"
+                >
+        </many-to-one>
+
+
+        <set name="sysMenus" inverse="true" order-by="tree_id">
+            <key column="PARENT_ID"/>
+            <one-to-many class="SysMenu"/>
+        </set>
+
+    </class>
+    <query name="sysmenu_all_data_query">
+        <![CDATA[FROM SysMenu]]>
+    </query>
+</hibernate-mapping>

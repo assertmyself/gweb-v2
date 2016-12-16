@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AccessReportTemplate>
+	<relative>true</relative>
+	<sysMacAddress>.11.1.1.1</sysMacAddress>
+	<sysIpAddress>.11.1.1.9</sysIpAddress>
+	<sysManageState>.11.1.1.10</sysManageState>
+	<modelId>.11.1.1.11</modelId>
+	<modelName>.11.1.1.12</modelName>
+	<sysModel>.11.1.1.13</sysModel>
+	<softwareVersion>.11.1.2.1</softwareVersion>
+	<oemSwVersion>.11.1.2.3</oemSwVersion>
+	<hardwareVersion>.11.1.3.5</hardwareVersion>
+	<hardwareType>.11.1.3.6</hardwareType>
+	<boardVersion>.11.1.3.7</boardVersion>
+	<!-- new add -->
+	<devType>.11.1.1.16</devType>
+	<sysName>.11.1.1.17</sysName>
+	<sysHotId>.11.1.1.18</sysHotId>
+	
+	<tplSequence>.14.1.7</tplSequence>
+	<!-- 工作模式，胖/瘦  11.1.1.27 -->
+	<workMode>.11.1.1.27</workMode>
+</AccessReportTemplate>
+
+
+

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oem>
+<!-- name rule : vendor_productLine -->
+	<name>nooem</name>
+	<!-- zh_CN ; en_US -->
+	<locale>zh_CN</locale>
+	<!-- 产品级OEM 会加载相应的文件  ，DW(网监) SAC(SAC300软AC) GW(GWIFI) -->
+	<pline></pline>
+</oem>
+   	

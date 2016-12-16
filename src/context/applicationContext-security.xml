@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<b:beans xmlns="http://www.springframework.org/schema/security"
+         xmlns:b="http://www.springframework.org/schema/beans"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.3.xsd">
+
+    <http auto-config="true" access-denied-page="/view/error/permissionDeny.jsp"
+          access-decision-manager-ref="myAccessDecisionManager">
+        <custom-filter position="CONCURRENT_SESSION_FILTER" ref="concurrencyFilter"/>
+        <intercept-url pattern="/sys*/**" access="ROLE_USER"/>
+        <intercept-url pattern="/view/**" access="ROLE_USER"/>
+        <intercept-url pattern="/mainPage/index.do*" access="ROLE_USER"/>
+        <intercept-url pattern="/device*/**" access="ROLE_USER"/>
+        <intercept-url pattern="/gate*/**" access="ROLE_USER"/>
+        <intercept-url pattern="/phone*/**" access="ROLE_USER"/>
+        <intercept-url pattern="/notify*/**" access="ROLE_USER"/>
+
+        <!--头文件及引入文件不验证权限-->
+        <intercept-url pattern="/**/header.jsp*" filters="none"/>
+        <intercept-url pattern="/imageCode.jsp*" filters="none"/>
+        <intercept-url pattern="/skin/**" filters="none"/>
+        <intercept-url pattern="/js/**" filters="none"/>
+
+        <form-login login-page="/login.jsp" authentication-failure-url="/login.jsp?login_error=1"
+                    default-target-url="/login/dispatch.do"/>
+        <logout invalidate-session="true" logout-success-url="/login/logout.do" logout-url="/j_spring_security_logout"/>
+        <session-management session-authentication-strategy-ref="sas">
+            <!--<concurrency-control max-sessions="10" error-if-maximum-exceeded="true"/>-->
+        </session-management>
+        <custom-filter ref="myFilter" before="PRE_AUTH_FILTER"/>
+        <port-mappings>
+            <port-mapping http="8080" https="8443"/>
+        </port-mappings>
+    </http>
+
+    <!-- 设置方法的安全性 -->
+    <global-method-security access-decision-manager-ref="myAccessDecisionManager">
+        <protect-pointcut expression="execution(* com.hc.*Manager.*(..))" access="ROLE_USER"/>
+    </global-method-security>
+
+    <!--<b:bean id="passwordEncoder" class="com.hc.core.security.encoder.CommonPasswordEncoder"/> -->
+    <b:bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder"/>
+    <!--
+       <authentication-provider>
+              <password-encoder ref="passwordEncoder"/>
+       </authentication-provider>
+    -->
+
+    <!--
+     <b:bean id="authenticationManager"
+             class="org.springframework.security.authentication.ProviderManager">
+         <b:property name="providers">
+             <b:list>
+                 <b:ref local="daoAuthenticationProvider"/>
+             </b:list>
+         </b:property>
+     </b:bean>
+     -->
+
+    <authentication-manager alias="authenticationManager">
+        <authentication-provider ref="daoAuthenticationProvider"/>
+    </authentication-manager>
+
+    <b:bean id="daoAuthenticationProvider"
+            class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+        <b:property name="userDetailsService" ref="userDetailsService"/>
+        <b:property name="passwordEncoder" ref="passwordEncoder"/>
+        <b:property name="hideUserNotFoundExceptions" value="false"/>
+        <!--custom-authentication-provider/ -->
+    </b:bean>
+
+    <b:bean id="myFilter" class="com.gbcom.system.filter.CustomAuthenticationProcessingFilter">
+    </b:bean>
+
+    <!--
+     <b:bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+           <b:property name="basename" value="org/springframework/security/messages" />
+     </b:bean>
+      -->
+
+    <b:bean id="userDetailsService" class="com.gbcom.system.manager.UserDetailServiceImpl"/>
+
+    <b:bean id="myAccessDecisionManager" class="org.springframework.security.access.vote.UnanimousBased">
+        <b:property name="allowIfAllAbstainDecisions" value="false"/>
+        <b:property name="decisionVoters">
+            <b:list>
+                <b:bean class="org.springframework.security.access.vote.RoleVoter"/>
+                <b:bean class="com.hc.core.security.vote.UrlVoter"/>
+                <b:bean class="org.springframework.security.access.vote.AuthenticatedVoter"/>
+            </b:list>
+        </b:property>
+    </b:bean>
+
+    <b:bean id="resourceSecurityInterceptor"
+            class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
+        <b:property name="authenticationManager" ref="authenticationManager"/>
+        <b:property name="accessDecisionManager" ref="myAccessDecisionManager"/>
+        <b:property name="securityMetadataSource">
+            <filter-security-metadata-source lowercase-comparisons="true">
+                <intercept-url pattern=".*\register.jsp($|\?.*)" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+                <intercept-url pattern=".*login\.jsp($|\?.*)" access="ROLE_USER,IS_AUTHENTICATED_ANONYMOUSLY"/>
+                <intercept-url pattern=".*index\.jsp($|\?.*)" access="ROLE_USER"/>
+                <intercept-url pattern=".*\.jsp($|\?.*)" access="ROLE_USER"/>
+                <intercept-url pattern=".*\.do($|\?.*)" access="ROLE_USER"/>
+            </filter-security-metadata-source>
+        </b:property>
+        <!--<b:property name="observeOncePerRequest" value="true" />-->
+    </b:bean>
+
+    <!-- 在线用户监控 -->
+    <b:bean id="sessionRegistry" class="org.springframework.security.core.session.SessionRegistryImpl"/>
+
+    <b:bean id="concurrencyFilter"
+            class="org.springframework.security.web.session.ConcurrentSessionFilter">
+        <b:property name="sessionRegistry" ref="sessionRegistry"/>
+        <b:property name="expiredUrl" value="/login.jsp"/>
+    </b:bean>
+
+    <b:bean id="sas" class=
+            "org.springframework.security.web.authentication.session.ConcurrentSessionControlStrategy">
+        <b:constructor-arg name="sessionRegistry" ref="sessionRegistry"/>
+        <b:property name="maximumSessions" value="10"/>
+    </b:bean>
+</b:beans>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.gbcom.system.domain">
+    <class
+            name="SysOperationTableLog"
+            table="SYS_OPERATION_TABLE_LOG"
+            >
+
+        <meta attribute="sync-DAO">false</meta>
+        <meta attribute="sync-jsp">true</meta>
+        <meta attribute="sync-boolean">get</meta>
+        <meta attribute="treeable">false</meta>
+        <meta attribute="projectable">false</meta>
+        <meta attribute="sync-templatePatterns">list\w*</meta>
+        <meta attribute="sub-system">system</meta>
+
+        <id
+                name="id"
+                type="java.lang.Long"
+                column="ID"
+                >
+            <generator class="com.hc.core.orm.hibernate.LongIdGenerator"/>
+        </id>
+
+        <property
+                name="logXml"
+                column="LOG_XML"
+                type="string"
+                not-null="false"
+                />
+
+        <property
+                name="ipAddress"
+                column="IP_ADDRESS"
+                type="string"
+                not-null="false"
+                length="50"
+                />
+
+        <property
+                name="createTime"
+                column="CREATE_TIME"
+                type="timestamp"
+                not-null="false"
+                length="7"
+                />
+
+        <property
+                name="updateTime"
+                column="UPDATE_TIME"
+                type="timestamp"
+                not-null="false"
+                length="7"
+                />
+
+        <property
+                name="updateUser"
+                column="UPDATE_USER"
+                type="string"
+                not-null="false"
+                length="100"
+                />
+
+        <property
+                name="createUser"
+                column="CREATE_USER"
+                type="string"
+                not-null="false"
+                length="100"
+                />
+
+        <many-to-one
+                name="table"
+                column="TABLE_ID"
+                class="ConfigTable"
+                not-null="false"
+                >
+        </many-to-one>
+
+    </class>
+    <query name="sysoperationtablelog_all_data_query">
+        <![CDATA[FROM SysOperationTableLog]]>
+    </query>
+</hibernate-mapping>

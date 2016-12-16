@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.gbcom.system.domain">
+    <class
+            name="TimePlan"
+            table="TIME_PLAN"
+            >
+
+        <meta attribute="sync-DAO">false</meta>
+        <meta attribute="sync-jsp">true</meta>
+        <meta attribute="sync-boolean">get</meta>
+        <meta attribute="treeable">false</meta>
+        <meta attribute="projectable">false</meta>
+        <meta attribute="tableName">定时任务</meta>
+        <meta attribute="tableComment">定时任务</meta>
+        <meta attribute="sync-templatePatterns">list\w*</meta>
+        <meta attribute="sub-system">system</meta>
+
+        <id
+                name="id"
+                type="java.lang.Long"
+                column="ID"
+                >
+            <generator class="com.hc.core.orm.hibernate.LongIdGenerator"/>
+        </id>
+
+        <property
+                name="ownerType"
+                column="OWNER_TYPE"
+                type="java.lang.Integer"
+                not-null="false"
+                >
+            <meta attribute="ColumnName">所属类型</meta>
+            <meta attribute="ColumnComment">所属类型</meta>
+        </property>
+
+        <property
+                name="type"
+                column="TYPE"
+                type="java.lang.Integer"
+                not-null="false"
+                >
+            <meta attribute="ColumnName">定时任务类型</meta>
+            <meta attribute="ColumnComment">定时任务类型</meta>
+        </property>
+
+
+        <property
+                name="beginTime"
+                column="BEGIN_TIME"
+                type="timestamp"
+                not-null="false"
+                length="7"
+                >
+            <meta attribute="ColumnName">开始时间</meta>
+            <meta attribute="ColumnComment">开始时间</meta>
+        </property>
+        <property
+                name="repeatTime"
+                column="REPEAT_TIME"
+                type="string"
+                not-null="false"
+                length="50"
+                >
+            <meta attribute="ColumnName">定时时间</meta>
+            <meta attribute="ColumnComment">定时时间</meta>
+        </property>
+
+        <property
+                name="selectWeek"
+                column="SELECT_WEEK"
+                type="string"
+                not-null="false"
+                length="50"
+                >
+            <meta attribute="ColumnName">选择星期</meta>
+            <meta attribute="ColumnComment">选择星期</meta>
+        </property>
+
+        <property
+                name="selectDay"
+                column="SELECT_DAY"
+                type="string"
+                not-null="false"
+                length="50"
+                >
+            <meta attribute="ColumnName">选择日期</meta>
+            <meta attribute="ColumnComment">选择日期</meta>
+        </property>
+
+        <property
+                name="intervalTime"
+                column="INTERVAL_TIME"
+                type="java.lang.Integer"
+                not-null="false"
+                >
+            <meta attribute="ColumnName">间隔分钟数</meta>
+            <meta attribute="ColumnComment">间隔分钟数</meta>
+        </property>
+
+        <property
+                name="state"
+                column="STATE"
+                type="java.lang.Boolean"
+                not-null="false"
+                length="1"
+                >
+            <meta attribute="ColumnName">是否可用</meta>
+            <meta attribute="ColumnComment">是否可用</meta>
+        </property>
+
+        <property
+                name="createTime"
+                column="CREATE_TIME"
+                type="timestamp"
+                not-null="false"
+                length="7"
+                >
+            <meta attribute="ColumnName">创建时间</meta>
+            <meta attribute="ColumnComment">创建时间</meta>
+        </property>
+
+        <property
+                name="updateTime"
+                column="UPDATE_TIME"
+                type="timestamp"
+                not-null="false"
+                length="7"
+                >
+            <meta attribute="ColumnName">更新时间</meta>
+            <meta attribute="ColumnComment">更新时间</meta>
+        </property>
+
+    </class>
+    <query name="timeplan_all_data_query">
+        <![CDATA[FROM TimePlan]]>
+    </query>
+</hibernate-mapping>

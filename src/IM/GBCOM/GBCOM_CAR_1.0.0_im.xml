@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<im xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" desc="" type="GBCOM_CAR" version="1.0.0" xsi:noNamespaceSchemaLocation="im.xsd">
+
+    <class id="0" name="GBCOM_CAR">
+        <classElement name="aliasName">模拟小车</classElement>            <!-- 设备中文名 -->
+        <!-- 报警列表，包括告警、事件等设备主动上报的信息  -->
+        <classElement name="alarmParser">com.gbcom.common.im.parse.alarm.EmptyAlarmParser</classElement>  <!-- 告警上报/清除的处理类 -->
+        <classElement name="rspParser"></classElement>  <!-- 应答消息处理类 -->
+        <!-- 属性列表  -->
+
+        <!--  启动/熄火设置 -->
+        <attribute id="1">
+            <attrElement name="AttrName">power</attrElement>    <!-- 英文名称,可以与按键名一致 -->
+            <attrElement name="AliasName">启动/熄火</attrElement>          <!-- 中文名称 -->
+            <attrElement name="DataType">1</attrElement>                  <!-- 数据类型 -->
+            <attrElement name="DefaultValue">0</attrElement>          <!-- 缺省值 -->
+            <attrElement name="MinValue">0</attrElement>              <!-- 最小值 -->
+            <attrElement name="MaxValue">1</attrElement>            <!-- 最大值 -->
+            <attrElement name="Length">1</attrElement>                <!-- 长度 -->
+            <attrElement name="AtCmd"></attrElement>    <!-- 发送AT指令，支持pattern适配value；如果有枚举值，则该项可以不填 -->
+            <attrElement name="RspParser"></attrElement>        	  <!-- 接收应答的处理类 -->
+            <enum groupId="0" groupName="">
+                <entry value="0" name="熄火">A5A5A5A50000101210{SN}{CRC32}</entry>   <!-- AT指令 -->
+                <entry value="1" name="启动">A5A5A5A50000101010{SN}{CRC32}</entry>   <!-- AT指令 -->
+            </enum>
+        </attribute>
+
+        <!-- 档位设置 -->
+        <attribute id="2">
+            <attrElement name="AttrName">geer</attrElement>    <!-- 英文名称,可以与按键名一致 -->
+            <attrElement name="AliasName">档位</attrElement>          <!-- 中文名称 -->
+            <attrElement name="DataType">1</attrElement>                  <!-- 数据类型 -->
+            <attrElement name="DefaultValue">0</attrElement>          <!-- 缺省值 -->
+            <attrElement name="MinValue">0</attrElement>              <!-- 最小值 -->
+            <attrElement name="MaxValue">2</attrElement>            <!-- 最大值 -->
+            <attrElement name="Length">1</attrElement>                <!-- 长度 -->
+            <attrElement name="AtCmd"></attrElement>    <!-- 发送AT指令，支持pattern适配value；如果有枚举值，则该项可以不填 -->
+            <attrElement name="RspParser"></attrElement>        	  <!-- 接收应答的处理类 -->
+            <enum groupId="0" groupName="">
+                <entry value="0" name="P档">A5A5A5A50000101810{SN}{CRC32}</entry>   <!-- AT指令 -->
+                <entry value="1" name="R档">A5A5A5A50000101610{SN}{CRC32}</entry>   <!-- AT指令 -->
+                <entry value="2" name="D档">A5A5A5A50000101410{SN}{CRC32}</entry>   <!-- AT指令 -->
+            </enum>
+        </attribute>
+
+        <!-- 车速档位设置 -->
+        <attribute id="3">
+            <attrElement name="AttrName">speedGeer</attrElement>    <!-- 英文名称,可以与按键名一致 -->
+            <attrElement name="AliasName">车速档位</attrElement>          <!-- 中文名称 -->
+            <attrElement name="DataType">1</attrElement>                  <!-- 数据类型 -->
+            <attrElement name="DefaultValue">1</attrElement>          <!-- 缺省值 -->
+            <attrElement name="MinValue">1</attrElement>              <!-- 最小值 -->
+            <attrElement name="MaxValue">4</attrElement>            <!-- 最大值 -->
+            <attrElement name="Length">1</attrElement>                <!-- 长度 -->
+            <attrElement name="AtCmd"></attrElement>    <!-- 发送AT指令，支持pattern适配value；如果有枚举值，则该项可以不填 -->
+            <attrElement name="RspParser"></attrElement>        	  <!-- 接收应答的处理类 -->
+            <enum groupId="0" groupName="">
+                <entry value="1" name="1档">A5A5A5A50000102211{SN}{CRC32}01</entry>   <!-- AT指令 -->
+                <entry value="2" name="2档">A5A5A5A50000102211{SN}{CRC32}02</entry>   <!-- AT指令 -->
+                <entry value="3" name="3档">A5A5A5A50000102211{SN}{CRC32}03</entry>   <!-- AT指令 -->
+                <entry value="4" name="4档">A5A5A5A50000102211{SN}{CRC32}04</entry>   <!-- AT指令 -->
+            </enum>
+        </attribute>
+
+        <!-- LCD颜色设置 -->
+        <attribute id="4">
+            <attrElement name="AttrName">color</attrElement>    <!-- 英文名称,可以与按键名一致 -->
+            <attrElement name="AliasName">LED灯颜色</attrElement>          <!-- 中文名称 -->
+            <attrElement name="DataType">11</attrElement>                  <!-- 数据类型 -->   <!-- 单字节数组 -->
+            <attrElement name="DefaultValue">0</attrElement>          <!-- 缺省值 -->
+            <attrElement name="MinValue">0</attrElement>              <!-- 最小值 -->
+            <attrElement name="MaxValue">0</attrElement>            <!-- 最大值 -->
+            <attrElement name="Length">3</attrElement>                <!-- 长度 -->
+            <attrElement name="AtCmd">A5A5A5A50000102513{SN}{CRC32}{VAL}</attrElement>    <!-- 发送AT指令，支持pattern适配value；如果有枚举值，则该项可以不填 -->
+            <attrElement name="RspParser"></attrElement>        	  <!-- 接收应答的处理类 -->
+        </attribute>
+
+        <!-- LCD字符设置 -->
+        <attribute id="5">
+            <attrElement name="AttrName">character</attrElement>    <!-- 英文名称,可以与按键名一致 -->
+            <attrElement name="AliasName">字符显示</attrElement>          <!-- 中文名称 -->
+            <attrElement name="DataType">5</attrElement>                  <!-- 数据类型 -->   <!-- 单字节数组 -->
+            <attrElement name="DefaultValue"></attrElement>          <!-- 缺省值 -->
+            <attrElement name="MinValue">0</attrElement>              <!-- 最小值 -->
+            <attrElement name="MaxValue">20</attrElement>            <!-- 最大值 -->
+            <attrElement name="Length">20</attrElement>                <!-- 长度 -->
+            <attrElement name="AtCmd">A5A5A5A50000101E24{SN}{CRC32}{VAL}</attrElement>    <!-- 发送AT指令，支持pattern适配value；如果有枚举值，则该项可以不填 -->
+            <attrElement name="RspParser"></attrElement>        	  <!-- 接收应答的处理类 -->
+        </attribute>
+
+        <!-- 操作列表，包括控制类和查询类 -->
+        <!-- 查询，有应答 -->
+        <!-- 设置LCD灯呼吸模式 -->
+        <opt group="1" id="" name="OP_CLEAR_LCD_CHAR">
+            <entry key="atCmd">A5A5A5A50000102010{SN}{CRC32}</entry> 		  <!-- 发送请求AT指令 -->
+            <entry key="rspParser"></entry>             	  <!-- 接收应答的处理类 -->
+            <entry key="relatedAttrID"></entry>
+        </opt>
+
+        <!-- 左转 -->
+        <opt group="2" id="" name="OP_TURN_LEFT">
+            <entry key="atCmd">A5A5A5A50000101A10{SN}{CRC32}</entry> 		  <!-- 发送请求AT指令 -->
+            <entry key="rspParser"></entry>             	  <!-- 接收应答的处理类 -->
+            <entry key="relatedAttrID"></entry>
+        </opt>
+
+        <!-- 右转 -->
+        <opt group="3" id="" name="OP_TURN_RIGHT">
+            <entry key="atCmd">A5A5A5A50000101C10{SN}{CRC32}</entry> 		  <!-- 发送请求AT指令 -->
+            <entry key="rspParser"></entry>             	  <!-- 接收应答的处理类 -->
+            <entry key="relatedAttrID"></entry>
+        </opt>
+
+    </class>
+
+</im>

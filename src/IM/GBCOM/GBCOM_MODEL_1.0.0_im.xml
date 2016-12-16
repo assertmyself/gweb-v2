@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<im xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" desc="" type="GBCOM_MODEL" version="1.0.0" xsi:noNamespaceSchemaLocation="im.xsd">
+
+	<class id="0" name="GBCOM_MODEL">                                          
+		<classElement name="aliasName">测试</classElement>            <!-- 设备中文名 -->      			
+		<!-- 报警列表，包括告警、事件等设备主动上报的信息  -->
+		<classElement name="alarmParser">com.gbcom.common.im.parse.alarm.EmptyAlarmParser</classElement>  <!-- 告警上报/清除的处理类 -->
+        <classElement name="rspParser"></classElement>  <!-- 应答消息处理类 -->
+		<!-- 属性列表  -->
+	
+		<!--  温度设置 -->
+		<attribute id="1">
+			<attrElement name="AttrName">temperature</attrElement>    <!-- 英文名称,可以与按键名一致 -->
+			<attrElement name="AliasName">温度</attrElement>          <!-- 中文名称 -->
+            <attrElement name="DataType">3</attrElement>                  <!-- 数据类型 -->
+			<attrElement name="DefaultValue">0</attrElement>          <!-- 缺省值 -->
+			<attrElement name="MinValue">0</attrElement>              <!-- 最小值 -->
+			<attrElement name="MaxValue">100</attrElement>            <!-- 最大值 -->
+            <attrElement name="Length">4</attrElement>                <!-- 长度 -->
+			<attrElement name="AtCmd">1000{VAL}</attrElement>    <!-- 发送AT指令，支持pattern适配value；如果有枚举值，则该项可以不填 -->
+			<attrElement name="RspParser"></attrElement>        	  <!-- 接收应答的处理类 -->
+		</attribute>
+	
+		<!-- 操作列表，包括控制类和查询类 -->
+		<!-- 查询，有应答 -->
+		<opt group="1" id="" name="OP_QUERY">
+			<entry key="atCmd">1002</entry> 		  <!-- 发送请求AT指令 -->
+			<entry key="rspParser"></entry>             	  <!-- 接收应答的处理类 -->
+		</opt>
+
+		<!-- 统计计数器组 -->
+		<itemGroup group="1" id="" name="">
+			<entry key="atCmd">1002</entry> 					  <!-- 发送请求AT指令 -->
+			<entry key="rspParser"></entry>             <!-- 接收应答的处理类 -->
+			
+			<!-- 对应数据库表字段:deviceId,itemGroupId,itemId,time,value  -->
+			<item id="1">
+				<itemElement name="ItemName">TEMPERATURE</itemElement>
+				<itemElement name="AliasName">温度</itemElement>
+				<itemElement name="DataType">2</itemElement>
+			</item>
+		</itemGroup>	
+	
+	</class>
+
+</im>
